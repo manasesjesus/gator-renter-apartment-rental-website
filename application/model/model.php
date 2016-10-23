@@ -35,7 +35,7 @@ class Model
      */
     public function getAllApartments()
     {
-        $sql = "SELECT id,artist,track FROM song";
+        $sql = "SELECT * FROM apartments";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -141,5 +141,19 @@ class Model
 
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->amount_of_songs;
+    }
+
+    /**
+     * Get simple "stats". This is just a simple demo to show
+     * how to use more than one model in a controller (see application/controller/songs.php for more)
+     */
+    public function getAmountOfApartments()
+    {
+        $sql = "SELECT COUNT(id) AS amount_of_apartments FROM apartments";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->amount_of_apartments;
     }
 }
