@@ -18,6 +18,7 @@ class Apartment extends Controller
         $numofApartments = $this->model->getAmountOfApartments();
         $trackofApts = 0;
         header('Content-Type: application/json');
+        echo "[";
         foreach ($apts as $apt) {
             $trackofApts++;
             $arr = Array('id' => $apt->id,
@@ -50,6 +51,7 @@ class Apartment extends Controller
             if ($trackofApts < $numofApartments) {
                 echo ",";
             }
+            echo "]";
         }
 
 //        echo "[";
