@@ -1,0 +1,19 @@
+.button {
+	padding: 5px 15px;
+	text-decoration: none;
+	display: block;
+	text-transform: uppercase;
+	font-size: 10px;
+}
+.button.green {
+	color: #fff;
+	background: #26e3ad;
+}
+.button.green:hover {
+	background: #23cb94;
+}
+::-webkit-input-placeholder { color: #bdbdd3; font-weight: 400; }
+::-moz-placeholder { color: #bdbdd3; font-weight: 400; }
+:-ms-input-placeholder { color: #bdbdd3; font-weight: 400; }
+:-moz-placeholder { color: #bdbdd3; font-weight: 400; }
+::-webkit-scrollbar { width: 0px; background: transparent; }

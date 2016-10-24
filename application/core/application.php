@@ -11,6 +11,9 @@ class Application
     /** @var array URL parameters */
     private $url_params = array();
 
+    /** @var subfolder */
+    private $subfolder = '';
+
     /**
      * "Start" the application:
      * Analyze the URL elements and calls the according controller/method or the fallback
@@ -20,6 +23,8 @@ class Application
         // create array with URL parts in $url
         $this->splitUrl();
 
+        $controller_file = APP . 'controller/' . $this->subfolder . $this->url_controller . '.php';
+
         // check for controller: no controller given ? then load start-page
         if (!$this->url_controller) {
 
@@ -27,12 +32,12 @@ class Application
             $page = new Home();
             $page->index();
 
-        } elseif (file_exists(APP . 'controller/' . $this->url_controller . '.php')) {
+        } elseif (file_exists($controller_file)) {
             // here we did check for controller: does such a controller exist ?
 
             // if so, then load this file and create this controller
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
-            require APP . 'controller/' . $this->url_controller . '.php';
+            require $controller_file;
             $this->url_controller = new $this->url_controller();
 
             // check for method: does such a method exist in the controller ?
@@ -75,19 +80,24 @@ class Application
             // Put URL parts into according properties
             // By the way, the syntax here is just a short form of if/else, called "Ternary Operators"
             // @see http://davidwalsh.name/php-shorthand-if-else-ternary-operators
-            $this->url_controller = isset($url[0]) ? $url[0] : null;
-            $this->url_action = isset($url[1]) ? $url[1] : null;
+            $offset = 0;
+            if(isset($url[0]) && $url[0] === 'api') {
+                $offset = 1;
+                $this->subfolder = 'api/';
+            }
+            $this->url_controller = isset($url[0 + $offset]) ? $url[0 + $offset] : null;
+            $this->url_action = isset($url[1 + $offset]) ? $url[1 + $offset] : null;
 
             // Remove controller and action from the split URL
-            unset($url[0], $url[1]);
+            unset($url[0 + $offset], $url[1 + $offset]);
 
             // Rebase array keys and store the URL params
             $this->url_params = array_values($url);
 
             // for debugging. uncomment this if you have problems with the URL
-//            echo 'Controller: ' . $this->url_controller . '<br>';
-//            echo 'Action: ' . $this->url_action . '<br>';
-//            echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
+           // echo 'Controller: ' . $this->url_controller . '<br>';
+           // echo 'Action: ' . $this->url_action . '<br>';
+           // echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
         }
     }
 }
