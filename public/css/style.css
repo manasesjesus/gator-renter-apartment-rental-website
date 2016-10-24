@@ -88,7 +88,7 @@ div#right.flex {
 	font-size: 14px;
 	font-family: Montserrat, Sans-Serif;
 	color: #000;
-	margin-top: 20px;
+	margin-top: 25px;
 	font-weight: 400;
 	border: 0;
 	border-bottom: 2px solid #f1f1f7;
@@ -161,6 +161,13 @@ aside .price > input {
 	flex-wrap: wrap;
 	justify-content: center;
 	padding-bottom: 50px;
+}
+#list-view #no-match {
+    padding-top: 150px;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    color: #bdbdd3;
 }
 #map-view.flex {
 	width: 100%;

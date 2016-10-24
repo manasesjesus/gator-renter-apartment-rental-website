@@ -15,51 +15,24 @@ class Apartment extends Controller
     public function index()
     {
         $apts = $this->model->getAllApartments();
-        $numofApartments = $this->model->getAmountOfApartments();
-        $trackofApts = 0;
         header('Content-Type: application/json;charset=UTR-8');
-        echo "[";
-        foreach ($apts as $apt) {
-            $trackofApts++;
-            $arr = Array('id' => $apt->id,
-                'active' => $apt->active,
-                'created_at' => $apt->created_at,
-                'updated_at' => $apt->updated_at,
-                'address_line_1' => $apt->address_line_1,
-                'address_line_2' => $apt->address_line_2,
-                'city' => $apt->city,
-                'state' => $apt->state,
-                'country' => $apt->country,
-                'ZIP' => $apt->ZIP,
-                'title' => $apt->title,
-                'description' => $apt->description,
-                'sq_feet' => $apt->sq_feet,
-                'nr_bedrooms' => $apt->nr_bedrooms,
-                'nr_bathrooms' => $apt->nr_bathrooms,
-                'nr_roommates' => $apt->nr_roommates,
-                'floor' => $apt->floor,
-                'private_room' => $apt->private_room,
-                'private_bath' => $apt->private_bath,
-                'kitchen_in_apartment' => $apt->kitchen_in_apartment,
-                'monthly_rent' => $apt->monthly_rent,
-                'security_deposit' => $apt->security_deposit,
-                'pictures' => $apt->pictures,
-                'available_since' => $apt->available_since,
-                'lease_end_date' => $apt->lease_end_date,
-                'flagged' => $apt->flagged);
-            echo json_encode($arr);
-            if ($trackofApts < $numofApartments) {
-                echo ",";
-            }
+        foreach($apts as $key => $apt) {
+            $apts[$key]->id             = (Int)$apts[$key]->id;
+            $apts[$key]->active         = (Boolean)$apts[$key]->active;
+            $apts[$key]->sq_feet        = (Double)$apts[$key]->sq_feet;
+            $apts[$key]->nr_bedrooms    = (Int)$apts[$key]->nr_bedrooms;
+            $apts[$key]->nr_bathrooms   = (Int)$apts[$key]->nr_bathrooms;
+            $apts[$key]->nr_roommates   = (Int)$apts[$key]->nr_roommates;
+            $apts[$key]->floor          = (Int)$apts[$key]->floor;
+            $apts[$key]->private_room   = $apts[$key]->private_room === '1';
+            $apts[$key]->private_bath   = $apts[$key]->private_bath === '1';
+            $apts[$key]->kitchen_in_apartment = $apts[$key]->kitchen_in_apartment === '1';
+            $apts[$key]->has_security_deposit = $apts[$key]->has_security_deposit === '1';
+            $apts[$key]->credit_score_check = $apts[$key]->credit_score_check === '1';
+            $apts[$key]->monthly_rent   = (Double)$apts[$key]->monthly_rent;
+            $apts[$key]->security_deposit = (Double)$apts[$key]->security_deposit;
+            $apts[$key]->flagged        = $apts[$key]->flagged === '1';
         }
-	echo "]";
-
-//        echo "[";
-//        $arr = Array('id' => '0', 'address_line' => '350 Octavia');
-//        echo json_encode($arr);
-//        $arr = Array('id' => '1', 'address_line' => '351 Octavia');
-//        echo ",";
-//        echo json_encode($arr);
-//        echo "]";
+        print json_encode($apts);
     }
 }

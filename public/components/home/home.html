@@ -1,14 +1,14 @@
 <div ng-include="'components/topbar/topbar.html'"></div>
 <div id="content" class="flex" ng-controller="homeController">
 	<aside class="flex">
-		<input type="text" id="search-bar" placeholder="Search" />
+		<input type="search" id="search-bar" placeholder="Search" spellcheck="false" ng-model="searchBar" />
 		<h3>Filters</h3>
 		<ul>
-			<li class="active">Private Room</li>
-			<li>Private Bathroom</li>
-			<li>Kitchen in Apartment</li>
-			<li>No Security Deposit</li>
-			<li>No Credit Score Check</li>
+			<li ng-click="privateRoom = privateRoom == false" ng-class="{active: privateRoom}">Private Room</li>
+			<li ng-click="privateBath = privateBath == false" ng-class="{active: privateBath}">Private Bathroom</li>
+			<li ng-click="kitchenIn = kitchenIn == false" ng-class="{active: kitchenIn}">Kitchen in Apartment</li>
+			<li ng-click="noDeposit = noDeposit == false" ng-class="{active: noDeposit}">No Security Deposit</li>
+			<li ng-click="noCredit = noCredit == false" ng-class="{active: noCredit}">No Credit Score Check</li>
 		</ul>
 		<h3>Neighborhood</h3>
 		<select name="neighborhood" id="neighborhood">
@@ -29,7 +29,7 @@
 	<div id="right" class="flex">
 		<div class="center">
 			<div id="controls" class="flex">
-				<div id="results">{{ apartments.length }} result{{ apartments.length == 1 ? '' : 's' }}</div>
+				<div id="results">{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
 				<div id="select-views" class="flex">
 					<div ng-class="{active: view == 'list'}" ng-click="view = 'list'">List View</div>
 					<div ng-class="{active: view == 'map'}" ng-click="view = 'map'">Map View</div>
@@ -40,14 +40,15 @@
 				</div>
 			</div>
 			<div id="list-view" class="flex" ng-show="view == 'list'">
-				<div class="apartment-post" ng-repeat="apartment in apartments | orderBy:propertyName:reverse" ng-click="go('/apartment/'+apartment.id)">
+				<div ng-show="(apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 0" id="no-match">No apartments match this criteria</div>
+				<div class="apartment-post" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" ng-click="go('/apartment/'+apartment.id)">
 					<div class="image" style="background-image: url({{ apartment.pictures }});">
 						<date>{{ apartment.updated_at }}</date>
 						<div class="price">{{ apartment.monthly_rent | currency }}</div>
 					</div>
 					<div class="content">
 						<h3><a href="/#/apartment/{{ apartment.id }}">{{ apartment.title }}</a></h3>
-						<p class="details">{{ apartment.nr_roommates }} roommates, {{ apartment.private_room ? 'private room' : 'shared room' }}, {{ apartment.private_bath ? 'private bath' : 'shared bath' }}</p>
+						<p class="details">{{ apartment.nr_roommates }} roommate{{ apartment.nr_roommates == 1 ? '' : 's' }}, {{ apartment.private_room ? 'private room' : 'shared room' }}, {{ apartment.private_bath ? 'private bath' : 'shared bath' }}</p>
 						<p class="apply-now">Apply now</p>
 					</div>
 				</div>

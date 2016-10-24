@@ -9,6 +9,14 @@ app.controller('homeController', ['$location', '$scope', 'Apartment', function($
 
 	$scope.view = 'list';
 
+	$scope.privateRoom = false;
+	$scope.privateBath = false;
+	$scope.kitchenIn = false;
+	$scope.noDeposit = false;
+	$scope.noCredit = false;
+
+	/* Methods */
+
 	$scope.sortBy = function(propertyName) {
 		$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
 		$scope.propertyName = propertyName;
