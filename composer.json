@@ -1,19 +1,31 @@
 {
-    "name": "panique/mini",
-    "type": "project",
-    "description": "An extremely simple naked PHP application",
-    "keywords": ["skeleton", "boilerplate", "naked", "barebone", "application"],
-    "homepage": "https://github.com/panique/mini",
-    "license": "MIT",
+    "name": "Gator Renter",
+    "type": "Web Application",
+    "description": "Rental platform for SFSU Students",
+    "keywords": ["rent", "san francisco", "san francisco state university", "sfsu rental", "san francisco state rent"],
+    "homepage": "https://sfsuswe.com/~f16g08",
+    "license": "",
     "authors": [
         {
-            "name": "Panique",
+            "name": "Alex Aichinger",
+            "role": "Developer"
+        },
+	{
+	    "name": "Cheng Li",
+	    "role":"Developer"
+	},
+        {
+            "name": "Darrel Daquigan",
+            "role": "Developer"
+        },
+        {
+            "name": "Jiri Loffelmann",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/panique/mini/issues",
-        "source": "https://github.com/panique/mini"
+        "issues": "",
+        "source": ""
     },
     "require": {
         "php": ">=5.3.0"
