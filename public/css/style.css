@@ -170,6 +170,7 @@ aside .price > input {
     color: #bdbdd3;
 }
 #map-view.flex {
+	height: 500px;
 	width: 100%;
 }
 #results, #select-views > div, #sort > div {
