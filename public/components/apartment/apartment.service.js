@@ -1,5 +1,5 @@
 app.factory('Apartment', ['$resource', function($resource) {
-	return userResource = $resource('/gator-renter/api/apartment', {
+	return userResource = $resource('/api/apartment', {
 		apartment_id: '@apartment_id'
 	});
 }]);
