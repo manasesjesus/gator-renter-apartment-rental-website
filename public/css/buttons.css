@@ -12,6 +12,38 @@
 .button.green:hover {
 	background: #23cb94;
 }
+.apply-now.float {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	width: 100px;
+	height: 100px;
+	background: #26e3ad;
+	border-radius: 50px;
+	color: #fff;
+	padding-top: 30px;
+	line-height: 1.2em;
+	font-size: 18px;
+	box-sizing: border-box;
+	text-align: center;
+	transition: 0.05s;
+	cursor: pointer;
+}
+.apply-now.float:hover {
+	background: #23cb94;
+	transform: scale(1.05);
+}
+.apply-now.float:active {
+	transform: scale(0.85);
+}
+.apartment-post .apply-now {
+	position: absolute;
+	text-transform: uppercase;
+	color: #26e3ad;
+	font-size: 12px;
+	bottom: 20px;
+	right: 20px;
+}
 ::-webkit-input-placeholder { color: #bdbdd3; font-weight: 400; }
 ::-moz-placeholder { color: #bdbdd3; font-weight: 400; }
 :-ms-input-placeholder { color: #bdbdd3; font-weight: 400; }

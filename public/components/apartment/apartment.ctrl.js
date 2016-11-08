@@ -1,7 +1,12 @@
-app.controller('apartmentController', ['$scope', '$routeParams', 'Apartment', function($scope, $routeParams, Apartment) {
+app.controller('apartmentController', ['$scope', '$routeParams', 'Apartment', 'NgMap', function($scope, $routeParams, Apartment, NgMap) {
 	
-	Apartment.get({ apartment_id: $routeParams['apartment_id'] }).$promise.then(function(data) {
+	Apartment.get({ id: $routeParams['apartment_id'] }).$promise.then(function(data) {
 		$scope.apartment = data;
+		NgMap.getMap().then(function(map) {
+			console.log(map.getCenter());
+			console.log('markers', map.markers);
+			console.log('shapes', map.shapes);
+		});
 	});
 	
 }]);

@@ -9,10 +9,12 @@
   <link rel="stylesheet" href="<?php echo URL; ?>css/buttons.css">
 </head>
 <body>
-  <main class="flex" ng-view></main>
+  <main class="flex column" ng-view></main>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+  <script src="<?php echo URL; ?>js/ng-map.min.js"></script>
+  <script src="http://maps.google.com/maps/api/js"></script>
   <script src="<?php echo URL; ?>js/app.js"></script>
   <script src="<?php echo URL; ?>components/home/home.ctrl.js"></script>
   <script src="<?php echo URL; ?>components/apartment/apartment.ctrl.js"></script>

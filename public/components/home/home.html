@@ -1,6 +1,6 @@
 <div ng-include="'components/topbar/topbar.html'"></div>
-<div id="content" class="flex" ng-controller="homeController">
-	<aside class="flex">
+<div class="bottom flex" ng-controller="homeController">
+	<aside class="flex column">
 		<input type="search" id="search-bar" placeholder="Search" spellcheck="false" ng-model="searchBar" />
 		<h3>Filters</h3>
 		<ul>
@@ -10,11 +10,6 @@
 			<li ng-click="noDeposit = noDeposit == false" ng-class="{active: noDeposit}">No Security Deposit</li>
 			<li ng-click="noCredit = noCredit == false" ng-class="{active: noCredit}">No Credit Score Check</li>
 		</ul>
-		<h3>Neighborhood</h3>
-		<select name="neighborhood" id="neighborhood">
-			<option value="">Any</option>
-			<option value="">Marina</option>
-		</select>
 		<h3>Number of Roommates</h3>
 		<select name="nr-roommates" id="nr-roommates">
 			<option value="">Any</option>
@@ -26,7 +21,7 @@
 			<input type="text" class="box" placeholder="max" />
 		</div>
 	</aside>
-	<div id="right" class="flex">
+	<div id="right" class="flex column">
 		<div class="center">
 			<div id="controls" class="flex">
 				<div id="results">{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>

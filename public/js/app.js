@@ -1,6 +1,7 @@
 var app = angular.module('gatorRenter', [
 	'ngRoute',
-	'ngResource'
+	'ngResource',
+	'ngMap'
 ]);
 
 app.config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
@@ -16,22 +17,22 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', function($lo
 }]);
 
 app.filter('customFilter', function() {
-  return function (items, privateRoom, privateBath, kitchenIn, noDeposit, noCredit) {
-    if(items != undefined) {
-    	var filtered = [];
-	   	for(var i = 0; i < items.length; i++) {
-			var item = items[i];
-			if( (item.private_room == true || item.private_room == privateRoom) &&
-				(item.private_bath == true || item.private_bath == privateBath) &&
-				(item.kitchen_in_apartment == true || item.kitchen_in_apartment == kitchenIn) &&
-				(item.has_security_deposit == false || item.has_security_deposit != noDeposit) &&
-				(item.credit_score_check == false || item.credit_score_check == noCredit)) {
-				filtered.push(item);
-			}
-	    }
-	    return filtered;
-    } else {
-    	return items;
-    }
-  };
+	return function (items, privateRoom, privateBath, kitchenIn, noDeposit, noCredit) {
+		if(items != undefined) {
+			var filtered = [];
+		   	for(var i = 0; i < items.length; i++) {
+				var item = items[i];
+				if( (item.private_room == true || item.private_room == privateRoom) &&
+					(item.private_bath == true || item.private_bath == privateBath) &&
+					(item.kitchen_in_apartment == true || item.kitchen_in_apartment == kitchenIn) &&
+					(item.has_security_deposit == false || item.has_security_deposit != noDeposit) &&
+					(item.credit_score_check == false || item.credit_score_check == noCredit)) {
+					filtered.push(item);
+				}
+		    }
+		    return filtered;
+		} else {
+			return items;
+		}
+	};
 });
