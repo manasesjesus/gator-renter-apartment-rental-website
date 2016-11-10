@@ -1,8 +1,11 @@
-app.controller('homeController', ['$location', '$scope', 'Apartment', function($location, $scope, Apartment) {
+app.controller('homeController', ['$location', '$scope', '$rootScope', 'Apartment', function($location, $scope, $rootScope, Apartment) {
 
     Apartment.query().$promise.then(function(data) {
     	$scope.apartments = data;
     });
+
+	$rootScope.showLogin = false;
+	$rootScope.showSignup = false;
 
 	$scope.propertyName = 'title';
 	$scope.reverse = true;

@@ -1,5 +1,7 @@
+<div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
+<div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
-<div class="bottom flex" ng-controller="homeController">
+<div class="bottom flex">
 	<aside class="flex column">
 		<input type="search" id="search-bar" placeholder="Search" spellcheck="false" ng-model="searchBar" />
 		<h3>Filters</h3>

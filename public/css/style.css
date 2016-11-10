@@ -61,6 +61,19 @@ main.flex {
 	position: fixed;
 	background: rgba(255, 255, 255, 0.92);
 }
+#sign-up-bar a {
+	margin-left: 10px;
+}
+#sign-up-bar p {
+	margin-right: 12px;
+	font-size: 12px;
+	color: #bdbdd3;
+	padding: 7px 0;
+	cursor: pointer;
+}
+#sign-up-bar p:hover {
+	color: #000;
+}
 aside {
 	flex: 0 0 250px;
 	overflow-y: scroll;
@@ -78,6 +91,47 @@ div#right.flex {
 
 #logo {
 	width: 190px;
+}
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8);
+	z-index: 100000;
+	justify-content: center;
+	align-items: center;
+}
+#overlay #form {
+	padding: 30px 50px 50px 50px;
+	width: 350px;
+	background: #fff;
+	box-shadow: 0 0 30px 0 rgba(189, 189, 211, 0.3);
+}
+#overlay #form > * {
+	width: 100%;
+	margin: 5px 0;
+	box-sizing: border-box;
+}
+#overlay #form > label {
+	margin-top: 20px;
+	display: block;
+}
+#overlay #form > .button {
+	margin-top: 20px;
+}
+#overlay #form > .box {
+	padding: 15px;
+	font-size: 14px;
+}
+#overlay #close {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	width: 30px;
+	height: 30px;
+	background: url('../images/cross.svg') no-repeat center;
 }
 
 /* aside styles */
