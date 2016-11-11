@@ -5,6 +5,7 @@
 	text-transform: uppercase;
 	font-size: 10px;
 	text-align: center;
+	cursor: pointer;
 }
 .button.large {
 	font-size: 14px;
@@ -16,6 +17,13 @@
 }
 .button.green:hover {
 	background: #23cb94;
+}
+.button.purple {
+	color: #fff;
+	background: #5252c9;
+}
+.button.purple:hover {
+	background: #4242ba;
 }
 .apply-now.float {
 	position: fixed;

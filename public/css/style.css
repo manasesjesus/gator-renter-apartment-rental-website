@@ -93,7 +93,7 @@ div#right.flex {
 	width: 190px;
 }
 #overlay {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -194,6 +194,9 @@ aside .price {
 }
 aside .price > input {
 	width: 33%;
+}
+aside .button {
+	margin-top: 15px;
 }
 
 /* content style */

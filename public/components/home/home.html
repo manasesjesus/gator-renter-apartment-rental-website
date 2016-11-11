@@ -19,9 +19,10 @@
 		</select>
 		<h3>Price</h3>
 		<div class="flex price">
-			<input type="text" class="box" placeholder="min" />
-			<input type="text" class="box" placeholder="max" />
+			<input type="text" class="box" placeholder="min" ng-model="minPrice" />
+			<input type="text" class="box" placeholder="max" ng-model="maxPrice" />
 		</div>
+		<a class="button purple" ng-click="update()">Update</a>
 	</aside>
 	<div id="right" class="flex column">
 		<div class="center">
