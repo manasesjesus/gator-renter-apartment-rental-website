@@ -14,7 +14,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
   <script src="<?php echo URL; ?>js/ng-map.min.js"></script>
-  <script src="http://maps.google.com/maps/api/js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
   <script src="<?php echo URL; ?>js/app.js"></script>
   <script src="<?php echo URL; ?>components/home/home.ctrl.js"></script>
   <script src="<?php echo URL; ?>components/apartment/apartment.ctrl.js"></script>

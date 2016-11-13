@@ -227,6 +227,7 @@ aside .button {
     color: #bdbdd3;
 }
 #map-view.flex {
+	height: 500px;
 	width: 100%;
 }
 #results, #select-views > div, #sort > div {
@@ -307,6 +308,7 @@ aside .button {
 	font-size: 11px;
 	color: #bdbdd3;
 }
+<<<<<<< HEAD
 #apartment-detail .center {
 	width: 850px;
 	margin: 0 auto;
@@ -358,3 +360,12 @@ aside .button {
 	font-weight: light;
 	font-size: 14px;
 }
+.apartment-post .apply-now {
+	position: absolute;
+	text-transform: uppercase;
+	color: #26e3ad;
+	font-size: 12px;
+	bottom: 20px;
+	right: 20px;
+}
+

@@ -63,4 +63,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'Apartmen
 		$location.path(path);
 	};
 
+
+	$scope.map = new google.maps.Map(document.getElementById('map-view'),{zoom: 10, center: new google.maps.LatLng(37.721178,-122.476962)});
+
 }]);
