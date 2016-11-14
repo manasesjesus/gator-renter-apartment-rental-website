@@ -368,4 +368,7 @@ aside .button {
 	bottom: 20px;
 	right: 20px;
 }
-
+map{
+	width: 100%;
+	height: 500px;
+}
