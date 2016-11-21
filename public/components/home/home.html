@@ -1,5 +1,6 @@
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
+<div ng-show="$root.showPost" ng-include="'components/topbar/post-apartment.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
 <div class="bottom flex">
 	<aside class="flex column">
@@ -22,7 +23,7 @@
 			<input type="text" class="box" placeholder="min" ng-model="minPrice" />
 			<input type="text" class="box" placeholder="max" ng-model="maxPrice" />
 		</div>
-		<a class="button purple" ng-click="update()">Update</a>
+		<button class="button purple" ng-click="update()">Update</button>
 	</aside>
 	<div id="right" class="flex column">
 		<div class="center">

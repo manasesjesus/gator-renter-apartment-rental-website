@@ -1,7 +1,8 @@
 var app = angular.module('gatorRenter', [
 	'ngRoute',
 	'ngResource',
-	'ngMap'
+	'ngMap',
+	'angular-storage'
 ]);
 
 app.config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
@@ -12,6 +13,9 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', function($lo
 	}).when('/apartment/:apartment_id', {
 		controller: 'apartmentController',
 		templateUrl: 'components/apartment/apartment.html'
+	}).when('/profile', {
+		controller: 'homeController',
+		templateUrl: 'components/profile/profile.html'
 	});
 
 }]);

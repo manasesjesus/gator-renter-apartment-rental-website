@@ -1,0 +1,10 @@
+<div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
+<div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
+<div ng-show="$root.showPost" ng-include="'components/topbar/post-apartment.html'"></div>
+<div ng-include="'components/topbar/topbar.html'"></div>
+<div id="apartment-detail" class="bottom" ng-controller="homeController">
+	<div class="center">
+		profile controller
+		<button class="button red" ng-click="$root.logout()">Logout</button>
+	</div>
+</div>

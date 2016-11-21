@@ -61,17 +61,18 @@ main.flex {
 	position: fixed;
 	background: rgba(255, 255, 255, 0.92);
 }
-#sign-up-bar a {
+#sign-up-bar button {
 	margin-left: 10px;
 }
-#sign-up-bar p {
+#sign-up-bar p, #sign-up-bar a {
 	margin-right: 12px;
 	font-size: 12px;
 	color: #bdbdd3;
 	padding: 7px 0;
 	cursor: pointer;
+	text-decoration: none;
 }
-#sign-up-bar p:hover {
+#sign-up-bar p:hover, #sign-up-bar a:hover {
 	color: #000;
 }
 aside {
@@ -91,6 +92,7 @@ div#right.flex {
 
 #logo {
 	width: 190px;
+	cursor: pointer;
 }
 #overlay {
 	position: fixed;
@@ -227,7 +229,7 @@ aside .button {
     color: #bdbdd3;
 }
 #map-view.flex {
-	height: 500px;
+	height: 700px;
 	width: 100%;
 }
 #results, #select-views > div, #sort > div {
@@ -308,7 +310,6 @@ aside .button {
 	font-size: 11px;
 	color: #bdbdd3;
 }
-<<<<<<< HEAD
 #apartment-detail .center {
 	width: 850px;
 	margin: 0 auto;
@@ -368,7 +369,12 @@ aside .button {
 	bottom: 20px;
 	right: 20px;
 }
-map{
+map {
 	width: 100%;
-	height: 500px;
+	height: 100%;
+}
+.alert {
+	color: #e62117;
+	text-align: center;
+	margin-bottom: 20px;
 }

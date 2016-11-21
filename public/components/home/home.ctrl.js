@@ -1,4 +1,4 @@
-app.controller('homeController', ['$location', '$scope', '$rootScope', 'Apartment', function($location, $scope, $rootScope, Apartment) {
+app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', function($location, $scope, $rootScope, store, Apartment) {
 
     Apartment.query().$promise.then(function(data) {
     	$scope.originalApartments = data;
@@ -7,6 +7,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'Apartmen
 
 	$rootScope.showLogin = false;
 	$rootScope.showSignup = false;
+	$rootScope.showPost = false;
 
 	$scope.propertyName = 'title';
 	$scope.reverse = true;
@@ -23,10 +24,37 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'Apartmen
 
 	$rootScope.login = function() {
 		// login the user with $rootScope.username and $rootScope.password
+		store.set('profile', { username: $rootScope.username });
+		$rootScope.loginMessage = '';
+		$rootScope.showLogin = false;
 	};
 
 	$rootScope.signup = function() {
 		// signup the user with $rootScope.username and $rootScope.password
+		store.set('profile', { username: $rootScope.username });
+		$rootScope.loginMessage = '';
+		$rootScope.showSignup = false;
+	};
+
+	$rootScope.logout = function() {
+		store.remove('profile');
+	};
+
+	$rootScope.isAuthenticated = function() {
+		return store.get('profile') != null;
+	};
+
+	$rootScope.getEmail = function() {
+		return store.get('profile') != null ? store.get('profile')['username'] : '';
+	};
+
+	$rootScope.postApartment = function() {
+		if($rootScope.isAuthenticated()) {
+			$rootScope.showPost = true;
+		} else {
+			$rootScope.loginMessage = 'Please sign in to post an apartment!'
+			$rootScope.showLogin = true;
+		}
 	};
 
 	$scope.update = function() {

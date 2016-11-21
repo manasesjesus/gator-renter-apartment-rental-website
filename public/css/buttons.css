@@ -1,11 +1,16 @@
 .button {
-	padding: 5px 15px;
+	padding: 10px 15px;
 	text-decoration: none;
 	display: block;
 	text-transform: uppercase;
 	font-size: 10px;
 	text-align: center;
 	cursor: pointer;
+	border: 0;
+	font-family: Montserrat;
+}
+.button:focus {
+	outline: none;
 }
 .button.large {
 	font-size: 14px;
@@ -17,6 +22,13 @@
 }
 .button.green:hover {
 	background: #23cb94;
+}
+.button.red {
+	color: #fff;
+	background: #e62117;
+}
+.button.red:hover {
+	background: #d4180e;
 }
 .button.purple {
 	color: #fff;

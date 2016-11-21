@@ -1,11 +1,10 @@
 <div id="overlay" class="flex">
-	<p ng-click="$root.showLogin = false" id="close"></p>
+	<p ng-click="$root.showPost = false" id="close"></p>
 	<div id="form">
-		<p ng-show="$root.loginMessage" class="alert">{{ $root.loginMessage }}</p>
 		<label>Email</label>
 		<input class="box" type="text" ng-model="$root.username" placeholder="your@email.com" />
 		<label>Password</label>
 		<input class="box" type="password" ng-model="$root.password" />
-		<a ng-click="$root.login()" class="button green large">Log in</a>
+		<a ng-click="$root.signup()" class="button green large">Sign up</a>
 	</div>
 </div>
