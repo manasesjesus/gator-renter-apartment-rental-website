@@ -22,10 +22,13 @@ class Apartment extends Controller {
 
     function handleHTTPGet() {
         $getting_one = isset($_GET['id']) && is_numeric($_GET['id']);
-        if($getting_one)
+        if($getting_one) {
             $apts = $this->model->getApartment($_GET['id']);
-        else
+            $pics = $this->model->getPictures($_GET['id']);
+            $apts[0]->pictures = $pics;
+        } else {
             $apts = $this->model->getAllApartments();
+        }
         foreach($apts as $key => $apt) {
             $apts[$key]->id             = (Int)$apts[$key]->id;
             $apts[$key]->active         = (Boolean)$apts[$key]->active;
@@ -42,11 +45,17 @@ class Apartment extends Controller {
             $apts[$key]->monthly_rent   = (Double)$apts[$key]->monthly_rent;
             $apts[$key]->security_deposit = (Double)$apts[$key]->security_deposit;
             $apts[$key]->flagged        = $apts[$key]->flagged === '1';
+            $pics = $this->model->getPictures($apts[$key]->id);
+            $apts[$key]->pictures = $pics;
         }
         print json_encode($getting_one ? $apts[0] : $apts);
     }
 
     function handleHTTPPost() {
+        if(isset($_POST['pictures'])) {
+            $pics = $_POST['pictures'];
+            unset($_POST['pictures']);
+        }
         $error_array = [];
         $fields = ['active', 'created_at', 'updated_at', 'flagged'];
         $values = [1, date('Y-m-d'), date('Y-m-d'), 0];
@@ -95,7 +104,7 @@ class Apartment extends Controller {
             }
         }
         if(sizeof($error_array) == 0) {
-            print json_encode($this->model->createApartment($fields, $values));
+            print json_encode($this->model->createApartment($fields, $values, $pics));
         } else {
             http_response_code(400);
             print json_encode(['error' => $error_array]);

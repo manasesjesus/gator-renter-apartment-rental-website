@@ -29,13 +29,22 @@ class Model
         return $query->fetchAll();
     }
 
-    public function createApartment($fields, $values) {
+    public function createApartment($fields, $values, $pics) {
         $fields = join(", ", $fields);
         $values = join("', '", $values);
         $sql = "INSERT INTO apartments (" . $fields . ") VALUES ('" . $values . "')";
         $query = $this->db->prepare($sql);
         $query->execute();
-        return $this->getApartment($this->db->lastInsertId())[0];
+        $lastId = $this->db->lastInsertId();
+        if(sizeof($pics) > 0) {
+            // $sql = '';
+            foreach($pics as $key => $value) {
+                $sql = "INSERT INTO pictures (apartment_id, URL) VALUES (" . $lastId . ", '" . $value . "');";
+                $query = $this->db->prepare($sql);
+                $query->execute();
+            }
+        }
+        return $this->getApartment($lastId)[0];
     }
 
     public function deleteApartment($apartment_id) {
@@ -43,6 +52,14 @@ class Model
         $query = $this->db->prepare($sql);
         $parameters = array(':apartment_id' => $apartment_id);
         $query->execute($parameters);
+    }
+
+    public function getPictures($apartment_id) {
+        $sql = "SELECT URL FROM pictures WHERE apartment_id = :apartment_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':apartment_id' => $apartment_id);
+        $query->execute($parameters);
+        return $query->fetchAll();
     }
 
 }
