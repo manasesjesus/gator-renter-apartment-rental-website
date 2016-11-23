@@ -1,10 +1,63 @@
 <div id="overlay" class="flex">
-	<p ng-click="$root.showPost = false" id="close"></p>
-	<div id="form">
-		<label>Email</label>
-		<input class="box" type="text" ng-model="$root.username" placeholder="your@email.com" />
-		<label>Password</label>
-		<input class="box" type="password" ng-model="$root.password" />
-		<a ng-click="$root.signup()" class="button green large">Sign up</a>
+	<p ng-click="$root.showPost = false; $root.loginMessage = '';" id="close"></p>
+	<div class="form" id="post-form">
+		<label>Address Line 1</label>
+		<input class="box" type="text" ng-model="$root.newApt.address_line_1" placeholder="400 Bryant St." />
+		<label>Address Line 2</label>
+		<input class="box" type="text" ng-model="$root.newApt.address_line_2" placeholder="Apt 122" />
+		<label>City</label>
+		<input class="box" type="text" ng-model="$root.newApt.city" placeholder="San Francisco" />
+		<label>State</label>
+		<input class="box" type="text" ng-model="$root.newApt.state" placeholder="CA" />
+		<label>ZIP</label>
+		<input class="box" type="text" ng-model="$root.newApt.zip" placeholder="94105" />
+		<label>Title</label>
+		<input class="box" type="text" ng-model="$root.newApt.title" placeholder="Charming Studio in SoMa" />
+		<label>Description</label>
+		<textarea class="box" cols="30" rows="10" ng-model="$root.newApt.description"></textarea>
+		<label>Square Feet</label>
+		<input class="box" type="text" ng-model="$root.newApt.sq_feet" placeholder="650" />
+		<label>Number of bedrooms</label>
+		<input class="box" type="text" ng-model="$root.newApt.nr_bedrooms" placeholder="0" />
+		<label>Number of bathrooms</label>
+		<input class="box" type="text" ng-model="$root.newApt.nr_bathrooms" placeholder="1" />
+		<label>Number of roommates</label>
+		<input class="box" type="text" ng-model="$root.newApt.nr_roommates" placeholder="1" />
+		<label>Floor</label>
+		<input class="box" type="text" ng-model="$root.newApt.floor" placeholder="4" />
+		<label>Private Room</label>
+		<select ng-model="$root.newApt.private_room">
+			<option value="true">Yes</option>
+			<option value="false">No</option>
+		</select>
+		<label>Private Bathroom</label>
+		<select ng-model="$root.newApt.private_bathroom">
+			<option value="true">Yes</option>
+			<option value="false">No</option>
+		</select>
+		<label>Kitchen in Apartment</label>
+		<select ng-model="$root.newApt.kitchen_in_apartment">
+			<option value="true">Yes</option>
+			<option value="false">No</option>
+		</select>
+		<label>Has Security Deposit</label>
+		<select ng-model="$root.newApt.has_security_deposit">
+			<option value="true">Yes</option>
+			<option value="false">No</option>
+		</select>
+		<label>Credit Score Check</label>
+		<select ng-model="$root.newApt.credit_score_check">
+			<option value="true">Yes</option>
+			<option value="false">No</option>
+		</select>
+		<label>Monthly Rent</label>
+		<input class="box" type="text" ng-model="$root.newApt.monthly_rent" placeholder="1400" />
+		<label>Security Deposit</label>
+		<input class="box" type="text" ng-model="$root.newApt.security_deposit" placeholder="1400" />
+		<label>Available Since</label>
+		<input class="box" type="text" ng-model="$root.newApt.available_since" placeholder="yyyy-mm-dd" />
+		<label>Lease End Date</label>
+		<input class="box" type="text" ng-model="$root.newApt.lease_end_date" placeholder="yyyy-mm-dd" />
+		<a ng-click="$root.savePost()" class="button green large">Post the apartment</a>
 	</div>
 </div>

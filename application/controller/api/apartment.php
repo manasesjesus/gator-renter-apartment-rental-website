@@ -52,9 +52,10 @@ class Apartment extends Controller {
     }
 
     function handleHTTPPost() {
-        if(isset($_POST['pictures'])) {
-            $pics = $_POST['pictures'];
-            unset($_POST['pictures']);
+        $data = json_decode(file_get_contents('php://input'), true);
+        if(isset($data['pictures'])) {
+            $pics = $data['pictures'];
+            unset($data['pictures']);
         }
         $error_array = [];
         $fields = ['active', 'created_at', 'updated_at', 'flagged'];
@@ -78,28 +79,28 @@ class Apartment extends Controller {
             'has_security_deposit'  => ['required' => false, 'regex' => '/[0|1]/'],
             'credit_score_check'    => ['required' => false, 'regex' => '/[0|1]/'],
             'monthly_rent'          => ['required' => true, 'regex' => '/[0-9]{1,5}/'],
-            'security_deposit'      => ['required' => true, 'regex' => '/[0-9]{1,5}/'],
-            'available_since'       => ['required' => true, 'regex' => '/[0-9]{4}-[0-9]{2}-[0-9]{2}/'],
+            'security_deposit'      => ['required' => false, 'regex' => '/[0-9]{1,5}/'],
+            'available_since'       => ['required' => false, 'regex' => '/[0-9]{4}-[0-9]{2}-[0-9]{2}/'],
             'lease_end_date'        => ['required' => false, 'regex' => '/[0-9]{4}-[0-9]{2}-[0-9]{2}/']
         ];
         foreach($validations as $key => $value) {
             if($value['required']) {
-                if(!isset($_POST[$key])) {
+                if(!isset($data[$key])) {
                     array_push($error_array, $key);
                 } else {
-                    if(!preg_match($value['regex'], $_POST[$key])) {
+                    if(!preg_match($value['regex'], $data[$key])) {
                         array_push($error_array, $key);
                     } else {
                         array_push($fields, $key);
-                        array_push($values, $_POST[$key]);
+                        array_push($values, $data[$key]);
                     }
                 }
-            } elseif(isset($_POST[$key])) {
-                if(!preg_match($value['regex'], $_POST[$key])) {
+            } elseif(isset($data[$key])) {
+                if(!preg_match($value['regex'], $data[$key])) {
                     array_push($error_array, $key);
                 } else {
                     array_push($fields, $key);
-                    array_push($values, $_POST[$key]);
+                    array_push($values, $data[$key]);
                 }
             }
         }

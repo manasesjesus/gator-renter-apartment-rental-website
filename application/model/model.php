@@ -37,7 +37,6 @@ class Model
         $query->execute();
         $lastId = $this->db->lastInsertId();
         if(sizeof($pics) > 0) {
-            // $sql = '';
             foreach($pics as $key => $value) {
                 $sql = "INSERT INTO pictures (apartment_id, URL) VALUES (" . $lastId . ", '" . $value . "');";
                 $query = $this->db->prepare($sql);

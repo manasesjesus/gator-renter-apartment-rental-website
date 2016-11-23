@@ -5,6 +5,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     	$scope.apartments = $scope.originalApartments;
     });
 
+    $rootScope.newApt = {};
+
 	$rootScope.showLogin = false;
 	$rootScope.showSignup = false;
 	$rootScope.showPost = false;
@@ -23,21 +25,19 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	/* Methods */
 
 	$rootScope.login = function() {
-		// login the user with $rootScope.username and $rootScope.password
-		store.set('profile', { username: $rootScope.username });
-		$rootScope.loginMessage = '';
-		$rootScope.showLogin = false;
-	};
-
-	$rootScope.signup = function() {
-		// signup the user with $rootScope.username and $rootScope.password
-		store.set('profile', { username: $rootScope.username });
-		$rootScope.loginMessage = '';
-		$rootScope.showSignup = false;
+		var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if(regex.test($rootScope.username)) {
+			store.set('profile', { username: $rootScope.username });
+			$rootScope.loginMessage = '';
+			$rootScope.showLogin = false;
+		} else {
+			$rootScope.loginMessage = 'Please provide valid email address';
+		}
 	};
 
 	$rootScope.logout = function() {
 		store.remove('profile');
+		$scope.go('/');
 	};
 
 	$rootScope.isAuthenticated = function() {
@@ -55,6 +55,12 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 			$rootScope.loginMessage = 'Please sign in to post an apartment!'
 			$rootScope.showLogin = true;
 		}
+	};
+
+	$rootScope.savePost = function() {
+		Apartment.save($rootScope.newApt, function() {
+			// console.log($rootScope.newApt);
+	    });
 	};
 
 	$scope.update = function() {
@@ -90,9 +96,5 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	$scope.go = function(path) {
 		$location.path(path);
 	};
-
-
-
-
 
 }]);

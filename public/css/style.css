@@ -22,7 +22,7 @@ body, html {
 	margin: 0 25px;
 	width: calc(100% - 50px);
 }
-select, input.box {
+select, input.box, textarea.box {
 	-webkit-appearance: none;
 	background-color: #f1f1f7;
 	border-radius: 0;
@@ -36,7 +36,7 @@ select {
 	background: #f1f1f7 url('../images/arrow.svg') no-repeat center right+10px;
 	background-size: 12px;
 }
-select:focus, input:focus {
+select:focus, input:focus, textarea:focus {
 	outline: 0;
 }
 
@@ -103,32 +103,46 @@ div#right.flex {
 	background: rgba(255, 255, 255, 0.8);
 	z-index: 100000;
 	justify-content: center;
-	align-items: center;
+	overflow: scroll;
 }
-#overlay #form {
+#overlay .form {
 	padding: 30px 50px 50px 50px;
 	width: 350px;
+	overflow: hidden;
 	background: #fff;
 	box-shadow: 0 0 30px 0 rgba(189, 189, 211, 0.3);
 }
-#overlay #form > * {
+#overlay #post-form.form {
+	margin-top: 60px;
+	height: 2600px;
+	width: 450px;
+}
+#overlay #login-form.form {
+	margin-top: 100px;
+	height: 320px;
+}
+#overlay #signup-form.form {
+	margin-top: 100px;
+	height: 320px;
+}
+#overlay .form > * {
 	width: 100%;
 	margin: 5px 0;
 	box-sizing: border-box;
 }
-#overlay #form > label {
+#overlay .form > label {
 	margin-top: 20px;
 	display: block;
 }
-#overlay #form > .button {
+#overlay .form > .button {
 	margin-top: 20px;
 }
-#overlay #form > .box {
+#overlay .form > .box {
 	padding: 15px;
 	font-size: 14px;
 }
 #overlay #close {
-	position: absolute;
+	position: fixed;
 	top: 50px;
 	right: 50px;
 	width: 30px;
