@@ -53,8 +53,8 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
  * This is the place where you define your database credentials, database type etc.
  */
 define('DB_TYPE', 'mysql');
-define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'f16g08');
-define('DB_USER', 'f16g08');
-define('DB_PASS', 'sfsuf16swe');
+define('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net');
+define('DB_NAME', 'heroku_34339c2e1bdc646');
+define('DB_USER', 'b964e6c50d049f');
+define('DB_PASS', '23250ed4');
 define('DB_CHARSET', 'utf8');
