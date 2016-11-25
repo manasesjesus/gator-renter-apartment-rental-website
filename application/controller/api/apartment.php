@@ -57,9 +57,10 @@ class Apartment extends Controller {
             $pics = $data['pictures'];
             unset($data['pictures']);
         }
+        $latlong = $this->getLatitudeLongitude($data);
         $error_array = [];
-        $fields = ['active', 'created_at', 'updated_at', 'flagged'];
-        $values = [1, date('Y-m-d'), date('Y-m-d'), 0];
+        $fields = ['active', 'created_at', 'updated_at', 'flagged', 'latitude', 'longitude'];
+        $values = [1, date('Y-m-d'), date('Y-m-d'), 0, $latlong['latitude'], $latlong['longitude']];
         $validations = [
             'address_line_1'        => ['required' => true, 'regex' => '/.{5,}/i'],
             'address_line_2'        => ['required' => false, 'regex' => '/.{4,}/i'],
@@ -119,6 +120,16 @@ class Apartment extends Controller {
             http_response_code(400);
             print json_encode(['error' => 'Bad request']);
         }
+    }
+
+    function getLatitudeLongitude($data) {
+        $address = join(' ', array($data['address_line_1'], $data['address_line_2'], $data['city'], $data['state']));
+        $prepAddr = str_replace(' ', '+', $address);
+        $geocode = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $prepAddr . '&sensor=false');
+        $output = json_decode($geocode);
+        $latitude = $output->results[0]->geometry->location->lat;
+        $longitude = $output->results[0]->geometry->location->lng;
+        return array('latitude' => $latitude, 'longitude' => $longitude);
     }
 
 }
