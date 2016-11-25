@@ -1,36 +1,36 @@
 <div id="overlay" class="flex">
 	<p ng-click="$root.showPost = false; $root.loginMessage = '';" id="close"></p>
 	<div class="form" id="post-form">
-		<label>Address Line 1</label>
+		<label class="required">Address Line 1</label>
 		<input class="box" type="text" ng-model="$root.newApt.address_line_1" placeholder="400 Bryant St." />
 		<label>Address Line 2</label>
 		<input class="box" type="text" ng-model="$root.newApt.address_line_2" placeholder="Apt 122" />
-		<label>City</label>
+		<label class="required">City</label>
 		<input class="box" type="text" ng-model="$root.newApt.city" placeholder="San Francisco" />
-		<label>State</label>
+		<label class="required">State</label>
 		<input class="box" type="text" ng-model="$root.newApt.state" placeholder="CA" />
-		<label>ZIP</label>
+		<label class="required">ZIP</label>
 		<input class="box" type="text" ng-model="$root.newApt.zip" placeholder="94105" />
-		<label>Title</label>
+		<label class="required">Title</label>
 		<input class="box" type="text" ng-model="$root.newApt.title" placeholder="Charming Studio in SoMa" />
-		<label>Description</label>
+		<label class="required">Description</label>
 		<textarea class="box" cols="30" rows="10" ng-model="$root.newApt.description"></textarea>
 		<label>Square Feet</label>
 		<input class="box" type="text" ng-model="$root.newApt.sq_feet" placeholder="650" />
-		<label>Number of bedrooms</label>
+		<label class="required">Number of bedrooms</label>
 		<input class="box" type="text" ng-model="$root.newApt.nr_bedrooms" placeholder="0" />
-		<label>Number of bathrooms</label>
+		<label class="required">Number of bathrooms</label>
 		<input class="box" type="text" ng-model="$root.newApt.nr_bathrooms" placeholder="1" />
-		<label>Number of roommates</label>
+		<label class="required">Number of roommates</label>
 		<input class="box" type="text" ng-model="$root.newApt.nr_roommates" placeholder="1" />
 		<label>Floor</label>
 		<input class="box" type="text" ng-model="$root.newApt.floor" placeholder="4" />
-		<label>Private Room</label>
+		<label class="required">Private Room</label>
 		<select ng-model="$root.newApt.private_room">
 			<option value="true">Yes</option>
 			<option value="false">No</option>
 		</select>
-		<label>Private Bathroom</label>
+		<label class="required">Private Bathroom</label>
 		<select ng-model="$root.newApt.private_bathroom">
 			<option value="true">Yes</option>
 			<option value="false">No</option>
@@ -50,7 +50,7 @@
 			<option value="true">Yes</option>
 			<option value="false">No</option>
 		</select>
-		<label>Monthly Rent</label>
+		<label class="required">Monthly Rent</label>
 		<input class="box" type="text" ng-model="$root.newApt.monthly_rent" placeholder="1400" />
 		<label>Security Deposit</label>
 		<input class="box" type="text" ng-model="$root.newApt.security_deposit" placeholder="1400" />

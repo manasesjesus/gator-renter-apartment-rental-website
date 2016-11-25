@@ -283,6 +283,19 @@ aside .button {
 	height: 200px;
 	background-size: 100% 200px;
 	position: relative;
+	background-color: #dedee9;
+}
+.noimage .image:after {
+	display: block;
+	content: 'No image';
+	text-transform: uppercase;
+	color: #bdbdd3;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	text-align: center;
+	top: 40%;
 }
 .image > .price {
 	position: absolute;
@@ -391,4 +404,19 @@ map {
 	color: #e62117;
 	text-align: center;
 	margin-bottom: 20px;
+}
+label.required {
+	position: relative;
+	padding-left: 18px;
+}
+label.required:after {
+	content: '*';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 2px;
+	font-size: 22px;
+	width: 10px;
+	height: 10px;
+	color: #e62117;
 }
