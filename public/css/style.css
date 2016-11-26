@@ -114,7 +114,7 @@ div#right.flex {
 }
 #overlay #post-form.form {
 	margin-top: 60px;
-	height: 2600px;
+	height: 2700px;
 	width: 450px;
 }
 #overlay #login-form.form {
@@ -418,5 +418,37 @@ label.required:after {
 	font-size: 22px;
 	width: 10px;
 	height: 10px;
+	color: #e62117;
+}
+.thumb {
+	width: 100%;
+}
+form[name="uploadForm"] {
+	margin-top: 20px !important;
+	display: block;
+	padding: 20px;
+	border: 2px dashed #bdbdd3;
+}
+form[name="uploadForm"] label {
+	display: block;
+	width: 100%;
+}
+form[name="uploadForm"] input[type="file"] {
+	display: block;
+	background: #f1f1f7;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	margin: 10px 0;
+}
+form[name="uploadForm"] .flex {
+	justify-content: space-between;
+}
+input.error, select.error, textarea.error {
+	border: 2px solid #e62117;
+}
+#post-form p.error {
+	text-align: center;
+	margin: 10px 0;
 	color: #e62117;
 }

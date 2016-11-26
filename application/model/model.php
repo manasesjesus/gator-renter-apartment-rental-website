@@ -43,7 +43,10 @@ class Model
                 $query->execute();
             }
         }
-        return $this->getApartment($lastId)[0];
+        $apt = $this->getApartment($lastId)[0];
+        $pics = $this->getPictures($lastId);
+        $apt->pictures = $pics;
+        return $apt;
     }
 
     public function deleteApartment($apartment_id) {

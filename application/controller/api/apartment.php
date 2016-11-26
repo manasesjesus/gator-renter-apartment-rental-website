@@ -31,6 +31,7 @@ class Apartment extends Controller {
         }
         foreach($apts as $key => $apt) {
             $apts[$key]->id             = (Int)$apts[$key]->id;
+            $apts[$key]->owner_id       = (Int)$apts[$key]->owner_id;
             $apts[$key]->active         = (Boolean)$apts[$key]->active;
             $apts[$key]->sq_feet        = (Double)$apts[$key]->sq_feet;
             $apts[$key]->nr_bedrooms    = (Int)$apts[$key]->nr_bedrooms;
@@ -53,14 +54,14 @@ class Apartment extends Controller {
 
     function handleHTTPPost() {
         $data = json_decode(file_get_contents('php://input'), true);
+        $pics = null;
         if(isset($data['pictures'])) {
             $pics = $data['pictures'];
             unset($data['pictures']);
         }
-        $latlong = $this->getLatitudeLongitude($data);
         $error_array = [];
-        $fields = ['active', 'created_at', 'updated_at', 'flagged', 'latitude', 'longitude'];
-        $values = [1, date('Y-m-d'), date('Y-m-d'), 0, $latlong['latitude'], $latlong['longitude']];
+        $fields = ['active', 'created_at', 'updated_at', 'flagged'];
+        $values = [1, date('Y-m-d'), date('Y-m-d'), 0];
         $validations = [
             'address_line_1'        => ['required' => true, 'regex' => '/.{5,}/i'],
             'address_line_2'        => ['required' => false, 'regex' => '/.{4,}/i'],
@@ -82,7 +83,8 @@ class Apartment extends Controller {
             'monthly_rent'          => ['required' => true, 'regex' => '/[0-9]{1,5}/'],
             'security_deposit'      => ['required' => false, 'regex' => '/[0-9]{1,5}/'],
             'available_since'       => ['required' => false, 'regex' => '/[0-9]{4}-[0-9]{2}-[0-9]{2}/'],
-            'lease_end_date'        => ['required' => false, 'regex' => '/[0-9]{4}-[0-9]{2}-[0-9]{2}/']
+            'lease_end_date'        => ['required' => false, 'regex' => '/[0-9]{4}-[0-9]{2}-[0-9]{2}/'],
+            'owner_id'              => ['required' => true, 'regex' => '/\d*/']
         ];
         foreach($validations as $key => $value) {
             if($value['required']) {
@@ -106,6 +108,11 @@ class Apartment extends Controller {
             }
         }
         if(sizeof($error_array) == 0) {
+            $latlong = $this->getLatitudeLongitude($data);
+            array_push($fields, 'latitude');
+            array_push($fields, 'longitude');
+            array_push($values, $latlong['latitude']);
+            array_push($values, $latlong['longitude']);
             print json_encode($this->model->createApartment($fields, $values, $pics));
         } else {
             http_response_code(400);
@@ -123,7 +130,7 @@ class Apartment extends Controller {
     }
 
     function getLatitudeLongitude($data) {
-        $address = join(' ', array($data['address_line_1'], $data['address_line_2'], $data['city'], $data['state']));
+        $address = join(' ', array($data['address_line_1'], $data['city'], $data['state']));
         $prepAddr = str_replace(' ', '+', $address);
         $geocode = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $prepAddr . '&sensor=false');
         $output = json_decode($geocode);

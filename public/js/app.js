@@ -2,7 +2,8 @@ var app = angular.module('gatorRenter', [
 	'ngRoute',
 	'ngResource',
 	'ngMap',
-	'angular-storage'
+	'angular-storage',
+	'ngFileUpload'
 ]);
 
 app.config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {

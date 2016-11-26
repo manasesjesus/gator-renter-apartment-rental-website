@@ -1,4 +1,4 @@
-app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', function($location, $scope, $rootScope, store, Apartment) {
+app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', function($location, $scope, $rootScope, store, Apartment, Upload) {
 
     Apartment.query().$promise.then(function(data) {
     	$scope.originalApartments = data;
@@ -6,6 +6,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     });
 
     $rootScope.newApt = {};
+    $rootScope.errorFields = undefined;
 
 	$rootScope.showLogin = false;
 	$rootScope.showSignup = false;
@@ -26,8 +27,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
 	$rootScope.login = function() {
 		var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		if(regex.test($rootScope.username)) {
-			store.set('profile', { username: $rootScope.username });
+		if(regex.test($rootScope.username) && $rootScope.username == 'alex@gmail.com') {
+			store.set('profile', { username: $rootScope.username, user_id: 1 });
 			$rootScope.loginMessage = '';
 			$rootScope.showLogin = false;
 		} else {
@@ -58,9 +59,36 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	};
 
 	$rootScope.savePost = function() {
-		Apartment.save($rootScope.newApt, function() {
-			// console.log($rootScope.newApt);
+		$rootScope.newApt['owner_id'] = store.get('profile')['user_id'];
+		Apartment.save($rootScope.newApt, function(data) {
+			$rootScope.showPost = false;
+			$rootScope.newApt = {};
+			$scope.apartments.push(data);
+	    }, function(data) {
+	    	$rootScope.errorFields = data.data.error;
 	    });
+	};
+
+	$scope.uploadPic = function(file) {
+		file.upload = Upload.upload({
+			url: 'api/upload',
+			data: { file: file }
+		});
+		file.upload.then(function(response) {
+			file.result = response.data;
+			if($rootScope.newApt.pictures == undefined) {
+				$rootScope.newApt.pictures = response.data.files;
+			} else {
+				$rootScope.newApt.pictures.push(response.data.files);
+			}
+		}, function(response) {
+			if(response.status > 0) {
+				$scope.errorMsg = response.status + ': ' + response.data;
+			}
+			}, function(evt) {
+				file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+			}
+		);
 	};
 
 	$scope.update = function() {

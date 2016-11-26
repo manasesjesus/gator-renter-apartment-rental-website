@@ -2,62 +2,74 @@
 	<p ng-click="$root.showPost = false; $root.loginMessage = '';" id="close"></p>
 	<div class="form" id="post-form">
 		<label class="required">Address Line 1</label>
-		<input class="box" type="text" ng-model="$root.newApt.address_line_1" placeholder="400 Bryant St." />
+		<input ng-class="{error: $root.errorFields.indexOf('address_line_1') >= 0}" class="box" type="text" ng-model="$root.newApt.address_line_1" placeholder="400 Bryant St." />
 		<label>Address Line 2</label>
-		<input class="box" type="text" ng-model="$root.newApt.address_line_2" placeholder="Apt 122" />
+		<input ng-class="{error: $root.errorFields.indexOf('address_line_2') >= 0}" class="box" type="text" ng-model="$root.newApt.address_line_2" placeholder="Apt 122" />
 		<label class="required">City</label>
-		<input class="box" type="text" ng-model="$root.newApt.city" placeholder="San Francisco" />
+		<input ng-class="{error: $root.errorFields.indexOf('city') >= 0}" class="box" type="text" ng-model="$root.newApt.city" placeholder="San Francisco" />
 		<label class="required">State</label>
-		<input class="box" type="text" ng-model="$root.newApt.state" placeholder="CA" />
+		<input ng-class="{error: $root.errorFields.indexOf('state') >= 0}" class="box" type="text" ng-model="$root.newApt.state" placeholder="CA" />
 		<label class="required">ZIP</label>
-		<input class="box" type="text" ng-model="$root.newApt.zip" placeholder="94105" />
+		<input ng-class="{error: $root.errorFields.indexOf('zip') >= 0}" class="box" type="text" ng-model="$root.newApt.zip" placeholder="94105" />
 		<label class="required">Title</label>
-		<input class="box" type="text" ng-model="$root.newApt.title" placeholder="Charming Studio in SoMa" />
+		<input ng-class="{error: $root.errorFields.indexOf('title') >= 0}" class="box" type="text" ng-model="$root.newApt.title" placeholder="Charming Studio in SoMa" />
 		<label class="required">Description</label>
-		<textarea class="box" cols="30" rows="10" ng-model="$root.newApt.description"></textarea>
+		<textarea ng-class="{error: $root.errorFields.indexOf('description') >= 0}" class="box" cols="30" rows="10" ng-model="$root.newApt.description"></textarea>
 		<label>Square Feet</label>
-		<input class="box" type="text" ng-model="$root.newApt.sq_feet" placeholder="650" />
+		<input ng-class="{error: $root.errorFields.indexOf('sq_feet') >= 0}" class="box" type="text" ng-model="$root.newApt.sq_feet" placeholder="650" />
 		<label class="required">Number of bedrooms</label>
-		<input class="box" type="text" ng-model="$root.newApt.nr_bedrooms" placeholder="0" />
+		<input ng-class="{error: $root.errorFields.indexOf('nr_bedrooms') >= 0}" class="box" type="text" ng-model="$root.newApt.nr_bedrooms" placeholder="0" />
 		<label class="required">Number of bathrooms</label>
-		<input class="box" type="text" ng-model="$root.newApt.nr_bathrooms" placeholder="1" />
+		<input ng-class="{error: $root.errorFields.indexOf('nr_bathrooms') >= 0}" class="box" type="text" ng-model="$root.newApt.nr_bathrooms" placeholder="1" />
 		<label class="required">Number of roommates</label>
-		<input class="box" type="text" ng-model="$root.newApt.nr_roommates" placeholder="1" />
+		<input ng-class="{error: $root.errorFields.indexOf('nr_roommates') >= 0}" class="box" type="text" ng-model="$root.newApt.nr_roommates" placeholder="1" />
 		<label>Floor</label>
-		<input class="box" type="text" ng-model="$root.newApt.floor" placeholder="4" />
+		<input ng-class="{error: $root.errorFields.indexOf('floor') >= 0}" class="box" type="text" ng-model="$root.newApt.floor" placeholder="4" />
 		<label class="required">Private Room</label>
-		<select ng-model="$root.newApt.private_room">
-			<option value="true">Yes</option>
-			<option value="false">No</option>
+		<select ng-class="{error: $root.errorFields.indexOf('private_room') >= 0}" ng-model="$root.newApt.private_room">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</select>
 		<label class="required">Private Bathroom</label>
-		<select ng-model="$root.newApt.private_bathroom">
-			<option value="true">Yes</option>
-			<option value="false">No</option>
+		<select ng-class="{error: $root.errorFields.indexOf('private_bath') >= 0}" ng-model="$root.newApt.private_bath">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</select>
 		<label>Kitchen in Apartment</label>
-		<select ng-model="$root.newApt.kitchen_in_apartment">
-			<option value="true">Yes</option>
-			<option value="false">No</option>
+		<select ng-class="{error: $root.errorFields.indexOf('kitchen_in_apartment') >= 0}" ng-model="$root.newApt.kitchen_in_apartment">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</select>
 		<label>Has Security Deposit</label>
-		<select ng-model="$root.newApt.has_security_deposit">
-			<option value="true">Yes</option>
-			<option value="false">No</option>
+		<select ng-class="{error: $root.errorFields.indexOf('has_security_deposit') >= 0}" ng-model="$root.newApt.has_security_deposit">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</select>
 		<label>Credit Score Check</label>
-		<select ng-model="$root.newApt.credit_score_check">
-			<option value="true">Yes</option>
-			<option value="false">No</option>
+		<select ng-class="{error: $root.errorFields.indexOf('credit_score_check') >= 0}" ng-model="$root.newApt.credit_score_check">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</select>
 		<label class="required">Monthly Rent</label>
-		<input class="box" type="text" ng-model="$root.newApt.monthly_rent" placeholder="1400" />
+		<input ng-class="{error: $root.errorFields.indexOf('monthly_rent') >= 0}" class="box" type="text" ng-model="$root.newApt.monthly_rent" placeholder="1400" />
 		<label>Security Deposit</label>
-		<input class="box" type="text" ng-model="$root.newApt.security_deposit" placeholder="1400" />
+		<input ng-class="{error: $root.errorFields.indexOf('security_deposit') >= 0}" class="box" type="text" ng-model="$root.newApt.security_deposit" placeholder="1400" />
 		<label>Available Since</label>
-		<input class="box" type="text" ng-model="$root.newApt.available_since" placeholder="yyyy-mm-dd" />
+		<input ng-class="{error: $root.errorFields.indexOf('available_since') >= 0}" class="box" type="text" ng-model="$root.newApt.available_since" placeholder="yyyy-mm-dd" />
 		<label>Lease End Date</label>
-		<input class="box" type="text" ng-model="$root.newApt.lease_end_date" placeholder="yyyy-mm-dd" />
+		<input ng-class="{error: $root.errorFields.indexOf('lease_end_date') >= 0}" class="box" type="text" ng-model="$root.newApt.lease_end_date" placeholder="yyyy-mm-dd" />
+		<form name="uploadForm">
+			<label>Pictures</label>
+			<input type="file" multiple ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile" />
+			<i ng-show="uploadForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+			<div class="flex">
+				<button ng-click="picFile = null" ng-show="picFile" class="button red">Remove images</button>
+				<button ng-click="uploadPic(picFile)" class="button green">Upload images</button>
+			</div>
+			<span ng-show="picFile.result">Upload Successful</span>
+			<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+		</form>
 		<a ng-click="$root.savePost()" class="button green large">Post the apartment</a>
+		<p class="error" ng-show="$root.errorFields.length > 0">Please correct the fields above</p>
 	</div>
 </div>

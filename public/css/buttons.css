@@ -30,6 +30,13 @@
 .button.red:hover {
 	background: #d4180e;
 }
+.button.gray {
+	color: #fff;
+	background: #bdbdd3;
+}
+.button.gray:hover {
+	background: #9999ae;
+}
 .button.purple {
 	color: #fff;
 	background: #5252c9;
