@@ -102,8 +102,14 @@ class Model
             ':userRoleId' => $data['role_type_id'],
             ':isActive' => 1 );
 
-        $status = $query->execute($parameters);
-        return $status;
+        $query->execute($parameters);
+
+        //setting response
+        $userId = $this->db->lastInsertId();
+        $data['user_id'] = $userId;
+        unset($data['password']);
+
+        return $data;
 
     }
 

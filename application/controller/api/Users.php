@@ -46,11 +46,10 @@ class Users extends AbstractAPI  {
 
         // password encryption logic
         $requestPayload['password'] = Helper::encryptPassword($requestPayload['password']);
-        $status = $this->model->saveNewUser($requestPayload);
-        unset($requestPayload['password']);
+        $response = $this->model->saveNewUser($requestPayload);
 
-        if($status==true) {
-            AbstractApi::_response($requestPayload);
+        if(Helper::saveSuccessful($response)) {
+            AbstractApi::_response($response);
         } else {
             AbstractApi::_response("Something unexpected happened", 500);
         }

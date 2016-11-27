@@ -73,4 +73,8 @@ class Helper
 
     }
 
+    public static function saveSuccessful($response) {
+        return (isset($response["user_id"]) && !is_null($response["user_id"])) ? true : false;
+    }
+
 }
