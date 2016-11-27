@@ -1,8 +1,9 @@
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
 <div ng-show="$root.showPost" ng-include="'components/topbar/post-apartment.html'"></div>
+<div ng-show="$root.showApplyNow" ng-include="'components/apartment/apply-now.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
-<p class="apply-now float">Apply</br>now</p>
+<p ng-click="$root.applyNow()" class="apply-now float">Apply</br>now</p>
 <div id="apartment-detail" class="bottom" ng-controller="apartmentController">
 	<div class="center">
 		<h1>{{ apartment.title }}</h1>
