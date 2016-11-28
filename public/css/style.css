@@ -60,8 +60,8 @@ main.flex {
 	background: rgba(255, 255, 255, 0.92);
 }
 #topbar > #disclaimer {
-	padding: 5px 25px;
-	height: 20px;
+	padding: 6px 25px;
+	height: 18px;
 	background: #e62117;
 	color: #fff;
 	width: 100%;
@@ -354,14 +354,11 @@ aside .button {
 	font-size: 11px;
 	color: #bdbdd3;
 }
-#apartment-detail .center {
+#apartment-detail .center, #profile .center {
 	width: 850px;
 	margin: 0 auto;
 }
-#apartment-detail h1 {
-	margin: 20px 0 10px 0;
-}
-#apartment-detail {
+#apartment-detail, #profile {
 	justify-content: center;
 	align-items: center;
 	padding-bottom: 100px;
@@ -475,4 +472,31 @@ input.error, select.error, textarea.error {
 	top: 300px;
 	left: 50%;
 	margin-left: -20px;
+}
+#profile h3 {
+	margin-top: 20px;
+}
+#my-apartments {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+#my-apartments th {
+    background: #f1f1f7;
+    text-align: left;
+    padding: 5px;
+}
+#my-apartments td {
+    padding: 5px;
+}
+#profile-top {
+	justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #f1f1f7;
+}
+.red-color {
+	color: #e62117;
 }

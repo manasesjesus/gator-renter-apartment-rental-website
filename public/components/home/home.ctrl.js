@@ -1,11 +1,17 @@
 app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', function($location, $scope, $rootScope, store, Apartment, Upload) {
 
 	$scope.showPreloader = true;
+	$scope.loadingOwnerApartments = true;
 
     Apartment.query().$promise.then(function(data) {
     	$scope.showPreloader = false;
     	$scope.originalApartments = data;
     	$scope.apartments = $scope.originalApartments;
+    });
+
+    Apartment.query({ owner_id: store.get('profile')['user_id'] }).$promise.then(function(data) {
+    	$scope.ownerApartments = data;
+    	$scope.loadingOwnerApartments = false;
     });
 
     $rootScope.newApt = {};
@@ -79,6 +85,13 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	    }, function(data) {
 	    	$rootScope.errorFields = data.data.error;
 	    });
+	};
+
+	$rootScope.deleteApartment = function(apartment_id) {
+		Apartment.delete({ id: apartment_id }, function() {
+			$scope.ownerApartments.splice($scope.ownerApartments.indexOf(apartment_id), 1);
+			alert('Apartment deleted successfully');
+		});
 	};
 
 	$scope.uploadPic = function(file) {
