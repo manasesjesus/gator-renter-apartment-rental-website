@@ -71,7 +71,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             if (errors.length == 0) {
                 $http({
                     method: 'POST',
-                    url: 'api/users',
+                    url: 'api/Users',
                     data: {
                         first_name: $rootScope.first_name,
                         last_name: $rootScope.last_name,
