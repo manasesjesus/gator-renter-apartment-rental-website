@@ -80,7 +80,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
 	$scope.uploadPic = function(file) {
 		file.upload = Upload.upload({
-			url: 'api/upload',
+			url: '/api/upload',
 			data: { file: file }
 		});
 		file.upload.then(function(response) {
