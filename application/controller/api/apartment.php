@@ -22,10 +22,11 @@ class Apartment extends Controller {
 
     function handleHTTPGet() {
         $getting_one = isset($_GET['id']) && is_numeric($_GET['id']);
+        $getting_owner = isset($_GET['owner_id']) && is_numeric($_GET['owner_id']);
         if($getting_one) {
             $apts = $this->model->getApartment($_GET['id']);
-            $pics = $this->model->getPictures($_GET['id']);
-            $apts[0]->pictures = $pics;
+        } elseif($getting_owner) {
+            $apts = $this->model->getOwnersApartments($_GET['owner_id']);
         } else {
             $apts = $this->model->getAllApartments();
         }

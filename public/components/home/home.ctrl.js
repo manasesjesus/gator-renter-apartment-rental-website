@@ -1,8 +1,17 @@
 app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', function($location, $scope, $rootScope, store, Apartment, Upload) {
 
+	$scope.showPreloader = true;
+	$scope.loadingOwnerApartments = true;
+
     Apartment.query().$promise.then(function(data) {
+    	$scope.showPreloader = false;
     	$scope.originalApartments = data;
     	$scope.apartments = $scope.originalApartments;
+    });
+
+    Apartment.query({ owner_id: store.get('profile')['user_id'] }).$promise.then(function(data) {
+    	$scope.ownerApartments = data;
+    	$scope.loadingOwnerApartments = false;
     });
 
     $rootScope.newApt = {};
@@ -12,7 +21,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	$rootScope.showSignup = false;
 	$rootScope.showPost = false;
 
-	$scope.propertyName = 'title';
+	$scope.propertyName = 'id';
 	$scope.reverse = true;
 
 	$scope.view = 'list';
@@ -58,6 +67,15 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 		}
 	};
 
+	$rootScope.applyNow = function() {
+		if($rootScope.isAuthenticated()) {
+			$rootScope.showApplyNow = true;
+		} else {
+			$rootScope.loginMessage = 'Please sign in to apply!'
+			$rootScope.showLogin = true;
+		}
+	};
+
 	$rootScope.savePost = function() {
 		$rootScope.newApt['owner_id'] = store.get('profile')['user_id'];
 		Apartment.save($rootScope.newApt, function(data) {
@@ -69,9 +87,16 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	    });
 	};
 
+	$rootScope.deleteApartment = function(apartment_id) {
+		Apartment.delete({ id: apartment_id }, function() {
+			$scope.ownerApartments.splice($scope.ownerApartments.indexOf(apartment_id), 1);
+			alert('Apartment deleted successfully');
+		});
+	};
+
 	$scope.uploadPic = function(file) {
 		file.upload = Upload.upload({
-			url: 'api/upload',
+			url: '/api/upload',
 			data: { file: file }
 		});
 		file.upload.then(function(response) {

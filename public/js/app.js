@@ -31,7 +31,7 @@ app.filter('customFilter', function() {
 					(item.private_bath == true || item.private_bath == privateBath) &&
 					(item.kitchen_in_apartment == true || item.kitchen_in_apartment == kitchenIn) &&
 					(item.has_security_deposit == false || item.has_security_deposit != noDeposit) &&
-					(item.credit_score_check == false || item.credit_score_check == noCredit)) {
+					(item.credit_score_check == false || item.credit_score_check != noCredit)) {
 					filtered.push(item);
 				}
 		    }

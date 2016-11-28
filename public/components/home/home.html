@@ -22,8 +22,9 @@
 	</aside>
 	<div id="right" class="flex column">
 		<div class="center">
+			<img src="/images/preloader.gif" class="preloader" ng-show="showPreloader" />
 			<div id="controls" class="flex">
-				<div id="results">{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
+				<div id="results">{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
 				<div id="select-views" class="flex">
 					<div ng-class="{active: view == 'list'}" ng-click="view = 'list'">List View</div>
 					<div ng-class="{active: view == 'map'}" ng-click="view = 'map'">Map View</div>
@@ -34,21 +35,32 @@
 				</div>
 			</div>
 			<div id="list-view" class="flex" ng-show="view == 'list'">
-				<div ng-show="(apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 0" id="no-match">No apartments match this criteria</div>
+				<div ng-show="(apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 0" id="no-match">No apartments match this criteria</div>
 				<div class="apartment-post" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" ng-click="go('/apartment/'+apartment.id)" ng-class="{noimage: apartment.pictures.length == 0}">
-					<div class="image" style="background-image: url({{ apartment.pictures[0]['URL'] }});">
+					<div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
 						<date>{{ apartment.updated_at }}</date>
 						<div class="price">{{ apartment.monthly_rent | currency }}</div>
 					</div>
 					<div class="content">
 						<h3><a href="/#/apartment/{{ apartment.id }}">{{ apartment.title }}</a></h3>
 						<p class="details">{{ apartment.nr_roommates }} roommate{{ apartment.nr_roommates == 1 ? '' : 's' }}, {{ apartment.private_room ? 'private room' : 'shared room' }}, {{ apartment.private_bath ? 'private bath' : 'shared bath' }}</p>
-						<p class="apply-now">Apply now</p>
+						<!-- <p class="apply-now">Apply now</p> -->
 					</div>
 				</div>
 			</div>
 			<div id="map-view" class="flex" ng-show="view == 'map'">
-				<map center="37.7219, -122.4782" zoom="6"></map>
+				<map center="37.7749, -122.4194" zoom="12">
+					<marker id="gmapMarker" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" on-mouseover="showInfoWindow('aptInfo')" on-mouseout="hideInfoWindow('aptInfo')" position="{{apartment.latitude}},{{apartment.longitude}}">
+						<info-window id="aptInfo">
+							<div>
+								<h3><a href="/#/apartment/{{ apartment.id}}">{{apartment.title}}</a></h3>
+								<p>{{apartment.nr_roommates}} roommate{{apartment.nr_roommates == 1 ? '' : 's' }}, 
+								{{apartment.private_room ? 'private room' : 'shared room' }}, {{ apartment.private_bath ? 'private bath' : 'shared bath' }}</p>
+								<!-- <p class="apply-now">Apply now</p> -->
+							</div>
+						</info-window>
+					</marker>
+				</map>
 			</div>
 		</div>
 	</div>
