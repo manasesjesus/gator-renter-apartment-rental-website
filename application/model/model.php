@@ -29,6 +29,14 @@ class Model
         return $query->fetchAll();
     }
 
+    public function getOwnersApartments($owner_id) {
+        $sql = "SELECT * FROM apartments WHERE owner_id = :owner_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':owner_id' => $owner_id);
+        $query->execute($parameters);
+        return $query->fetchAll();
+    }
+
     public function createApartment($fields, $values, $pics) {
         $fields = join(", ", $fields);
         $values = join("', '", $values);
