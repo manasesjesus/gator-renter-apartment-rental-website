@@ -36,7 +36,7 @@
 			<div id="list-view" class="flex" ng-show="view == 'list'">
 				<div ng-show="(apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 0" id="no-match">No apartments match this criteria</div>
 				<div class="apartment-post" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" ng-click="go('/apartment/'+apartment.id)" ng-class="{noimage: apartment.pictures.length == 0}">
-					<div class="image" style="background-image: url({{ apartment.pictures[0]['URL'] }});">
+					<div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
 						<date>{{ apartment.updated_at }}</date>
 						<div class="price">{{ apartment.monthly_rent | currency }}</div>
 					</div>

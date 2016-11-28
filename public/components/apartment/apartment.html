@@ -7,7 +7,7 @@
 <div id="apartment-detail" class="bottom" ng-controller="apartmentController">
 	<div class="center">
 		<h1>{{ apartment.title }}</h1>
-		<div class="image" style="background-image: url({{ apartment.pictures }});">
+		<div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
 			<date>{{ apartment.updated_at }}</date>
 			<div class="price">{{ apartment.monthly_rent | currency }} / month</div>
 		</div>
