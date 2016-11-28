@@ -1,4 +1,4 @@
-app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', function($location, $scope, $rootScope, store, Apartment, Upload) {
+app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', '$http', function($location, $scope, $rootScope, store, Apartment, Upload, $http) {
 
     Apartment.query().$promise.then(function(data) {
     	$scope.originalApartments = data;
@@ -27,19 +27,81 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
 	$rootScope.login = function() {
 		var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		if(regex.test($rootScope.username) && $rootScope.username == 'alex@gmail.com') {
-			store.set('profile', { username: $rootScope.username, user_id: 1 });
-			$rootScope.loginMessage = '';
-			$rootScope.showLogin = false;
+		if (regex.test($rootScope.username) && $rootScope.hasValidData($rootScope.password, 1)) {
+            $http.get('api/login?loginname=' + $rootScope.username + '&password=' + $rootScope.password)
+                .then(function successCallback(response) {
+                    if (response.data.first_name) {
+                        store.set('profile', {username: $rootScope.username, user_id: response.data.uid});
+                        $rootScope.loginMessage = '';
+                        $rootScope.showLogin = false;
+                    }
+                    else {
+                        $rootScope.loginMessage = 'email or password incorrect';
+                    }
+            }, function errorCallback(response) {
+                $rootScope.loginMessage = 'Error: ' + response;
+            });
 		} else {
-			$rootScope.loginMessage = 'Please provide valid email address';
+			$rootScope.loginMessage = 'email or password incorrect';
 		}
 	};
 
 	$rootScope.logout = function() {
-		store.remove('profile');
-		$scope.go('/');
+        store.remove('profile');
+        $rootScope.first_name = "";
+        $rootScope.last_name = "";
+        $rootScope.username = "";
+        $rootScope.password = "";
+        $rootScope.address = "";
+        $scope.go('/');
 	};
+
+	$rootScope.signup = function() {
+        var errors = "";
+        var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        $rootScope.errorFields = undefined;
+        if (regex.test($rootScope.username)) {
+            // Name validations, e.g. Xi Li (China)
+            if (!$rootScope.hasValidData($rootScope.first_name, 2)) { errors += "first_name, "; }
+            if (!$rootScope.hasValidData($rootScope.last_name, 2))  { errors += "last_name, "; }
+            // Simple password, not strict
+            if (!$rootScope.hasValidData($rootScope.password, 1))   { errors += "password"; }
+
+            if (errors.length == 0) {
+                $http({
+                    method: 'POST',
+                    url: 'api/users',
+                    data: {
+                        first_name: $rootScope.first_name,
+                        last_name: $rootScope.last_name,
+                        email: $rootScope.username,
+                        password: $rootScope.password,
+                        address: $rootScope.address,
+                        city: $rootScope.city,
+                        role_type_id: "2"
+                    }
+                }).then(function successCallback(response) {
+                    store.set('profile', {username: $rootScope.username, user_id: response.data.data.user_id});
+                    $rootScope.loginMessage = '';
+                    $rootScope.showSignup = false;
+                }, function errorCallback(response) {
+                    $rootScope.loginMessage = 'Error: ' + response;
+                });
+            }
+            else {
+                $rootScope.errorFields = errors;
+                $rootScope.loginMessage = 'Please provide all required fields';
+            }
+        } else {
+            $rootScope.errorFields = "username";
+            $rootScope.loginMessage = 'Please provide a valid email address';
+        }
+	};
+
+	$rootScope.hasValidData = function (field, lng) {
+        return (field && field.length >= lng);
+    }
 
 	$rootScope.isAuthenticated = function() {
 		return store.get('profile') != null;

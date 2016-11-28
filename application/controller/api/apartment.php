@@ -66,7 +66,7 @@ class Apartment extends Controller {
             'address_line_1'        => ['required' => true, 'regex' => '/.{5,}/i'],
             'address_line_2'        => ['required' => false, 'regex' => '/.{4,}/i'],
             'city'                  => ['required' => true, 'regex' => '/.{2,}/i'],
-            'state'                 => ['required' => true, 'regex' => '/[A-Z]{2}/'],
+            /*'state'                 => ['required' => false, 'regex' => '/[A-Z]{2}/'],*/
             'zip'                   => ['required' => true, 'regex' => '/[0-9]{5}/'],
             'title'                 => ['required' => true, 'regex' => '/.{5,}/i'],
             'description'           => ['required' => true, 'regex' => '/.{20,}/i'],
@@ -130,7 +130,8 @@ class Apartment extends Controller {
     }
 
     function getLatitudeLongitude($data) {
-        $address = join(' ', array($data['address_line_1'], $data['city'], $data['state']));
+        //$address = join(' ', array($data['address_line_1'], $data['city'], $data['state']));
+        $address = join(' ', array($data['address_line_1'], $data['city']));
         $prepAddr = str_replace(' ', '+', $address);
         $geocode = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $prepAddr . '&sensor=false');
         $output = json_decode($geocode);
