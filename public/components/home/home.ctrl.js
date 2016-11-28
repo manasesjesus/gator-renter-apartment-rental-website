@@ -51,6 +51,10 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 		return store.get('profile') != null ? store.get('profile')['username'] : '';
 	};
 
+	$rootScope.getUserID = function() {
+		return store.get('profile') != null ? store.get('profile')['user_id'] : '';
+	};
+
 	$rootScope.postApartment = function() {
 		if($rootScope.isAuthenticated()) {
 			$rootScope.showPost = true;
