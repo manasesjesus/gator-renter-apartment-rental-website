@@ -48,7 +48,9 @@
 				</div>
 			</div>
 			<div id="map-view" class="flex" ng-show="view == 'map'">
-				<map center="37.7219, -122.4782" zoom="6"></map>
+				<map center="37.7219, -122.4782" zoom="6">
+					<marker ng-repeat="apartment in apartments" position="{{apartment.latitude}},{{apartment.longitude}}">
+				</map>
 			</div>
 		</div>
 	</div>
