@@ -1,11 +1,17 @@
 <div id="overlay" class="flex">
-	<p ng-click="$root.showSignup = false; $root.loginMessage = '';" id="close"></p>
-	<div class="form" id="signup-form">
-		<p ng-show="$root.loginMessage" class="alert">{{ $root.loginMessage }}</p>
-		<label>Email</label>
-		<input class="box" type="text" ng-model="$root.username" placeholder="your@email.com" />
-		<label>Password</label>
-		<input class="box" type="password" ng-model="$root.password" />
-		<a ng-click="$root.login()" class="button green large">Sign up</a>
-	</div>
+    <p ng-click="$root.showSignup = false; $root.loginMessage = '';" id="close"></p>
+    <div class="form" id="signup-form">
+        <p ng-show="$root.loginMessage" class="alert">{{ $root.loginMessage }}</p>
+        <label>Enter your name</label>
+        <input ng-class="{error: $root.errorFields.indexOf('first_name') >= 0}" class="box" type="text" ng-model="$root.first_name" placeholder="First name"/>
+        <input ng-class="{error: $root.errorFields.indexOf('last_name') >= 0}" class="box" type="text" ng-model="$root.last_name" placeholder="Surname"/>
+        <label>Email</label>
+        <input ng-class="{error: $root.errorFields.indexOf('username') >= 0}" class="box" type="text" ng-model="$root.username" placeholder="your@email.com"/>
+        <label>Password</label>
+        <input ng-class="{error: $root.errorFields.indexOf('password') >= 0}" class="box" type="password" ng-model="$root.password"/>
+        <label>Address</label>
+        <input class="box" type="text" ng-model="$root.address" placeholder="Street / Number"/>
+        <input class="box" type="text" ng-model="$root.city" ng-init="$root.city='Fulda'" value="Fulda" readonly/>
+        <a ng-click="$root.signup()" class="button green large">Sign up</a>
+    </div>
 </div>
