@@ -1,20 +1,18 @@
 <div id="overlay" class="flex" >
-	<p ng-click="$root.showApplyNow = false; $root.loginMessage = '';" id="close"></p>
+	<p ng-click="showApplyNow = false;" id="close"></p>
 	<div class="form" id="post-form" ng-controller="apartmentController">
 		<label class="required">Receiver</label>
-		<input class="box" type="text"  placeholder="Mr. Lord" />
+		<input class="box" type="text" placeholder="Mr. Lord" />
 		<label class="required">Sender</label>
-		<input class="box" type="text" ng-model="$root.newApt.city" placeholder="Tom" />
-		<label class="required">Intrested house</label>
-		<input class="box" type="text" ng-model="$root.newApt.state" placeholder={{apartment.title}} />
-		<label class="required">Message Subject</label>
-		<input class="box" type="text" ng-model="$root.newApt.zip" placeholder="Interest in your house" />
-		<label class="required">Message Content</label>
-		<textarea class="box" cols="30" rows="10" ng-model="$root.newApt.description"></textarea>
-		<label >Phone number</label>
-		<input class="box" type="text" ng-model="$root.newApt.nr_bedrooms" placeholder="0" />
-
+		<input class="box" type="text" placeholder="Tom" />
+		<label class="required">Property name</label>
+		<input class="box" type="text" ng-model="apartment.title" />
+		<label class="required">Subject</label>
+		<input class="box" type="text" placeholder="Interest in your house" />
+		<label class="required">Your message</label>
+		<textarea class="box" cols="30" rows="10"></textarea>
+		<label>Phone number</label>
+		<input class="box" type="text" placeholder="0" />
 		<a class="button green large">Sent the application</a>
-		<!--<p class="error" ng-show="$root.errorFields.length > 0">Please correct the fields above</p>-->
 	</div>
 </div>

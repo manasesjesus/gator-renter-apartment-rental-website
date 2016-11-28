@@ -309,6 +309,10 @@ aside .button {
 	text-align: center;
 	top: 40%;
 }
+.center.noimage .image:after {
+	top: 45%;
+	font-size: 25px;
+}
 .image > .price {
 	position: absolute;
 	bottom: 10px;
@@ -359,6 +363,7 @@ aside .button {
 #apartment-detail {
 	justify-content: center;
 	align-items: center;
+	padding-bottom: 100px;
 }
 #apartment-detail .image {
 	width: 100%;

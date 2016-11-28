@@ -11,8 +11,6 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	$rootScope.showLogin = false;
 	$rootScope.showSignup = false;
 	$rootScope.showPost = false;
-	$rootScope.showApplyNow = false;
-
 
 	$scope.propertyName = 'title';
 	$scope.reverse = true;

@@ -1,11 +1,11 @@
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
 <div ng-show="$root.showPost" ng-include="'components/topbar/post-apartment.html'"></div>
-<div ng-show="$root.showApplyNow" ng-include="'components/apartment/apply-now.html'"></div>
+<div ng-show="showApplyNow" ng-include="'components/apartment/apply-now.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
-<p ng-click="$root.applyNow()" class="apply-now float">Apply</br>now</p>
+<p ng-click="showApplyNow = true;" class="apply-now float">Apply</br>now</p>
 <div id="apartment-detail" class="bottom" ng-controller="apartmentController">
-	<div class="center">
+	<div class="center" ng-class="{noimage: apartment.pictures.length == 0}">
 		<h1>{{ apartment.title }}</h1>
 		<div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
 			<date>{{ apartment.updated_at }}</date>
