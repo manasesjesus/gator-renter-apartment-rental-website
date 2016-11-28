@@ -9,10 +9,12 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     	$scope.apartments = $scope.originalApartments;
     });
 
-    Apartment.query({ owner_id: store.get('profile')['user_id'] }).$promise.then(function(data) {
-    	$scope.ownerApartments = data;
-    	$scope.loadingOwnerApartments = false;
-    });
+    if(store.get('profile') != null) {
+    	Apartment.query({ owner_id: store.get('profile')['user_id'] }).$promise.then(function(data) {
+	    	$scope.ownerApartments = data;
+	    	$scope.loadingOwnerApartments = false;
+	    });
+    }
 
     $rootScope.newApt = {};
     $rootScope.errorFields = undefined;
