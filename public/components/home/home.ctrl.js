@@ -11,6 +11,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	$rootScope.showLogin = false;
 	$rootScope.showSignup = false;
 	$rootScope.showPost = false;
+	$rootScope.showApplyNow = false;
+
 
 	$scope.propertyName = 'title';
 	$scope.reverse = true;
@@ -54,6 +56,15 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 			$rootScope.showPost = true;
 		} else {
 			$rootScope.loginMessage = 'Please sign in to post an apartment!'
+			$rootScope.showLogin = true;
+		}
+	};
+
+	$rootScope.applyNow = function() {
+		if($rootScope.isAuthenticated()) {
+			$rootScope.showApplyNow = true;
+		} else {
+			$rootScope.loginMessage = 'Please sign in to apply!'
 			$rootScope.showLogin = true;
 		}
 	};
