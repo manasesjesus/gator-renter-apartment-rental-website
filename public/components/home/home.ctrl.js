@@ -1,6 +1,9 @@
 app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', function($location, $scope, $rootScope, store, Apartment, Upload) {
 
+	$scope.showPreloader = true;
+
     Apartment.query().$promise.then(function(data) {
+    	$scope.showPreloader = false;
     	$scope.originalApartments = data;
     	$scope.apartments = $scope.originalApartments;
     });

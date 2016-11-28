@@ -20,6 +20,7 @@ body, html {
 }
 .center {
 	margin: 0 25px;
+	position: relative;
 	width: calc(100% - 50px);
 }
 select, input.box, textarea.box {
@@ -468,4 +469,10 @@ input.error, select.error, textarea.error {
 	text-align: center;
 	margin: 10px 0;
 	color: #e62117;
+}
+.preloader {
+	position: absolute;
+	top: 300px;
+	left: 50%;
+	margin-left: -20px;
 }

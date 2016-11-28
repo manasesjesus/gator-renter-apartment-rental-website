@@ -22,6 +22,7 @@
 	</aside>
 	<div id="right" class="flex column">
 		<div class="center">
+			<img src="/images/preloader.gif" class="preloader" ng-show="showPreloader" />
 			<div id="controls" class="flex">
 				<div id="results">{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
 				<div id="select-views" class="flex">
