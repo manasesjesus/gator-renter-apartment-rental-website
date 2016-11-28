@@ -4,7 +4,8 @@
 <div ng-include="'components/topbar/topbar.html'"></div>
 <div id="apartment-detail" class="bottom" ng-controller="homeController">
 	<div class="center">
-		profile controller
+		<h1>Profile ({{ $root.getEmail() }})</h1>
 		<button class="button red" ng-click="$root.logout()">Logout</button>
+		
 	</div>
 </div>

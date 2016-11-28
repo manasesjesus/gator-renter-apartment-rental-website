@@ -20,43 +20,13 @@ class Apartment extends Controller {
         }
     }
 
-    public function owner(){
-        $ownedApartments = isset($_GET['id']) && is_numeric($_GET['id']);
-        if($ownedApartments) {
-            $apts = $this->model->getOwnersApartments($_GET['id']);
-            $pics = $this->model->getPictures($_GET['id']);
-            $apts[0]->pictures = $pics;
-        }
-
-        foreach($apts as $key => $apt) {
-            $apts[$key]->id             = (Int)$apts[$key]->id;
-            $apts[$key]->owner_id       = (Int)$apts[$key]->owner_id;
-            $apts[$key]->active         = (Boolean)$apts[$key]->active;
-            $apts[$key]->sq_feet        = (Double)$apts[$key]->sq_feet;
-            $apts[$key]->nr_bedrooms    = (Int)$apts[$key]->nr_bedrooms;
-            $apts[$key]->nr_bathrooms   = (Int)$apts[$key]->nr_bathrooms;
-            $apts[$key]->nr_roommates   = (Int)$apts[$key]->nr_roommates;
-            $apts[$key]->floor          = (Int)$apts[$key]->floor;
-            $apts[$key]->private_room   = $apts[$key]->private_room === '1';
-            $apts[$key]->private_bath   = $apts[$key]->private_bath === '1';
-            $apts[$key]->kitchen_in_apartment = $apts[$key]->kitchen_in_apartment === '1';
-            $apts[$key]->has_security_deposit = $apts[$key]->has_security_deposit === '1';
-            $apts[$key]->credit_score_check = $apts[$key]->credit_score_check === '1';
-            $apts[$key]->monthly_rent   = (Double)$apts[$key]->monthly_rent;
-            $apts[$key]->security_deposit = (Double)$apts[$key]->security_deposit;
-            $apts[$key]->flagged        = $apts[$key]->flagged === '1';
-            $pics = $this->model->getPictures($apts[$key]->id);
-            $apts[$key]->pictures = $pics;
-        }
-        print json_encode($ownedApartments ? $apts[0] : $apts);
-    }
-
     function handleHTTPGet() {
         $getting_one = isset($_GET['id']) && is_numeric($_GET['id']);
+        $getting_owner = isset($_GET['owner_id']) && is_numeric($_GET['owner_id']);
         if($getting_one) {
             $apts = $this->model->getApartment($_GET['id']);
-            $pics = $this->model->getPictures($_GET['id']);
-            $apts[0]->pictures = $pics;
+        } elseif($getting_owner) {
+            $apts = $this->model->getOwnersApartments($_GET['owner_id']);
         } else {
             $apts = $this->model->getAllApartments();
         }
