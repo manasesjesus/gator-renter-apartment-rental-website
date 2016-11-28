@@ -48,7 +48,18 @@
 				</div>
 			</div>
 			<div id="map-view" class="flex" ng-show="view == 'map'">
-				<map center="37.7219, -122.4782" zoom="6"></map>
+				<map center="37.7219, -122.4782" zoom="6">
+					<marker id="gmapMarker" ng-repeat="apartment in apartments" on-mouseover="showInfoWindow('aptInfo')" on-mouseout="hideInfoWindow('aptInfo')"  position="{{apartment.latitude}},{{apartment.longitude}}">
+						<info-window id="aptInfo">
+							<div>
+								<h3><a href="/#/apartment/{{ apartment.id}}">{{apartment.title}}</a></h3>
+								<p>{{apartment.nr_roommates}} roommate{{apartment.nr_roommates == 1 ? '' : 's' }}, 
+								{{apartment.private_room ? 'private room' : 'shared room' }}, {{ apartment.private_bath ? 'private bath' : 'shared bath' }}</p>
+								<p class="apply-now">Apply now</p>
+							</div>
+						</info-window>
+					</marker>
+				</map>
 			</div>
 		</div>
 	</div>
