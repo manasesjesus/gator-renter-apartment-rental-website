@@ -12,7 +12,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	$rootScope.showSignup = false;
 	$rootScope.showPost = false;
 
-	$scope.propertyName = 'title';
+	$scope.propertyName = 'id';
 	$scope.reverse = true;
 
 	$scope.view = 'list';

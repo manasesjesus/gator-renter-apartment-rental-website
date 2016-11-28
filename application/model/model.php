@@ -15,7 +15,7 @@ class Model
     }
 
     public function getAllApartments() {
-        $sql = "SELECT * FROM apartments";
+        $sql = "SELECT * FROM apartments ORDER BY id desc";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll();

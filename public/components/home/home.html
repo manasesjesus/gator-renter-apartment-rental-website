@@ -23,7 +23,7 @@
 	<div id="right" class="flex column">
 		<div class="center">
 			<div id="controls" class="flex">
-				<div id="results">{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
+				<div id="results">{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
 				<div id="select-views" class="flex">
 					<div ng-class="{active: view == 'list'}" ng-click="view = 'list'">List View</div>
 					<div ng-class="{active: view == 'map'}" ng-click="view = 'map'">Map View</div>
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 			<div id="list-view" class="flex" ng-show="view == 'list'">
-				<div ng-show="(apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 0" id="no-match">No apartments match this criteria</div>
+				<div ng-show="(apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 0" id="no-match">No apartments match this criteria</div>
 				<div class="apartment-post" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" ng-click="go('/apartment/'+apartment.id)" ng-class="{noimage: apartment.pictures.length == 0}">
 					<div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
 						<date>{{ apartment.updated_at }}</date>
