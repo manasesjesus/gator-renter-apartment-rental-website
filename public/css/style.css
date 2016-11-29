@@ -326,6 +326,9 @@ aside .price > input {
 	bottom: 20px;
 	right: 20px;
 }
+#apartment-detail h1 {
+	margin: 20px 0 10px;
+}
 .image > date {
 	color: #fff;
 	position: absolute;
@@ -398,7 +401,7 @@ aside .price > input {
 #apartment-detail .items.attr-2 .item span {
 	color: #bdbdd3;
 	font-weight: light;
-	font-size: 14px;
+	font-size: 16px;
 }
 .apartment-post .apply-now {
 	position: absolute;
@@ -492,6 +495,7 @@ input.error, select.error, textarea.error {
     align-items: flex-end;
     padding-bottom: 20px;
 	margin-bottom: 20px;
+	margin-top: 20px;
 	border-bottom: 2px solid #f1f1f7;
 }
 .red-color {
