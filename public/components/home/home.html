@@ -4,7 +4,7 @@
 <div ng-include="'components/topbar/topbar.html'"></div>
 <div class="bottom flex">
 	<aside class="flex column">
-		<input type="search" id="search-bar" placeholder="Search" spellcheck="false" ng-model="searchBar" />
+		<input type="search" id="search-bar" class="box" placeholder="Search" spellcheck="false" ng-model="searchBar" />
 		<h3>Filters</h3>
 		<ul>
 			<li ng-click="privateRoom = privateRoom == false" ng-class="{active: privateRoom}">Private Room</li>
