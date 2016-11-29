@@ -72,4 +72,94 @@ class Model
         return $query->fetchAll();
     }
 
+    /**
+     * Get a user information from database by user email address
+     */
+    public function getUserInfoById($userId)
+    {
+        if($userId == null)
+        {
+            $sql = "CALL getUserDetail(null);";
+        }
+        else
+        {
+            $sql = "CALL getUserDetail(\" $userId \");";
+        }
+
+        $query = $this->db->prepare($sql);
+
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetchall();
+    }
+
+    // saving new user in the database
+    public function saveNewUser($data) {
+
+        $sql = "INSERT INTO users (first_name, last_name, email, password, address, city, created, user_roles_id, is_active) " .
+            " VALUES (:first_name, :last_name, :email, :password, :address, :city, :creationDate, :userRoleId, :isActive)";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':first_name' => $data['first_name'],
+            ':last_name' => $data['last_name'],
+            ':email' => $data['email'],
+            ':password' => $data['password'],
+            ':address' => $data['address'],
+            ':city' => $data['city'],
+            ':creationDate' => Helper::getCurrentMySQLFormatTime(),
+            ':userRoleId' => $data['role_type_id'],
+            ':isActive' => 1 );
+
+        $status = $query->execute($parameters);
+        return $status;
+
+    }
+
+    // update user in the database
+    public function updateUser($data) {
+
+        $sql = "CALL updateUserDetail(:email, :first_name, :last_name, :address, :city)";
+
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(
+            ':email' => $data['email'],
+            ':first_name' => $data['first_name'],
+            ':last_name' => $data['last_name'],
+            ':address' => $data['address'],
+            ':city' => $data['city']);
+
+        $status = $query->execute($parameters);
+        return $status;
+    }
+
+    //DELETE a user, it's a soft delete
+    public function deleteUser($userId) {
+
+        $sql = "UPDATE `users` SET `is_active`='0' WHERE `uid`= :userId ";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':userId' => $userId);
+
+        return $query->execute($parameters);
+
+    }
+
+    /**
+     * Get a user information from database by user email address
+     */
+    public function getUserInfo($user_email)
+    {
+        $sql = "SELECT * FROM users WHERE email = :user_email LIMIT 1";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':user_email' => $user_email);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch();
+    }
+
 }
