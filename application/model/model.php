@@ -15,7 +15,7 @@ class Model
     }
 
     public function getAllApartments() {
-        $sql = "SELECT * FROM apartments";
+        $sql = "SELECT * FROM apartments ORDER BY id desc";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll();
@@ -25,6 +25,14 @@ class Model
         $sql = "SELECT * FROM apartments WHERE id = :apartment_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':apartment_id' => $apartment_id);
+        $query->execute($parameters);
+        return $query->fetchAll();
+    }
+
+    public function getOwnersApartments($owner_id) {
+        $sql = "SELECT * FROM apartments WHERE owner_id = :owner_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':owner_id' => $owner_id);
         $query->execute($parameters);
         return $query->fetchAll();
     }

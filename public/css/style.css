@@ -20,6 +20,7 @@ body, html {
 }
 .center {
 	margin: 0 25px;
+	position: relative;
 	width: calc(100% - 50px);
 }
 select, input.box, textarea.box {
@@ -59,8 +60,8 @@ main.flex {
 	background: rgba(255, 255, 255, 0.92);
 }
 #topbar > #disclaimer {
-	padding: 5px 25px;
-	height: 20px;
+	padding: 6px 25px;
+	height: 18px;
 	background: #e62117;
 	color: #fff;
 	width: 100%;
@@ -78,7 +79,7 @@ main.flex {
 }
 #sign-up-bar p, #sign-up-bar a {
 	margin-right: 12px;
-	font-size: 12px;
+	font-size: 13px;
 	color: #bdbdd3;
 	padding: 7px 0;
 	cursor: pointer;
@@ -88,7 +89,7 @@ main.flex {
 	color: #000;
 }
 aside {
-	flex: 0 0 250px;
+	flex: 0 0 280px;
 	overflow-y: scroll;
 	box-sizing: border-box;
 	border-right: 2px solid #f1f1f7;
@@ -98,6 +99,11 @@ div#right.flex {
 	align-items: center;
 	flex-grow: 1;
 	overflow-y: scroll;
+}
+div#right h4 {
+	text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
 }
 
 /* topbar styles */
@@ -165,19 +171,14 @@ div#right.flex {
 /* aside styles */
 
 #search-bar {
-	height: 40px;
-	width: 100%;
 	font-size: 14px;
-	font-family: Montserrat, Sans-Serif;
-	color: #000;
 	margin-top: 25px;
-	font-weight: 400;
-	border: 0;
-	border-bottom: 2px solid #f1f1f7;
+	border: 2px solid #f1f1f7;
 }
 #search-bar:focus {
 	outline: 0;
-	border-color: #26e3ad;
+	background: #fff;
+	border-color: #f1f1f7;
 }
 aside h3 {
 	text-transform: uppercase;
@@ -191,7 +192,7 @@ aside ul {
 }
 aside ul li {
 	color: #bdbdd3;
-	font-size: 13px;
+	font-size: 14px;
 	padding: 6px 0 6px 30px;
 	position: relative;
 	cursor: pointer;
@@ -199,8 +200,8 @@ aside ul li {
 aside ul li:before {
 	display: block;
 	content: '';
-	width: 15px;
-	height: 15px;
+	width: 17px;
+	height: 17px;
 	border: 2px solid #bdbdd3;
 	position: absolute;
 	left: 0;
@@ -221,10 +222,7 @@ aside .price {
 	justify-content: space-between;
 }
 aside .price > input {
-	width: 33%;
-}
-aside .button {
-	margin-top: 15px;
+	width: 19%;
 }
 
 /* content style */
@@ -235,7 +233,7 @@ aside .button {
 	border-bottom: 2px solid #f1f1f7;
 	color: #bdbdd3;
 	text-transform: uppercase;
-	font-size: 11px;
+	font-size: 12px;
 	margin: 25px 0 10px;
 }
 #controls > div {
@@ -282,7 +280,7 @@ aside .button {
 	margin-left: 10px;
 }
 .apartment-post {
-	width: 400px;
+	width: 450px;
 	margin: 10px;
 	box-shadow: 0 0 30px 0 rgba(189, 189, 211, 0.3);
 	transition: 0.1s;
@@ -309,6 +307,10 @@ aside .button {
 	text-align: center;
 	top: 40%;
 }
+.center.noimage .image:after {
+	top: 45%;
+	font-size: 25px;
+}
 .image > .price {
 	position: absolute;
 	bottom: 10px;
@@ -324,12 +326,15 @@ aside .button {
 	bottom: 20px;
 	right: 20px;
 }
+#apartment-detail h1 {
+	margin: 20px 0 10px;
+}
 .image > date {
 	color: #fff;
 	position: absolute;
-	bottom: 10px;
+	bottom: 14px;
 	left: 20px;
-	font-size: 10px;
+	font-size: 12px;
 }
 #apartment-detail .image > date {
 	bottom: 23px;
@@ -341,7 +346,7 @@ aside .button {
 	position: relative;
 }
 .apartment-post h3 a {
-	font-size: 15px;
+	font-size: 16px;
 	color: #000;
 	text-decoration: none;
 }
@@ -349,16 +354,14 @@ aside .button {
 	font-size: 11px;
 	color: #bdbdd3;
 }
-#apartment-detail .center {
+#apartment-detail .center, #profile .center {
 	width: 850px;
 	margin: 0 auto;
 }
-#apartment-detail h1 {
-	margin: 20px 0 10px 0;
-}
-#apartment-detail {
+#apartment-detail, #profile {
 	justify-content: center;
 	align-items: center;
+	padding-bottom: 100px;
 }
 #apartment-detail .image {
 	width: 100%;
@@ -398,7 +401,7 @@ aside .button {
 #apartment-detail .items.attr-2 .item span {
 	color: #bdbdd3;
 	font-weight: light;
-	font-size: 14px;
+	font-size: 16px;
 }
 .apartment-post .apply-now {
 	position: absolute;
@@ -462,5 +465,39 @@ input.error, select.error, textarea.error {
 #post-form p.error {
 	text-align: center;
 	margin: 10px 0;
+	color: #e62117;
+}
+.preloader {
+	position: absolute;
+	top: 300px;
+	left: 50%;
+	margin-left: -20px;
+}
+#profile h3 {
+	margin-top: 20px;
+}
+#my-apartments {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+#my-apartments th {
+    background: #f1f1f7;
+    text-align: left;
+    padding: 5px;
+}
+#my-apartments td {
+    padding: 5px;
+}
+#profile-top {
+	justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	border-bottom: 2px solid #f1f1f7;
+}
+.red-color {
 	color: #e62117;
 }

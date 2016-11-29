@@ -60,11 +60,19 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
     define('DB_USER', 'root');
     define('DB_PASS', 'v3nturedive');
     define('DB_CHARSET', 'utf8');
-} else {
+} else if ($_SERVER['HTTP_HOST'] == 'fulda server to set') {
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net');
     define('DB_NAME', 'heroku_dbf30bdf31fcc3c');
     define('DB_USER', 'bcd047b88e33db');
     define('DB_PASS', '5bda8f98');
     define('DB_CHARSET', 'utf8');
+} else {
+    define('DB_TYPE', 'mysql');
+    define('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net');
+    define('DB_NAME', 'heroku_34339c2e1bdc646');
+    define('DB_USER', 'b964e6c50d049f');
+    define('DB_PASS', '23250ed4');
+    define('DB_CHARSET', 'utf8');
+
 }
