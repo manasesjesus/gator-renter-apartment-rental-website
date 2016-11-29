@@ -89,7 +89,7 @@ main.flex {
 	color: #000;
 }
 aside {
-	flex: 0 0 250px;
+	flex: 0 0 280px;
 	overflow-y: scroll;
 	box-sizing: border-box;
 	border-right: 2px solid #f1f1f7;
@@ -177,7 +177,8 @@ div#right h4 {
 }
 #search-bar:focus {
 	outline: 0;
-	border-color: #bdbdd3;
+	background: #fff;
+	border-color: #f1f1f7;
 }
 aside h3 {
 	text-transform: uppercase;
@@ -191,7 +192,7 @@ aside ul {
 }
 aside ul li {
 	color: #bdbdd3;
-	font-size: 13px;
+	font-size: 14px;
 	padding: 6px 0 6px 30px;
 	position: relative;
 	cursor: pointer;
@@ -199,8 +200,8 @@ aside ul li {
 aside ul li:before {
 	display: block;
 	content: '';
-	width: 15px;
-	height: 15px;
+	width: 17px;
+	height: 17px;
 	border: 2px solid #bdbdd3;
 	position: absolute;
 	left: 0;
@@ -221,10 +222,7 @@ aside .price {
 	justify-content: space-between;
 }
 aside .price > input {
-	width: 33%;
-}
-aside .button {
-	margin-top: 15px;
+	width: 19%;
 }
 
 /* content style */
@@ -331,9 +329,9 @@ aside .button {
 .image > date {
 	color: #fff;
 	position: absolute;
-	bottom: 10px;
+	bottom: 14px;
 	left: 20px;
-	font-size: 10px;
+	font-size: 12px;
 }
 #apartment-detail .image > date {
 	bottom: 23px;
