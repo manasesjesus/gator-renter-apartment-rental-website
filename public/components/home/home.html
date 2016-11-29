@@ -4,7 +4,7 @@
 <div ng-include="'components/topbar/topbar.html'"></div>
 <div class="bottom flex">
 	<aside class="flex column">
-		<input type="search" id="search-bar" placeholder="Search" spellcheck="false" ng-model="searchBar" />
+		<input type="search" id="search-bar" class="box" placeholder="Search" spellcheck="false" ng-model="searchBar" />
 		<h3>Filters</h3>
 		<ul>
 			<li ng-click="privateRoom = privateRoom == false" ng-class="{active: privateRoom}">Private Room</li>
@@ -22,11 +22,12 @@
 	</aside>
 	<div id="right" class="flex column">
 		<div class="center">
+			<h4>Most recent listings</h4>
 			<img src="/images/preloader.gif" class="preloader" ng-show="showPreloader" />
 			<div id="controls" class="flex">
 				<div id="results">{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
 				<div id="select-views" class="flex">
-					<div ng-class="{active: view == 'list'}" ng-click="view = 'list'">List View</div>
+					<div ng-class="{active: view == 'list'}" ng-click="view = 'list'">Tile View</div>
 					<div ng-class="{active: view == 'map'}" ng-click="view = 'map'">Map View</div>
 				</div>
 				<div id="sort" class="flex">
@@ -34,7 +35,7 @@
 					<div ng-click="sortBy('monthly_rent')" ng-show="view == 'list'">Sort by price</div>
 				</div>
 			</div>
-			<div id="list-view" class="flex" ng-show="view == 'list'">
+			<div id="list-view" class="flex" ng-if="view == 'list'">
 				<div ng-show="(apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 0" id="no-match">No apartments match this criteria</div>
 				<div class="apartment-post" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" ng-click="go('/apartment/'+apartment.id)" ng-class="{noimage: apartment.pictures.length == 0}">
 					<div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
@@ -48,7 +49,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="map-view" class="flex" ng-show="view == 'map'">
+			<div id="map-view" class="flex" ng-if="view == 'map'">
 				<map center="37.762946, -122.440306" zoom="12">
 					<marker id="gmapMarker" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" on-mouseover="showInfoWindow('aptInfo')" on-mouseout="hideInfoWindow('aptInfo')" position="{{apartment.latitude}},{{apartment.longitude}}">
 						<info-window id="aptInfo">
