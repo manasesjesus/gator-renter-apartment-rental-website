@@ -22,11 +22,12 @@
 	</aside>
 	<div id="right" class="flex column">
 		<div class="center">
+			<h4>Most recent listings</h4>
 			<img src="/images/preloader.gif" class="preloader" ng-show="showPreloader" />
 			<div id="controls" class="flex">
 				<div id="results">{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
 				<div id="select-views" class="flex">
-					<div ng-class="{active: view == 'list'}" ng-click="view = 'list'">List View</div>
+					<div ng-class="{active: view == 'list'}" ng-click="view = 'list'">Tile View</div>
 					<div ng-class="{active: view == 'map'}" ng-click="view = 'map'">Map View</div>
 				</div>
 				<div id="sort" class="flex">

@@ -100,6 +100,11 @@ div#right.flex {
 	flex-grow: 1;
 	overflow-y: scroll;
 }
+div#right h4 {
+	text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+}
 
 /* topbar styles */
 
@@ -236,7 +241,7 @@ aside .button {
 	border-bottom: 2px solid #f1f1f7;
 	color: #bdbdd3;
 	text-transform: uppercase;
-	font-size: 11px;
+	font-size: 12px;
 	margin: 25px 0 10px;
 }
 #controls > div {
@@ -283,7 +288,7 @@ aside .button {
 	margin-left: 10px;
 }
 .apartment-post {
-	width: 400px;
+	width: 450px;
 	margin: 10px;
 	box-shadow: 0 0 30px 0 rgba(189, 189, 211, 0.3);
 	transition: 0.1s;
