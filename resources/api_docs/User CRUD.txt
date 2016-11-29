@@ -1,0 +1,88 @@
+--------------------------------- Delete USER(S) BY ID ---------------------------------
+
+/api/users?id=234   DELETE  (specific user)
+
+--------------------------------- GET USER(S)  ---------------------------------
+
+Request ALL USERS: 
+
+/api/users  GET (list of all users)
+
+Response:
+
+[
+  {
+    "uid": "169",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "swadesh@gmail.com",
+    "password": "1234567890",
+    "address": "4092 Furth Circle",
+    "city": "Singapore",
+    "created": "2014-08-31 18:21:20",
+    "user_roles_id": null,
+    "is_active": "1"
+  },
+  {
+    "uid": "193",
+    "first_name": "Anil",
+    "last_name": "Manzoor",
+    "email": "intesar.haidefgdfg@gmail.com",
+    "address": "Wusenmulhen, Germany",
+    "city": "Fulda",
+    "created": "2016-11-20 06:36:02",
+    "user_roles_id": "1",
+    "is_active": "1"
+  }
+]
+
+
+Request ALL USERS: 
+
+/api/users?id=193  GET (user by id)
+
+Respose:
+[  
+  {
+    "uid": "193",
+    "first_name": "Anil",
+    "last_name": "Manzoor",
+    "email": "intesar.haidefgdfg@gmail.com",
+    "address": "Wusenmulhen, Germany",
+    "city": "Fulda",
+    "created": "2016-11-20 06:36:02",
+    "user_roles_id": "1",
+    "is_active": "1"
+  }
+]
+
+--------------------------------- ADD USER ---------------------------------
+
+/api/users - POST
+
+HEADER -> Content-Type: application/json
+
+Request: 
+{
+   "first_name" : "Intesar",
+   "last_name" : "Haider",
+   "email" : "intesar.haider+d1@gmail.com",
+   "password" : "myPasswWoRd",
+   "address" : "Wusenmulhen, Germany",
+   "city" : "Fulda",
+   "role_type_id" : "2" //see db table for details
+}
+
+Respose:
+{
+  "success": true,
+  "data": {
+    "first_name": "Intesar",
+    "last_name": "Haider",
+    "email": "intesar.haider+d1@gmail.com",
+    "address": "Wusenmulhen, Germany",
+    "city": "Fulda",
+    "role_type_id": "2"
+  }
+}
+--------------------------------- --- ---------------------------------
