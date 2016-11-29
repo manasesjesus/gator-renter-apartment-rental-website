@@ -8,6 +8,7 @@
 			<h1>Profile ({{ $root.getEmail() }})</h1>
 			<p ng-click="$root.logout()" class="red-color">Logout</p>	
 		</div>
+		<button ng-click="$root.postApartment()" class="button green large">Post an apartment</button>
 		<img src="/images/preloader.gif" class="preloader" ng-show="loadingOwnerApartments" />
 		<div ng-show="ownerApartments.length > 0">
 			<h3>My apartments</h3>
@@ -25,7 +26,7 @@
 						<td>{{ apartment.title }}</td>
 						<td>{{ apartment.address_line_1 }}, {{ apartment.city }}, {{ apartment.state }} {{ apartment.zip }}</td>
 						<td>{{ apartment.created_at }}</td>
-						<td ng-click="$root.deleteApartment(apartment.id)" class="red-color">Delete</td>
+						<td ng-click="$root.deleteApartment(apartment.id)" class="red-color">Remove</td>
 					</tr>
 				</tbody>
 			</table>
