@@ -24,26 +24,23 @@ BEGIN
     SET limit_end = limit_start + page_size;
     SET limit_start = limit_start + 1;
     
-    SELECT limit_start, limit_end;
-	
     SELECT
-		CONCAT(first_name, ' ' ,last_name) as from_user
-		,from_user_email
-		,received_date
-		,apartment_id
-		,apartment_title
-		,apartment_active
-		,received_on
-		,message
+		from_user
+        ,from_user_email
+        ,received_date
+        ,apt_id
+        ,apartment_title
+        ,apartment_active
+        ,received_on
+        ,message
     FROM
     (
 		SELECT
 			@row_number:=@row_number + 1 as row_number
-			,sed.first_name
-			,sed.last_name
+			,CONCAT(sed.first_name, ' ' ,sed.last_name) as from_user
 			,sed.email as from_user_email
 			,um.created as received_date
-			,a.id as apartment_id
+			,um.apartment_id as apt_id
 			,a.title as apartment_title
 			,a.active as apartment_active
 			,um.created as received_on
@@ -51,8 +48,9 @@ BEGIN
 		FROM
 			(
 				SELECT
-					um.from_user_id as from_user_id,
-					MAX(um.created) as last_received_on
+					um.from_user_id as from_user_id
+                    ,um.apartment_id
+					,MAX(um.created) as last_received_on
 				FROM user_messages um
 				INNER JOIN users sed ON sed.uid = um.from_user_id
 				INNER JOIN users rec ON rec.uid = um.to_user_id
@@ -62,6 +60,7 @@ BEGIN
 					AND rec.email = email
 				GROUP BY
 					um.from_user_id
+                    ,um.apartment_id
 			) umax
 			INNER JOIN user_messages um ON um.created = umax.last_received_on 
 				AND um.from_user_id = umax.from_user_id
