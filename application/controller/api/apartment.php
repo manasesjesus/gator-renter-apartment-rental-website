@@ -32,7 +32,7 @@ class Apartment extends Controller {
         }
         foreach($apts as $key => $apt) {
             $apts[$key]->id             = (Int)$apts[$key]->id;
-            $apts[$key]->owner_id       = (Int)$apts[$key]->owner_id;
+            $apts[$key]->owner_user_id       = (Int)$apts[$key]->owner_user_id;
             $apts[$key]->active         = (Boolean)$apts[$key]->active;
             $apts[$key]->sq_feet        = (Double)$apts[$key]->sq_feet;
             $apts[$key]->nr_bedrooms    = (Int)$apts[$key]->nr_bedrooms;
