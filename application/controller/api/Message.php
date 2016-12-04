@@ -8,28 +8,11 @@ require_once APP . 'controller/api/AbstractApi.php';
  * Time: 15:47
  */
 class Message extends AbstractAPI  {
-
-
-    public function index() {
-
-        AbstractAPI::processRequest($_REQUEST);
-
-        switch($this->method) {
-            case 'POST':
-                $this->addNewMessage();
-                break;
-            case 'PUT':
-                $this->updateMessage();
-                break;
-            case 'GET':
-                $this->getMessageDetail();
-                break;
-            case 'DELETE':
-                $this->deleteMessage();
-                break;
-            default:
-                _response("No Endpoint: $this->endpoint", 404);
-        }
+    
+    function __construct()
+    {
+        parent::__construct();
+        AbstractAPI::processRequest($_REQUEST);    
     }
 
     /**
@@ -54,10 +37,34 @@ class Message extends AbstractAPI  {
     public function updateMessage() {
     }
 
-    /**
-     * METHOD : GET
+    /*
+     * Get latest message received to a user from a particular or any user for a 
+     * any or a particular apartment 
      */
-    public function getMessageDetail() {
+    public function getMessages() 
+    {        
+        try
+        {
+            $messageCollection = $this->model->getMessages($this->requestData);
+            AbstractAPI::_response($messageCollection);
+        }
+        catch (Exception $ex)
+        {
+            AbstractApi::_response("Something unexpected happened" , 500);
+        }
+    }
+    
+    public function getConversation()
+    {
+        try
+        {
+            $converstionCollection = $this->model->getConversation($this->requestData);
+            AbstractAPI::_response($converstionCollection);
+        }
+        catch (Exception $ex)
+        {
+            AbstractApi::_response("Something unexpected happened", 500);
+        }        
     }
 
     /**

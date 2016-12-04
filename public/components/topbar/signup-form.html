@@ -11,7 +11,7 @@
         <input ng-class="{error: $root.errorFields.indexOf('password') >= 0}" class="box" type="password" ng-model="$root.password"/>
         <label>Address</label>
         <input class="box" type="text" ng-model="$root.address" placeholder="Street / Number"/>
-        <input class="box" type="text" ng-model="$root.city" ng-init="$root.city='Fulda'" value="Fulda" readonly/>
+        <input class="box" type="text" ng-model="$root.city" placeholder="City"/>
         <a ng-click="$root.signup()" class="button green large">Sign up</a>
     </div>
 </div>

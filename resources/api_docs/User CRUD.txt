@@ -86,3 +86,84 @@ Respose:
   }
 }
 --------------------------------- --- ---------------------------------
+
+--------------------------------- GET MESSAGES ---------------------------------
+
+/api/message/getMessages/ - POST
+
+HEADER -> Content-Type: application/json
+
+Request: 
+{
+   "email" : "swadesh@gmail.com",
+   "apartment_id" : 3 //not required, default value null
+   "fromuser_email" : "admin@gb.de" //not required, default value null,
+   "page_number" : 1
+   "page_size" : 10	//not required, default value 10
+}
+
+{"success":true,"data":
+[{
+	"from_user":"Manny Einsteiger",
+	"from_user_email":"admin@gb.de",
+	"received_date":"2016-12-02 15:26:46",
+	"apt_id":"3",
+	"apartment_title":"610 Moraga St",
+	"apartment_active":"1",
+	"received_on":"2016-12-02 15:26:46",
+	"message":"message."
+},{
+	"from_user":"Manny Einsteiger",
+	"from_user_email":"admin@gb.de",
+	"received_date":"2016-11-30 00:00:00",
+	"apt_id":"2",
+	"apartment_title":"240 Carl St",
+	"apartment_active":"1",
+	"received_on":"2016-11-30 00:00:00",
+	"message":"message again"
+}
+]}
+
+--------------------------------- --- ---------------------------------
+
+
+--------------------------------- GET CONVERSATION ---------------------------------
+
+/api/message/getConversation/ - POST
+
+Request: 
+{
+   "email" : "swadesh@gmail.com",
+   "apartment_id" : 3 //not required, default value null
+   "fromuser_email" : "admin@gb.de",
+   "page_number" : 1
+   "page_size" : 10	//not required, default value 10
+}
+
+{"success":true, "data":
+[{
+	"from_user":"Manny Einsteiger",
+	"from_user_email":"admin@gb.de",
+	"to_user":"Steven Wadesh",
+	"to_user_email":"swadesh@gmail.com",
+	"from_user_id":"777","to_user_id":"169",
+	"received_on":"2016-12-02 15:26:46",
+	"message":"message",
+	"is_received":"1",
+	"apt_id":"3",
+	"apartment_title":"610 Moraga St",
+	"apartment_active":"1"
+},{
+	"from_user":"Manny Einsteiger",
+	"from_user_email":"admin@gb.de",
+	"to_user":"Steven Wadesh",
+	"to_user_email":"swadesh@gmail.com",
+	"from_user_id":"777","to_user_id":"169",
+	"received_on":"2016-12-01 00:00:00",
+	"message":"message again",
+	"is_received":"1",
+	"apt_id":"3",
+	"apartment_title":"610 Moraga St",
+	"apartment_active":"1"
+}
+]}
