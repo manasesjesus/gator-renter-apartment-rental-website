@@ -167,5 +167,20 @@ class Model
         // fetch() is the PDO method that get exactly one result
         return $query->fetch();
     }
+    
+    public function saveNewMessage($data) {
+        
+        $sql = "CALL addMessage(:in_from_user_id, :in_to_user_id, :in_apartment_id, :in_message)";
 
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(
+            ':in_from_user_id' => $data['from_user_id'],
+            ':in_to_user_id' => $data['to_user_id'],
+            ':in_apartment_id' => $data['apartment_id'],
+            ':in_message' => $data['message']);
+
+        $status = $query->execute($parameters);
+        return $status;
+    }
 }
