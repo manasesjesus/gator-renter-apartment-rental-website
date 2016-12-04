@@ -220,5 +220,47 @@ class Model
         
         return $query->fetchall();
     }
+    
+    /*
+     * Search apartments across a combination of different paramters
+     */
+    public function searchApartment($data)
+    {
+        $sql = "CALL getApartments(
+            :private_room, 
+            :private_bath, 
+            :kitchen_in_apartment, 
+            :has_security_deposit, 
+            :credit_score_check, 
+            :owner_id, 
+            :apartment_id, 
+            :monthly_rent_min, 
+            :monthly_rent_max, 
+            :page_number,
+            :page_size)";
+        
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':private_room' => empty($data['private_room']) ? null : $data['private_room'],
+            ':private_bath' => empty($data['private_bath']) ? null : $data['private_bath'],
+            ':kitchen_in_apartment' => empty($data['kitchen_in_apartment']) ? null : $data['kitchen_in_apartment'],
+            ':has_security_deposit' => empty($data['has_security_deposit']) ? null : $data['has_security_deposit'],
+            ':credit_score_check' => empty($data['credit_score_check']) ? null : $data['credit_score_check'],
+            ':owner_id' => empty($data['owner_id']) ? null : $data['owner_id'],
+            ':apartment_id' => empty($data['owner_id']) ? null : $data['owner_id'],
+            ':monthly_rent_min' => empty($data['monthly_rent_min']) ? null : $data['monthly_rent_min'],
+            ':monthly_rent_max' => empty($data['monthly_rent_max']) ? null : $data['monthly_rent_max'],
+            ':page_number' => $data['page_number'],
+            ':page_size' => empty($data['page_size']) ? 10 : $data['page_size']);
+        
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $query->fetchall();
+    }
 
 }
