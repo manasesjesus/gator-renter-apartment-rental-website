@@ -169,6 +169,25 @@ class Model
     }
     
     /*
+     * Save a new Mesasge from a User to another.
+     */
+    public function saveNewMessage($data) {
+        
+        $sql = "CALL addMessage(:in_from_user_id, :in_to_user_id, :in_apartment_id, :in_message)";
+
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(
+            ':in_from_user_id' => $data['from_user_id'],
+            ':in_to_user_id' => $data['to_user_id'],
+            ':in_apartment_id' => $data['apartment_id'],
+            ':in_message' => $data['message']);
+
+        $status = $query->execute($parameters);
+        return $status;
+    }
+
+    /*
      * Get latest message received to a user from a particular or any user for a 
      * any or a particular apartment 
      */

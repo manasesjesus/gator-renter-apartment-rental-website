@@ -12,6 +12,16 @@ class Message extends AbstractAPI  {
      * METHOD : POST
      */
     public function addNewMessage() {
+        $requestPayload = $this->requestData;
+        
+        $response = $this->model->saveNewMessage($requestPayload);
+        
+        if(Helper::saveSuccessful($response)) {
+            AbstractApi::_response($response);
+        } else {
+            AbstractApi::_response("Something unexpected happened", 500);
+        }
+
     }
 
     /**
