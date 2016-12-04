@@ -49,7 +49,7 @@ BEGIN
 			um.to_user_id,
 			um.created received_on,
 			um.message,
-			CASE WHEN um.from_user_id = @iFromUser THEN 1
+			CASE WHEN um.from_user_id = sed.uid THEN 1
 			ELSE 0 END as is_received
 			,a.id as apt_id
 			,a.title as apartment_title
@@ -68,6 +68,7 @@ BEGIN
 			)
 			AND (um.apartment_id = apartment_id OR apartment_id IS NULL)
 			AND a.id = um.apartment_id
+            AND a.active = 1
 		ORDER BY um.created desc
 		) con WHERE row_number between limit_start and limit_end;
         
