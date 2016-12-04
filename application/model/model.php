@@ -168,19 +168,99 @@ class Model
         return $query->fetch();
     }
     
-    public function saveNewMessage($data) {
-        
-        $sql = "CALL addMessage(:in_from_user_id, :in_to_user_id, :in_apartment_id, :in_message)";
+    /*
+     * Get latest message received to a user from a particular or any user for a 
+     * any or a particular apartment 
+     */
+    public function getMessages($data)
+    {
+        $sql = "CALL getMessages(:email, :apartment_id, :fromuser_email, :page_number, :page_size)";
 
         $query = $this->db->prepare($sql);
 
         $parameters = array(
-            ':in_from_user_id' => $data['from_user_id'],
-            ':in_to_user_id' => $data['to_user_id'],
-            ':in_apartment_id' => $data['apartment_id'],
-            ':in_message' => $data['message']);
+            ':email' => $data['email'],
+            ':apartment_id' => empty($data['apartment_id']) ? null : $data['apartment_id'],
+            ':fromuser_email' => empty($data['fromuser_email']) ? null : $data['fromuser_email'],
+            ':page_number' => $data['page_number'],
+            ':page_size' => empty($data['page_size']) ? 10 : $data['page_size']);
 
         $status = $query->execute($parameters);
-        return $status;
+        
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+
+        return $query->fetchall();
     }
+    
+    /*
+     * Get conversation received to a user from a particular user for
+     * any or a particular apartment 
+     */
+    public function getConversation($data)
+    {
+        $sql = "CALL getConversation(:email, :apartment_id, :fromuser_email, :page_number, :page_size)";
+
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':email' => $data['email'],
+            ':apartment_id' => empty($data['apartment_id']) ? null : $data['apartment_id'],
+            ':fromuser_email' => $data['fromuser_email'],
+            ':page_number' => $data['page_number'],
+            ':page_size' => empty($data['page_size']) ? 10 : $data['page_size']);
+
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $query->fetchall();
+    }
+    
+    /*
+     * Search apartments across a combination of different paramters
+     */
+    public function searchApartment($data)
+    {
+        $sql = "CALL getApartments(
+            :private_room, 
+            :private_bath, 
+            :kitchen_in_apartment, 
+            :has_security_deposit, 
+            :credit_score_check, 
+            :owner_id, 
+            :apartment_id, 
+            :monthly_rent_min, 
+            :monthly_rent_max, 
+            :page_number,
+            :page_size)";
+        
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':private_room' => empty($data['private_room']) ? null : $data['private_room'],
+            ':private_bath' => empty($data['private_bath']) ? null : $data['private_bath'],
+            ':kitchen_in_apartment' => empty($data['kitchen_in_apartment']) ? null : $data['kitchen_in_apartment'],
+            ':has_security_deposit' => empty($data['has_security_deposit']) ? null : $data['has_security_deposit'],
+            ':credit_score_check' => empty($data['credit_score_check']) ? null : $data['credit_score_check'],
+            ':owner_id' => empty($data['owner_id']) ? null : $data['owner_id'],
+            ':apartment_id' => empty($data['owner_id']) ? null : $data['owner_id'],
+            ':monthly_rent_min' => empty($data['monthly_rent_min']) ? null : $data['monthly_rent_min'],
+            ':monthly_rent_max' => empty($data['monthly_rent_max']) ? null : $data['monthly_rent_max'],
+            ':page_number' => $data['page_number'],
+            ':page_size' => empty($data['page_size']) ? 10 : $data['page_size']);
+        
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $query->fetchall();
+    }
+
 }
