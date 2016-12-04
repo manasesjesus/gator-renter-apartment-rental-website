@@ -204,11 +204,11 @@ class Model
         $sql = "CALL getConversation(:email, :apartment_id, :fromuser_email, :page_number, :page_size)";
 
         $query = $this->db->prepare($sql);
-
+        
         $parameters = array(
             ':email' => $data['email'],
             ':apartment_id' => empty($data['apartment_id']) ? null : $data['apartment_id'],
-            ':fromuser_email' => empty($data['fromuser_email']) ? null : $data['fromuser_email'],
+            ':fromuser_email' => $data['fromuser_email'],
             ':page_number' => $data['page_number'],
             ':page_size' => empty($data['page_size']) ? 10 : $data['page_size']);
 
