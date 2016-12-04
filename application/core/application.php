@@ -38,7 +38,32 @@ class Application
             // if so, then load this file and create this controller
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
             require $controller_file;
+            
             $this->url_controller = new $this->url_controller();
+            
+                            
+            //provide action to the controller, if interface exists
+            if(method_exists($this->url_controller, "setAction"))
+            {
+                call_user_func(array($this->url_controller, "setAction"), $this->url_action);
+            }
+            
+            //provide parameters to the controller, if interface exists
+            if(method_exists($this->url_controller, "setParameters"))
+            {
+                call_user_func(array($this->url_controller, "setParameters"), $this->url_params);
+            }
+            
+            //provide parameters to the controller, if interface exists
+            if(method_exists($this->url_controller, "setSubfolder"))
+            {
+                call_user_func(array($this->url_controller, "setSubfolder"), $this->subfolder);
+            }
+            
+            if(method_exists($this->url_controller, "processRequest"))
+            {
+                call_user_func(array($this->url_controller, "processRequest"));
+            }
 
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->url_controller, $this->url_action)) {
@@ -89,15 +114,43 @@ class Application
             $this->url_action = isset($url[1 + $offset]) ? $url[1 + $offset] : null;
 
             // Remove controller and action from the split URL
-            unset($url[0 + $offset], $url[1 + $offset]);
+            unset($url[0], $url[0 + $offset], $url[1 + $offset]);
 
             // Rebase array keys and store the URL params
             $this->url_params = array_values($url);
+            
+            $this->arrangeKeyValuePairForParamaters();
 
             // for debugging. uncomment this if you have problems with the URL
-           // echo 'Controller: ' . $this->url_controller . '<br>';
-           // echo 'Action: ' . $this->url_action . '<br>';
-           // echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
+//            echo 'Controller: ' . $this->url_controller . '<br>';
+//            echo 'Action: ' . $this->url_action . '<br>';
+//            echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
+//            echo 'Subfolder: ' . print_r($this->subfolder, true) . '<br>';
         }
     }
+    
+    /*
+     * Arrange parameters extracted as key value pairs
+     */
+    private function arrangeKeyValuePairForParamaters()
+    {
+        $parametersCount = count($this->url_params);
+        $parameters;
+        
+        if ($parametersCount % 2 != 0) {
+            throw Exception("Invalid parameter set provided, expecting a key "
+                    . "value pair for each parameter!");
+        }
+        
+        $parameters = array();
+
+        for($i = 0; $i < $parametersCount; $i++ )
+        {
+            $parameters[$this->url_params[$i]] = $this->url_params[$i + 1];
+            $i++;
+        }
+        
+        $this->url_params = $parameters;
+    }
+
 }

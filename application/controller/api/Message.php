@@ -8,13 +8,6 @@ require_once APP . 'controller/api/AbstractApi.php';
  * Time: 15:47
  */
 class Message extends AbstractAPI  {
-    
-    function __construct()
-    {
-        parent::__construct();
-        AbstractAPI::processRequest($_REQUEST);    
-    }
-
     /**
      * METHOD : POST
      */

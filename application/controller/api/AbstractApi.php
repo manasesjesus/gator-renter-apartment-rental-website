@@ -9,33 +9,24 @@
 abstract class AbstractAPI extends Controller
 {
     /**
-     * Property: method
-     * The HTTP method this request was made in, either GET, POST, PUT or DELETE
-     */
-    protected $method = '';
-    /**
-     * Property: endpoint
-     * The Model requested in the URI. eg: /files
-     */
-    protected $endpoint = '';
-
-    /**
      * Property: file
      * Stores the input of the PUT request
      */
     protected $requestData = Null;
 
+    function __construct()
+    {
+        parent::__construct();
+    }   
+    
     /**
      * Constructor: __construct
      * Allow for CORS, assemble and pre-process the data
      */
-    public function processRequest($request) {
+    public function processRequest() {
         header("Access-Control-Allow-Orgin: *");
         header("Access-Control-Allow-Methods: *");
         header("Content-Type: application/json");
-
-        $args = explode('/', rtrim($request['url'], '/'));
-        $this->endpoint = $args[1];
 
         $this->method = $_SERVER['REQUEST_METHOD'];
         if ($this->method == 'POST' && array_key_exists('HTTP_X_HTTP_METHOD', $_SERVER)) {
@@ -55,7 +46,7 @@ abstract class AbstractAPI extends Controller
                 break;
             case 'GET':
             case 'DELETE':
-                $this->requestData = isset($_GET['id']) ? $_GET['id'] : null;
+                $this->requestData = isset($_GET['id']) ? $_GET['id'] : $this->url_params;
                 break;
             default:
                 $this->_response('Invalid Method', 405);
@@ -65,8 +56,8 @@ abstract class AbstractAPI extends Controller
     }
 
     public function processAPI() {
-        if (method_exists($this, $this->endpoint)) {
-            return $this->_response($this->{$this->endpoint}($this->args));
+        if (method_exists($this, $this->url_action)) {
+            return $this->_response($this->{$this->url_action}($this->url_params));
         }
         return $this->_response("No Endpoint: $this->endpoint", 404);
     }
