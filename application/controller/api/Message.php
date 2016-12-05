@@ -23,8 +23,8 @@ class Message extends AbstractAPI  {
         
         $response = $this->model->saveNewMessage($requestPayload);
         
-        if(Helper::saveSuccessful($response)) {
-            AbstractApi::_response($response);
+        if($response) {
+            AbstractApi::_response("Record Saved", 200);
         } else {
             AbstractApi::_response("Something unexpected happened", 500);
         }
