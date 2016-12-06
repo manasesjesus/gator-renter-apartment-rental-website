@@ -1,3 +1,9 @@
+/*
+@Created by: Hassaan Ahmed Rana - 16-11-2016
+
+@Modified by:
+*/
+
 DROP procedure IF EXISTS `updateUserDetail`;
 
 DELIMITER $$
@@ -16,7 +22,15 @@ BEGIN
 		u.email = email;
         
 	SELECT
-		*
+		uid, 
+        first_name, 
+        last_name, 
+        email, 
+        address, 
+        city, 
+        created, 
+        user_roles_id, 
+		is_active 
 	FROM
 		users u
 	WHERE

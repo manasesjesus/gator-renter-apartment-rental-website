@@ -140,8 +140,8 @@ div#right h4 {
 	height: 320px;
 }
 #overlay #signup-form.form {
-	margin-top: 100px;
-	height: 320px;
+	margin-top: 30px;
+	height: 615px;
 }
 #overlay .form > * {
 	width: 100%;
@@ -500,4 +500,7 @@ input.error, select.error, textarea.error {
 }
 .red-color {
 	color: #e62117;
+}
+.pointer {
+	cursor: pointer;
 }
