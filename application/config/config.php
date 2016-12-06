@@ -56,7 +56,7 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 if($_SERVER['HTTP_HOST'] == 'localhost') {
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'localhost');
-    define('DB_NAME', 'mini');
+    define('DB_NAME', 'sfsu_db');
     define('DB_USER', 'root');
     define('DB_PASS', 'v3nturedive');
     define('DB_CHARSET', 'utf8');

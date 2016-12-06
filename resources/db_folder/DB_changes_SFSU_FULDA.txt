@@ -1,0 +1,89 @@
++--------------------------------------------+
+| Catalog Diff Report                        |
++--------------------------------------------+
+Table `heroku_34339c2e1bdc646`.`user_messages` was created
+  columns:
+  - id of type INT
+  - from_user_id of type INT
+  - to_user_id of type INT
+  - apartment_id of type INT
+  - message of type VARCHAR
+  - created of type TIMESTAMP
+  __
+  indices:
+  - PRIMARY with columns: id
+  - fk_user_messages_1_idx with columns: from_user_id
+  - fk_user_messages_2_idx with columns: to_user_id
+  - fk_user_messages_3_idx with columns: apartment_id
+  __
+  foreign keys:
+  - fk_user_messages_1 with columns: from_user_id, referred table: users with columns: uid
+    - action on update: NO ACTION
+    - action on delete: CASCADE
+  - fk_user_messages_2 with columns: to_user_id, referred table: users with columns: uid
+    - action on update: NO ACTION
+    - action on delete: NO ACTION
+  - fk_user_messages_3 with columns: apartment_id, referred table: apartments with columns: id
+    - action on update: NO ACTION
+    - action on delete: NO ACTION
+  __
+  attributes:
+  - engine: InnoDB
+  - next auto increment: 5
+  - default character set: utf8
+  __
+Table `heroku_34339c2e1bdc646`.`user_roles` was created
+  columns:
+  - id of type INT
+  - role_name of type VARCHAR
+  - role_description of type VARCHAR
+  __
+  indices:
+  - PRIMARY with columns: id
+  - id_UNIQUE with columns: id
+  __
+  attributes:
+  - engine: InnoDB
+  - default character set: utf8
+  __
+Table `heroku_34339c2e1bdc646`.`apartments` was modified
+  foreign keys:
+  __
+Table `heroku_34339c2e1bdc646`.`users` was modified
+  foreign keys:
+  __
+Table `heroku_34339c2e1bdc646`.`apartments` was modified
+  columns:
+  - added column pictures of type VARCHAR(255)
+  - added column owner_user_id of type INT(11)
+  - removed column owner_id
+  - removed column longitude
+  - removed column latitude
+  __
+  indices:
+  - added index fk_apartments_1_idx with columns: owner_user_id
+  __
+  foreign keys:
+  - added foreign key fk_apartments_1 with columns: owner_user_id, referred table: users with columns: uid
+    - action on update: NO ACTION
+    - action on delete: NO ACTION
+  __
+Table `heroku_34339c2e1bdc646`.`users` was modified
+  columns:
+  - added column first_name of type VARCHAR(255)
+  - added column last_name of type VARCHAR(255)
+  - added column user_roles_id of type INT(11)
+  - added column is_active of type INT(2)
+  __
+  indices:
+  - added index fk_users_user_roles_idx with columns: user_roles_id
+  __
+  foreign keys:
+  - added foreign key fk_users_user_roles with columns: user_roles_id, referred table: user_roles with columns: id
+    - action on update: CASCADE
+    - action on delete: SET NULL
+  __
+Routine `heroku_34339c2e1bdc646`.`getUserDetail` was created
+Routine `heroku_34339c2e1bdc646`.`updateUserDetail` was created
+----------------------------------------------
+End of MySQL Workbench Report

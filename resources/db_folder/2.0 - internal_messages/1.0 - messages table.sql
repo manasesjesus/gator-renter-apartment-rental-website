@@ -1,10 +1,3 @@
-ALTER TABLE `apartments` 
-ADD COLUMN `owner_user_id` INT(11) NOT NULL AFTER `flagged`,
-ADD INDEX `fk_apartments_1_idx` (`owner_user_id` ASC);
-
-ALTER TABLE `user_roles` 
-CHANGE COLUMN `id` `id` INT(11) NOT NULL ;
-
 CREATE TABLE IF NOT EXISTS `user_messages` (
   `id` INT(11) NOT NULL,
   `from_user_id` INT(11) NOT NULL,
@@ -33,17 +26,3 @@ CREATE TABLE IF NOT EXISTS `user_messages` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-
-ALTER TABLE `apartments` 
-ADD CONSTRAINT `fk_apartments_1`
-  FOREIGN KEY (`owner_user_id`)
-  REFERENCES `users` (`uid`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
-
-USE 
-DROP procedure IF EXISTS `updateUserDetail`;
-
-USE 
-DROP procedure IF EXISTS `getUserDetail`;
