@@ -95,4 +95,32 @@ class Controller
     {
         $this->subfolder = $subfolder;
     }
+    
+    /* 
+     * Session authentication 
+     */ 
+    public function validateSession() 
+    { 
+        session_start(); 
+        
+        
+        if(isset($_SESSION['authentic_user']) and $_SESSION['authentic_user'] != '') 
+        { 
+            $user_info = $this->model->getUserInfo($_SESSION['user_name']); 
+                        
+            if ($user_info == false) { 
+                session_destroy(); 
+                 
+                //redirect 
+            } 
+             
+            if (!hash_equals($user_info->password, $_SESSION['password']) ) { 
+                session_destroy(); 
+                 
+                //redirect 
+            } 
+        } 
+         
+        session_write_close(); 
+    } 
 }
