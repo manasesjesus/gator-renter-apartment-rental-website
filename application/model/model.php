@@ -285,5 +285,71 @@ class Model
         
         return $query->fetchall();
     }
+    
+    /*
+     * Add favortie apartment against a user
+     */
+    public function addFavApartment($data)
+    {
+        $sql = "CALL addFavApartment(:apartment_id, :email)";
+
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':apartment_id' => $data['apartment_id'],
+            ':email' => $data['email']);
+
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $status;
+    }
+    
+    /*
+     * Add favourite apartment against a user
+     */
+    public function addFavouriteApartment($data)
+    {
+        $sql = "CALL addFavApartment(:apartment_id, :email)";
+
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':apartment_id' => $data['apartment_id'],
+            ':email' => $data['email']);
+
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $status;
+    }
+    
+    /*
+     * Delete favourite apartment against a user
+     */
+    public function deleteFavouriteApartment($data)
+    {
+        $sql = "CALL deleteFavApartment(:apartment_id, :email)";
+
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':apartment_id' => $data['apartment_id'],
+            ':email' => $data['email']);
+
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $status;
+    }
 
 }

@@ -158,5 +158,37 @@ class Apartment extends AbstractAPI {
             AbstractApi::_response("Something unexpected happened", 500);
         }        
     }
+    
+    /*
+     * Search apartments across a combination of different paramters
+     */
+    public function addFavouriteApartment()
+    {
+        try
+        {
+            $this->model->addFavouriteApartment($this->requestData);
+            AbstractApi::_response("Record Saved", 200);
+        }
+        catch (Exception $ex)
+        {
+            AbstractApi::_response("Something unexpected happened", 500);
+        }        
+    }
+    
+    /*
+     * Search apartments across a combination of different paramters
+     */
+    public function deleteFavouriteApartment()
+    {
+        try
+        {
+            $this->model->deleteFavouriteApartment($this->requestData);
+            AbstractApi::_response("Record Deleted", 200);
+        }
+        catch (Exception $ex)
+        {
+            AbstractApi::_response("Something unexpected happened", 500);
+        }        
+    }
 
 }
