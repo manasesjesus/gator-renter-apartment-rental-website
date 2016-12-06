@@ -254,7 +254,9 @@ class Model
             :owner_id, 
             :apartment_id, 
             :monthly_rent_min, 
-            :monthly_rent_max, 
+            :monthly_rent_max,
+            :email,
+            :get_only_user_fav,
             :page_number,
             :page_size)";
         
@@ -270,6 +272,8 @@ class Model
             ':apartment_id' => empty($data['owner_id']) ? null : $data['owner_id'],
             ':monthly_rent_min' => empty($data['monthly_rent_min']) ? null : $data['monthly_rent_min'],
             ':monthly_rent_max' => empty($data['monthly_rent_max']) ? null : $data['monthly_rent_max'],
+            ':email' => empty($data['email']) ? null : $data['email'],
+            ':get_only_user_fav' => empty($data['get_only_user_fav']) ? null : $data['get_only_user_fav'],
             ':page_number' => $data['page_number'],
             ':page_size' => empty($data['page_size']) ? 10 : $data['page_size']);
         

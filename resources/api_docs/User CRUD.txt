@@ -186,6 +186,8 @@ Request:
 	"apartment_id" : 1 //not required, default value null
 	"monthly_rent_min" : 1000 //not required, default value null
 	"monthly_rent_max" : 5000 //not required, default value null
+        "email" : "admin@gb.de" //not required, default value null
+        "get_only_user_fav" : 1 //not required, if not null works along with email to look for just fav aptt. for user
 	"page_number" : 1
 	"page_size" : 10 //not required, default value is null
 }
@@ -213,6 +215,7 @@ Request:
 	"available_since":"2016-12-12"
 	"lease_end_date":"2018-12-31"
 	"owner_id" : "1"
+        "fav_apartment":"1"
 }
 ]}
 

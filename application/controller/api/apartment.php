@@ -1,6 +1,8 @@
 <?php
 
-class Apartment extends Controller {
+require_once APP . 'controller/api/AbstractApi.php';
+
+class Apartment extends AbstractAPI {
 
     public function index() {
         header('Content-Type: application/json;charset=UTR-8');
