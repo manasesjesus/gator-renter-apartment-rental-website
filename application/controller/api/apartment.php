@@ -142,7 +142,7 @@ class Apartment extends AbstractAPI {
         $longitude = $output->results[0]->geometry->location->lng;
         return array('latitude' => $latitude, 'longitude' => $longitude);
     }
-    
+
     /*
      * Search apartments across a combination of different paramters
      */
@@ -156,9 +156,9 @@ class Apartment extends AbstractAPI {
         catch (Exception $ex)
         {
             AbstractApi::_response("Something unexpected happened", 500);
-        }        
+        }
     }
-    
+
     /*
      * Search apartments across a combination of different paramters
      */
@@ -172,9 +172,9 @@ class Apartment extends AbstractAPI {
         catch (Exception $ex)
         {
             AbstractApi::_response("Something unexpected happened", 500);
-        }        
+        }
     }
-    
+
     /*
      * Search apartments across a combination of different paramters
      */
@@ -188,7 +188,7 @@ class Apartment extends AbstractAPI {
         catch (Exception $ex)
         {
             AbstractApi::_response("Something unexpected happened", 500);
-        }        
+        }
     }
 
 }

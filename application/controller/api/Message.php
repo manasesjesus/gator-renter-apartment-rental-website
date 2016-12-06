@@ -47,6 +47,10 @@ class Message extends AbstractAPI  {
         }
     }
     
+    /*
+     * Get conversation received to a user from a particular user for
+     * any or a particular apartment 
+     */
     public function getConversation()
     {
         try
