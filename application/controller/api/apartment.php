@@ -140,5 +140,21 @@ class Apartment extends Controller {
         $longitude = $output->results[0]->geometry->location->lng;
         return array('latitude' => $latitude, 'longitude' => $longitude);
     }
+    
+    /*
+     * Search apartments across a combination of different paramters
+     */
+    public function searchApartment()
+    {
+        try
+        {
+            $apartmentCollection = $this->model->searchApartment($this->requestData);
+            AbstractAPI::_response($apartmentCollection);
+        }
+        catch (Exception $ex)
+        {
+            AbstractApi::_response("Something unexpected happened", 500);
+        }        
+    }
 
 }
