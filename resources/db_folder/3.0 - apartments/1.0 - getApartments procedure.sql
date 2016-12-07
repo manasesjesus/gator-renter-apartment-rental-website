@@ -18,6 +18,8 @@ CREATE PROCEDURE `getApartments`
     in apartment_id int(11),
     in monthly_rent_min double,
     in monthly_rent_max double,
+    in email varchar(50),
+    in get_only_user_fav tinyint(1),
     in page_number int,
     in page_size int
 )
@@ -34,10 +36,13 @@ BEGIN
 	FROM
     (
 		SELECT 
-			*,
-            @row_number:=@row_number + 1 as row_number
+			a.*
+            ,CASE WHEN uaf.id IS NULL THEN 0 ELSE 1 END as fav_apartment
+            ,@row_number:=@row_number + 1 as row_number
 		FROM 
 			apartments a
+            LEFT JOIN user_apartments_fav uaf ON a.id = uaf.apartment_id
+            LEFT JOIN users u ON u.uid = uaf.user_id AND u.email = email
 		WHERE
 			(a.id = apartment_id OR apartment_id IS NULL)
 			AND (a.private_room = private_room OR private_room IS NULL)
@@ -48,7 +53,7 @@ BEGIN
 			AND (a.owner_id = owner_id OR owner_id IS NULL)
             AND (a.monthly_rent >= monthly_rent_min OR monthly_rent_min IS NULL)
             AND (a.monthly_rent <= monthly_rent_max OR monthly_rent_max IS NULL)
-            
+            AND (u.email = email OR email IS NULL OR get_only_user_fav IS NULL)
 		ORDER BY
 			a.updated_at DESC
 	) result WHERE row_number between limit_start and limit_end;

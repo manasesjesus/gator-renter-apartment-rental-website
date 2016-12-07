@@ -186,6 +186,59 @@ Request:
 	"apartment_id" : 1 //not required, default value null
 	"monthly_rent_min" : 1000 //not required, default value null
 	"monthly_rent_max" : 5000 //not required, default value null
+        "email" : "admin@gb.de" //not required, default value null
+        "get_only_user_fav" : 1 //not required, if not null works along with email to look for just fav aptt. for user
+	"page_number" : 1
+	"page_size" : 10 //not required, default value is null
+}
+
+{"success":true, "data":
+[{
+	"address_line_1":"Address line" 	
+	"address_line_2":"Address line"
+	"city":"city"
+	"zip":"36037"                
+	"title":"title"        
+	"description":"description"      
+	"sq_feet":"54"
+	"nr_bedrooms":"2"       
+	"nr_bathrooms":"2"    
+	"nr_roommates":"3"   
+	"floor":"1"   
+	"private_room":"1"       
+	"private_bath":"1"   
+	"kitchen_in_apartment":"1"
+	"has_security_deposit":"1"
+	"credit_score_check":"1"
+	"monthly_rent":"500"
+	"security_deposit":"1" 
+	"available_since":"2016-12-12"
+	"lease_end_date":"2018-12-31"
+	"owner_id" : "1"
+        "fav_apartment":"1"
+}
+]}
+
+--------------------------------- --- ---------------------------------]}
+
+--------------------------------- --- ---------------------------------
+
+
+--------------------------------- GET APARTMENTS ---------------------------------
+
+/api/apartment/searchApartment/ - POST
+
+Request: 
+{
+	"private_room": 1 //not required, default value null
+	"private_bath": 1 //not required, default value null 
+	"kitchen_in_apartment" : 1 //not required, default value null 
+	"has_security_deposit" : 1 //not required, default value null
+	"credit_score_check" : 1 //not required, default value null
+	"owner_id" : 1 //not required, default value null
+	"apartment_id" : 1 //not required, default value null
+	"monthly_rent_min" : 1000 //not required, default value null
+	"monthly_rent_max" : 5000 //not required, default value null
 	"page_number" : 1
 	"page_size" : 10 //not required, default value is null
 }

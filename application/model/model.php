@@ -254,7 +254,9 @@ class Model
             :owner_id, 
             :apartment_id, 
             :monthly_rent_min, 
-            :monthly_rent_max, 
+            :monthly_rent_max,
+            :email,
+            :get_only_user_fav,
             :page_number,
             :page_size)";
         
@@ -270,6 +272,8 @@ class Model
             ':apartment_id' => empty($data['owner_id']) ? null : $data['owner_id'],
             ':monthly_rent_min' => empty($data['monthly_rent_min']) ? null : $data['monthly_rent_min'],
             ':monthly_rent_max' => empty($data['monthly_rent_max']) ? null : $data['monthly_rent_max'],
+            ':email' => empty($data['email']) ? null : $data['email'],
+            ':get_only_user_fav' => empty($data['get_only_user_fav']) ? null : $data['get_only_user_fav'],
             ':page_number' => $data['page_number'],
             ':page_size' => empty($data['page_size']) ? 10 : $data['page_size']);
         
@@ -280,6 +284,72 @@ class Model
         }
         
         return $query->fetchall();
+    }
+    
+    /*
+     * Add favortie apartment against a user
+     */
+    public function addFavApartment($data)
+    {
+        $sql = "CALL addFavApartment(:apartment_id, :email)";
+
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':apartment_id' => $data['apartment_id'],
+            ':email' => $data['email']);
+
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $status;
+    }
+    
+    /*
+     * Add favourite apartment against a user
+     */
+    public function addFavouriteApartment($data)
+    {
+        $sql = "CALL addFavApartment(:apartment_id, :email)";
+
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':apartment_id' => $data['apartment_id'],
+            ':email' => $data['email']);
+
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $status;
+    }
+    
+    /*
+     * Delete favourite apartment against a user
+     */
+    public function deleteFavouriteApartment($data)
+    {
+        $sql = "CALL deleteFavApartment(:apartment_id, :email)";
+
+        $query = $this->db->prepare($sql);
+        
+        $parameters = array(
+            ':apartment_id' => $data['apartment_id'],
+            ':email' => $data['email']);
+
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $status;
     }
 
 }

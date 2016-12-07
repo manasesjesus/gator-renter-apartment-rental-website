@@ -19,4 +19,13 @@ class Home extends Controller
         require APP . 'view/_templates/html.php';
     }
 
+    public function test() 
+    { 
+        echo 'bla bla!'; 
+         
+        echo $this->getAction(); 
+        print_r( $this->getParameters()); 
+        echo $this->getSubfolder(); 
+    } 
 }
+

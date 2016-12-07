@@ -12,6 +12,15 @@ class Controller
      */
     public $model = null;
 
+    /** @var null The method (of the above controller), often also named "action" */
+    protected $url_action = '';
+
+    /** @var array URL parameters */
+    protected $url_params = '';
+
+    /** @var subfolder */
+    protected $subfolder = '';
+    
     /**
      * Whenever controller is created, open a database connection too and load "the model".
      */
@@ -47,4 +56,71 @@ class Controller
         // create new "model" (and pass the database connection)
         $this->model = new Model($this->db);
     }
+    
+        /*
+     * Interface to provide consumer the extracted action
+     */
+    public function getAction()
+    {
+        return $this->url_action;
+    }
+    
+    public function setAction($action)
+    {
+        $this->url_action = $action;
+    }
+    
+    /*
+     * Interface to provide consumer the extracted paramters
+     */
+    public function getParameters()
+    {
+        return $this->url_params;
+    }
+    
+    public function setParameters($parameters)
+    {
+        $this->url_params = $parameters;
+    }
+    
+    /*
+     * Interface to provide consumer the extracted subfolder
+     */
+    public function getSubfolder()
+    {
+        return $this->subfolder;
+    }
+    
+    public function setSubfolder($subfolder)
+    {
+        $this->subfolder = $subfolder;
+    }
+    
+    /* 
+     * Session authentication 
+     */ 
+    public function validateSession() 
+    { 
+        session_start(); 
+        
+        
+        if(isset($_SESSION['authentic_user']) and $_SESSION['authentic_user'] != '') 
+        { 
+            $user_info = $this->model->getUserInfo($_SESSION['user_name']); 
+                        
+            if ($user_info == false) { 
+                session_destroy(); 
+                 
+                //redirect 
+            } 
+             
+            if (!hash_equals($user_info->password, $_SESSION['password']) ) { 
+                session_destroy(); 
+                 
+                //redirect 
+            } 
+        } 
+         
+        session_write_close(); 
+    } 
 }

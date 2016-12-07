@@ -30,7 +30,7 @@ class Login extends Controller
 
         if ( hash_equals($user_info->password, crypt($password, $user_info->password)) ) {
             $_SESSION['user_name'] = $email;
-            $_SESSION['password'] = $password;
+            $_SESSION['password'] = $user_info->password;
             $_SESSION['authentic_user'] = true;
             //echo json_encode(array('valid_username' => true, 'valid_password' => true, 'authentic_user' => true));
             echo json_encode($user_info);
