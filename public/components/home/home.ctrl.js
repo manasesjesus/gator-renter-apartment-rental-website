@@ -39,8 +39,22 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	$rootScope.login = function() {
 		var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (regex.test($rootScope.username) && $rootScope.hasValidData($rootScope.password, 1)) {
-            $http.get('api/login?loginname=' + $rootScope.username + '&password=' + $rootScope.password)
-                .then(function successCallback(response) {
+
+            $http({
+                url: 'api/login',
+                method: "POST",
+                data: {loginname:$rootScope.username, password:$rootScope.password},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            }).then(function successCallback(response) {
+                    // this callback will be called asynchronously
                     if (response.data.first_name) {
                         store.set('profile', {username: $rootScope.username, user_id: response.data.uid});
                         $rootScope.loginMessage = '';
@@ -50,8 +64,10 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                         $rootScope.loginMessage = 'email or password incorrect';
                     }
             }, function errorCallback(response) {
-                $rootScope.loginMessage = 'Error: ' + response;
+                    // called asynchronously if an error occurs
+                    $rootScope.loginMessage = 'Error: ' + response;
             });
+
 		} else {
 			$rootScope.loginMessage = 'email or password incorrect';
 		}
