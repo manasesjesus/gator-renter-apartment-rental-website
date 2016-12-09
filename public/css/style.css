@@ -9,6 +9,121 @@ body, html {
 	font-family: Montserrat, Sans-Serif;
 }
 
+@media (min-width: 800px) {
+	aside {
+		flex: 0 0 280px;
+		overflow-y: scroll;
+		border-right: 2px solid #f1f1f7;
+		padding: 0 25px 25px 25px;
+	}
+	div#right.flex {
+		align-items: center;
+		flex-grow: 1;
+		overflow-y: scroll;
+	}
+	aside ul li {
+		padding: 6px 0 6px 30px;
+	}
+	#topbar > #disclaimer {
+		padding: 6px 25px;
+		font-size: 12px;
+		height: 30px;
+	}
+	aside .price {
+		justify-content: space-between;
+	}
+	aside .price > input {
+		width: 19%;
+	}
+	#controls > div {
+		width: 33.33%;
+	}
+	.center {
+		margin: 0 25px;
+		width: calc(100% - 50px);
+	}
+	#apartment-detail .center, #profile .center {
+		width: 850px;
+	}
+	#apartment-detail .image {
+		width: 100%;
+		height: 400px;
+		background-size: 100% 400px;
+	}
+	#apartment-detail .items.attr-2 .item {
+		font-size: 50px;
+	}
+	#apartment-detail .items.attr-1 .item {
+		width: 24%;
+		font-size: 15px;
+		text-align: center;
+		border-bottom: 2px solid #e2e7ee;
+		padding: 15px 0;
+	}
+	#apartment-detail, #profile {
+		padding-bottom: 100px;
+	}
+}
+@media (max-width: 800px) {
+	aside {
+		padding: 0 25px;
+	}
+	.bottom.flex {
+		display: block;
+	}
+	aside ul {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	aside ul li {
+		padding: 6px 30px;
+	}
+	#topbar > #disclaimer {
+		padding: 4px 5px;
+		font-size: 9px;
+		height: 34px;
+	}
+	aside .price {
+		display: block;
+	}
+	aside .price > * {
+		margin-bottom: 10px;
+		box-sizing: border-box;
+		width: 100%;
+	}
+	#results, #sort {
+		display: none;
+	}
+	#controls > div {
+		width: 100%;
+	}
+	#apartment-detail .center, #profile .center {
+		width: 100%;
+	}
+	#apartment-detail h1 {
+		font-size: 20px;
+		padding: 0 25px;	
+	}
+	#apartment-detail .image {
+		width: 100%;
+		height: 200px;
+		background-size: 100% 200px;
+	}
+	#apartment-detail .description {
+		padding: 0 25px;
+	}
+	#apartment-detail .items.attr-1 .item {
+		text-align: left;
+		padding: 15px 25px;
+	}
+	#apartment-detail .items.attr-1 {
+		flex-direction: column;
+	}
+	#apartment-detail, #profile {
+		padding-bottom: 70px;
+	}
+}
+
 /* universal */
 
 .flex {
@@ -19,9 +134,7 @@ body, html {
 	flex-direction: column;
 }
 .center {
-	margin: 0 25px;
 	position: relative;
-	width: calc(100% - 50px);
 }
 select, input.box, textarea.box {
 	-webkit-appearance: none;
@@ -60,13 +173,11 @@ main.flex {
 	background: rgba(255, 255, 255, 0.92);
 }
 #topbar > #disclaimer {
-	padding: 6px 25px;
-	height: 18px;
 	background: #e62117;
 	color: #fff;
 	width: 100%;
 	text-align: center;
-	font-size: 12px;
+	box-sizing: border-box;
 }
 #topbar > .flex {
 	padding: 0 25px;
@@ -78,7 +189,7 @@ main.flex {
 	margin-left: 10px;
 }
 #sign-up-bar p, #sign-up-bar a {
-	margin-right: 12px;
+	margin-left: 12px;
 	font-size: 13px;
 	color: #bdbdd3;
 	padding: 7px 0;
@@ -89,16 +200,7 @@ main.flex {
 	color: #000;
 }
 aside {
-	flex: 0 0 280px;
-	overflow-y: scroll;
 	box-sizing: border-box;
-	border-right: 2px solid #f1f1f7;
-	padding: 0 25px 25px 25px;
-}
-div#right.flex {
-	align-items: center;
-	flex-grow: 1;
-	overflow-y: scroll;
 }
 div#right h4 {
 	text-align: center;
@@ -193,7 +295,6 @@ aside ul {
 aside ul li {
 	color: #bdbdd3;
 	font-size: 14px;
-	padding: 6px 0 6px 30px;
 	position: relative;
 	cursor: pointer;
 }
@@ -218,12 +319,6 @@ aside ul li.active:before {
 aside ul li:hover:before {
 	border-color: #26e3ad;
 }
-aside .price {
-	justify-content: space-between;
-}
-aside .price > input {
-	width: 19%;
-}
 
 /* content style */
 
@@ -237,7 +332,6 @@ aside .price > input {
 	margin: 25px 0 10px;
 }
 #controls > div {
-	width: 33.33%;
 	margin-bottom: -2px;
 }
 #list-view.flex {
@@ -289,9 +383,9 @@ aside .price > input {
 	transform: scale(1.02);
 }
 .image {
-	width: 100%;
 	height: 200px;
 	background-size: 100% 200px;
+	width: 100%;
 	position: relative;
 	background-color: #dedee9;
 }
@@ -355,18 +449,14 @@ aside .price > input {
 	color: #bdbdd3;
 }
 #apartment-detail .center, #profile .center {
-	width: 850px;
 	margin: 0 auto;
 }
 #apartment-detail, #profile {
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 100px;
 }
 #apartment-detail .image {
 	width: 100%;
-	height: 400px;
-	background-size: 100% 400px;
 	position: relative;
 }
 #apartment-detail .description {
@@ -379,13 +469,8 @@ aside .price > input {
 	margin: 10px 0 20px 0;
 }
 #apartment-detail .items.attr-1 .item {
-	width: 24%;
-	padding: 15px 0;
-	font-size: 15px;
-	text-align: center;
 	color: #bdbdd3;
 	border-top: 2px solid #e2e7ee;
-	border-bottom: 2px solid #e2e7ee;
 }
 #apartment-detail .items.attr-1 .item.positive {
 	color: #000;
@@ -393,7 +478,6 @@ aside .price > input {
 #apartment-detail .items.attr-2 .item {
 	width: 49%;
 	padding: 20px 0;
-	font-size: 50px;
 	font-weight: bold;
 	text-align: center;
 	background: #f3f6f8;
