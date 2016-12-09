@@ -155,7 +155,7 @@ class Model
      */
     public function getUserInfo($user_email)
     {
-        $sql = "SELECT * FROM users WHERE email = :user_email LIMIT 1";
+        $sql = "SELECT * FROM users WHERE email = :user_email AND is_active = 1 LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':user_email' => $user_email);
 
