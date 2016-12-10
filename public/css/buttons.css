@@ -60,6 +60,7 @@
 	text-align: center;
 	transition: 0.05s;
 	cursor: pointer;
+	z-index: 2000;
 }
 .apply-now.float:hover {
 	background: #23cb94;
