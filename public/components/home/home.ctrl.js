@@ -74,6 +74,25 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 	};
 
 	$rootScope.logout = function() {
+        
+        $http({
+            url: 'api/logout',
+            method: "POST"
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            if (response) {
+                if(response === 'SUCCESS_LOGOUT') {
+                    $rootScope.loginMessage = 'Successfully Logged out';
+                }
+            } else {
+                $rootScope.loginMessage = 'Unable to logout';
+            }
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            $rootScope.loginMessage = 'Error: ' + response;
+        });
+
+
         store.remove('profile');
         $rootScope.first_name = "";
         $rootScope.last_name = "";
