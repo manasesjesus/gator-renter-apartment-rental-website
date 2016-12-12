@@ -227,10 +227,10 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         });
     };
 
-    $rootScope.deleteApartment = function (apartment_id) {
+    $rootScope.deleteApartment = function (apartmentObj) {
         if (confirm("Are you sure to remove this apartment offer?")) {
-            Apartment.delete({id: apartment_id}, function () {
-                $scope.ownerApartments.splice($scope.ownerApartments.indexOf(apartment_id), 1);
+            Apartment.delete({id: apartmentObj.id}, function () {
+                $scope.ownerApartments.splice($scope.ownerApartments.indexOf(apartmentObj), 1);
             });
         }
     };
