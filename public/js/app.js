@@ -1,3 +1,9 @@
+/**
+ * Created by SFSU
+ *
+ * Modified by Manasés Galindo
+ */
+
 var app = angular.module('gatorRenter', [
 	'ngRoute',
 	'ngResource',

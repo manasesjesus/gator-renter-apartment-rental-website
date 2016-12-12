@@ -2,6 +2,12 @@
 
 require_once APP . 'controller/api/AbstractApi.php';
 
+/**
+ * Created by SFSU
+ *
+ * Modified by: Manasés Galindo
+ */
+
 class Apartment extends AbstractAPI {
 
     public function index() {

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Created by SFSU             -->
+<!-- Modified by Manasés Galindo -->
 <html lang="en-US" ng-app="gatorRenter">
 <head>
     <meta charset="UTF-8"/>

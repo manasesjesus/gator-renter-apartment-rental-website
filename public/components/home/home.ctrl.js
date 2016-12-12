@@ -1,3 +1,11 @@
+/**
+ * Created by SFSU
+ * Main Controller
+ *
+ * Modified by:
+ *  - Intesar Haider
+ *  - Manasés Galindo
+ */
 app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', '$http', function ($location, $scope, $rootScope, store, Apartment, Upload, $http) {
 
     $scope.showPreloader = true;

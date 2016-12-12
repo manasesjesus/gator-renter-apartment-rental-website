@@ -5,6 +5,9 @@
  * User: GatorRentor
  * Date: 2016/11/16
  * Time: 19:56
+ * Modified by:
+ *  - Intesar Haider
+ *  - Manasés Galindo
  */
 class Login extends Controller
 {
