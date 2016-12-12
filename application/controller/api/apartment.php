@@ -67,7 +67,7 @@ class Apartment extends AbstractAPI {
         $values = [1, date('Y-m-d'), date('Y-m-d'), 0];
         $validations = [
             'address_line_1'        => ['required' => true, 'regex' => '/.{5,}/i'],
-            'address_line_2'        => ['required' => false, 'regex' => '/.{4,}/i'],
+            /*'address_line_2'        => ['required' => false, 'regex' => '/.{4,}/i'],*/
             'city'                  => ['required' => true, 'regex' => '/.{2,}/i'],
             /*'state'                 => ['required' => false, 'regex' => '/[A-Z]{2}/'],*/
             'zip'                   => ['required' => true, 'regex' => '/[0-9]{5}/'],
