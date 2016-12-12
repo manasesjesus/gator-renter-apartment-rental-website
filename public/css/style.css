@@ -697,6 +697,10 @@ input.error, select.error, textarea.error {
     padding: 5px;
 }
 
+.contents tr:hover {
+    background-color: #fafaff;
+}
+
 .contents td {
     padding: 5px;
 }
