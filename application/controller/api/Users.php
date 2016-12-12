@@ -6,6 +6,7 @@ require_once APP . 'controller/api/AbstractApi.php';
  * This class will strictly be used for USER specific CRUD
  * Date: 11/20/2016
  * Time: 2:57 AM
+ * Modified by: Manasés Galindo
  */
 class Users extends AbstractAPI  {
 
@@ -25,7 +26,8 @@ class Users extends AbstractAPI  {
                 $this->getUserDetail();
                 break;
             case 'DELETE':
-                $this->deleteUser();
+                //$this->deleteUser();
+                $this->toggleUser();
                 break;
             default:
                 _response("No Endpoint: $this->endpoint", 404);
@@ -103,6 +105,22 @@ class Users extends AbstractAPI  {
         if($status==true) {
             AbstractApi::_response("User with ID = $this->requestData successfully deleted!");
         }
+    }
 
+    /**
+     * METHOD : DELETE
+     * Toggle the active status of a user
+     */
+    public function toggleUser() {
+
+        //if user id, that's need to be deleted is missing, show error
+        if(is_null($this->requestData)) $this->_response('Invalid Request! User ID to delete is missing', 400);
+
+        $data = array("uid" => $_GET['uid'], "status" => $_GET['status']);
+        $status = $this->model->toggleUser($data);
+
+        if($status==true) {
+            AbstractApi::_response("User successfully toggled!");
+        }
     }
 }
