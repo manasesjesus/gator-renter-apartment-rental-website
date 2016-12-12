@@ -81,6 +81,9 @@ class Model
         {
             $sql = "CALL getUserDetail(null);";
         }
+        else if ($userId == "admin") {
+            $sql = "CALL getAllUsersDetails(null);";
+        }
         else
         {
             $sql = "CALL getUserDetail(\" $userId \");";
