@@ -15,8 +15,7 @@ app.controller('adminController', ['$location', '$scope', '$rootScope', 'store',
 
     Apartment.query().$promise.then(function(data) {
         $scope.loadingOwnerApartments = false;
-        $scope.originalApartments = data;
-        $scope.apartments = $scope.originalApartments;
+        $scope.apartments = data;
     });
 
     $scope.loadAllUsers = function () {
@@ -28,7 +27,7 @@ app.controller('adminController', ['$location', '$scope', '$rootScope', 'store',
     }
     $scope.loadAllUsers();
 
-    $rootScope.toggleUser = function (userId, status) {
+    $scope.toggleUser = function (userId, status) {
         status = status == 0 ? 1 : 0;
         $http.delete('api/Users?uid=' + userId + "&status=" + status).then(function successCallback(response) {
             $scope.loadAllUsers();
@@ -37,5 +36,12 @@ app.controller('adminController', ['$location', '$scope', '$rootScope', 'store',
         });
     }
 
+    $scope.deleteThisApartment = function (apartmentObj) {
+        if (confirm("Are you sure to remove this apartment offer?")) {
+            Apartment.delete({id: apartmentObj.id}, function () {
+                $scope.apartments.splice($scope.apartments.indexOf(apartmentObj), 1);
+            });
+        }
+    };
 }]);
 

@@ -39,7 +39,7 @@
 						<td ng-class="{disabled: auser.is_active == '0'}">{{ auser.email }}</td>
 						<td ng-class="{disabled: auser.is_active == '0'}">{{ auser.first_name }} {{ auser.last_name }}</td>
                         <td ng-class="{disabled: auser.is_active == '0'}">{{ auser.address }}, {{ auser.city }}</td>
-						<td ng-click="$root.toggleUser(auser.uid, auser.is_active)" class="red-color pointer">
+						<td ng-click="toggleUser(auser.uid, auser.is_active)" class="red-color pointer">
                             <span ng-class="{enable: auser.is_active == '0'}">{{ auser.is_active == 1 ? 'Disable' : 'Enable' }}</span>
                         </td>
 					</tr>
@@ -62,7 +62,7 @@
                     <td>{{ apartment.title }}</td>
                     <td>{{ apartment.address_line_1 }}, {{ apartment.city }}, {{ apartment.state }} {{ apartment.zip }}</td>
                     <td>{{ apartment.created_at }}</td>
-                    <td ng-click="$root.deleteApartment(apartment.id)" class="red-color pointer">Remove</td>
+                    <td ng-click="deleteThisApartment(apartment)" class="red-color pointer">Remove</td>
                 </tr>
                 </tbody>
             </table>
