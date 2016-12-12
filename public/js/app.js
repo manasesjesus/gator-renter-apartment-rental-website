@@ -17,6 +17,9 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', function($lo
 	}).when('/profile', {
 		controller: 'homeController',
 		templateUrl: 'components/profile/profile.html'
+	}).when('/admin', {
+		controller: 'adminController',
+		templateUrl: 'components/profile/admin.html'
 	});
 
 }]);
