@@ -1,5 +1,9 @@
 <?php
 
+
+/*
+ * Modified by: Manasés Galindo
+ */
 class Model
 {
     /**
@@ -148,6 +152,17 @@ class Model
         $sql = "UPDATE `users` SET `is_active`='0' WHERE `uid`= :userId ";
         $query = $this->db->prepare($sql);
         $parameters = array(':userId' => $userId);
+
+        return $query->execute($parameters);
+
+    }
+
+    //Toggle a user status
+    public function toggleUser($data) {
+
+        $sql = "UPDATE `users` SET `is_active`= :status WHERE `uid`= :userId ";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':userId' => $data['uid'], ':status' => $data['status']);
 
         return $query->execute($parameters);
 
