@@ -60,7 +60,16 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
     define('DB_USER', 'root');
     define('DB_PASS', 'v3nturedive');
     define('DB_CHARSET', 'utf8');
-} else {
+}
+else if($_SERVER['HTTP_HOST'] == 'localhost:8888') {
+    define('DB_TYPE', 'mysql');
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'f16g08');
+    define('DB_USER', 'f16g08');
+    define('DB_PASS', 'sfsuf16swe');
+    define('DB_CHARSET', 'utf8');
+}
+else {
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net');
     define('DB_CHARSET', 'utf8');
