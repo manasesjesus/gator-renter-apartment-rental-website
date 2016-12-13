@@ -369,5 +369,25 @@ class Model
         
         return $status;
     }
+    
+    /*
+     * Get new messages count for a user
+     */
+    public function getNewMessagesCount($data) 
+    {
+        $sql = "CALL hasNewMessages(:email)";
+        
+        $query = $this->db->prepare($sql);
+         
+        $parameters = array(':email' => $data['email']);    
+        
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $query->fetch();
+    }
 
 }
