@@ -23,7 +23,7 @@ BEGIN
     SET limit_start = (page_number - 1) * page_size;
     SET limit_end = limit_start + page_size;
     SET limit_start = limit_start + 1;
-    
+        
     SELECT
 		from_user
         ,from_user_email
@@ -73,6 +73,11 @@ BEGIN
 		ORDER BY um.created desc
 				 ,from_user_email
     ) result WHERE row_number between limit_start and limit_end;
+    
+	UPDATE user_messages um
+    INNER JOIN users u ON um.to_user_id = u.uid
+    AND u.email = email
+    SET um.is_new_message = 0;        
 
 END$$
 
