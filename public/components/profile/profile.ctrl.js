@@ -27,8 +27,7 @@ app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User'
     $scope.getConversation = function (message) {
         $scope.convHeader = {
             from_user : message.from_user,
-            received_on : message.received_on,
-            apartment_title : message.apartment_title
+            apartment_title : message.apartment_title,
         };
 
         $http.post('/api/message/getConversation', {
@@ -39,9 +38,25 @@ app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User'
         }).success(function (data) {
             $scope.conversations = data.data;
             $rootScope.showConversation = true;
+            $rootScope.newMsg = {
+                apartment_id: message.apt_id,
+                from_user_id: $rootScope.getUserID(),
+                to_user_id: data.data[0].to_user_id == $rootScope.getUserID() ? data.data[0].from_user_id : data.data[0].to_user_id,
+                message: ''
+            };
         }).error(function (error) {
             console.log("Error: " + error.message);
         });
+    }
+
+    // Reply on a conversation
+    $scope.reply = function () {
+        $http.post('/api/message/addNewMessage', $rootScope.newMsg).success(function (data) {
+            $rootScope.showConversation = false;
+        }).error(function (error) {
+            console.log("Error: " + error.message);
+        });
+
     }
 }]);
 

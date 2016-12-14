@@ -31,6 +31,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         Apartment.query({owner_id: store.get('profile')['user_id']}).$promise.then(function (data) {
             $scope.ownerApartments = data;
             $scope.loadingOwnerApartments = false;
+            $rootScope.checkForNewMessages();
         });
         $rootScope.user_profile = store.get('profile');
 
@@ -39,9 +40,11 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     $rootScope.newApt = {};
     $rootScope.errorFields = undefined;
 
-    $rootScope.showlogin = false;
+    $rootScope.showLogin = false;
     $rootScope.showSignup = false;
     $rootScope.showPost = false;
+
+    $rootScope.newMsg = {};
     $rootScope.hasNewMessages = false;
     $rootScope.showConversation = false;
 
@@ -82,8 +85,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                         response.data.first_name + " " + response.data.last_name,
                         response.data.first_name,
                         response.data.last_name,
-                        response.data.user_roles_id, 
-                        response.data.address, 
+                        response.data.user_roles_id,
+                        response.data.address,
                         response.data.city,
                         response.data.email);
                     $rootScope.loginMessage = '';
@@ -106,34 +109,36 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     };
 
     $rootScope.updateUserDetails = function () {
-            $http({
-                url: 'api/Users',
-                method: "PUT",
-                dataType: "json",
-                //:email, :first_name, :last_name, :address, :city
-                data: {email: $rootScope.user_profile.email, 
-                    first_name: $rootScope.user_profile.user_first_name, 
-                    last_name: $rootScope.user_profile.user_last_name, 
-                    address: $rootScope.user_profile.address, 
-                    city: $rootScope.user_profile.city}
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                    $rootScope.setProfile($rootScope.username, response.data.data.uid,
-                        response.data.data.first_name + " " + response.data.data.last_name,
-                        response.data.data.first_name,
-                        response.data.data.last_name,
-                        response.data.data.user_roles_id, 
-                        response.data.data.address, 
-                        response.data.data.city,
-                        response.data.data.email);
-                    $rootScope.updateMessage = 'Saved Changes';
+        $http({
+            url: 'api/Users',
+            method: "PUT",
+            dataType: "json",
+            //:email, :first_name, :last_name, :address, :city
+            data: {
+                email: $rootScope.user_profile.email,
+                first_name: $rootScope.user_profile.user_first_name,
+                last_name: $rootScope.user_profile.user_last_name,
+                address: $rootScope.user_profile.address,
+                city: $rootScope.user_profile.city
             }
-            , 
+        }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                $rootScope.setProfile($rootScope.username, response.data.data.uid,
+                    response.data.data.first_name + " " + response.data.data.last_name,
+                    response.data.data.first_name,
+                    response.data.data.last_name,
+                    response.data.data.user_roles_id,
+                    response.data.data.address,
+                    response.data.data.city,
+                    response.data.data.email);
+                $rootScope.updateMessage = 'Saved Changes';
+            }
+            ,
             function errorCallback(response) {
                 // called asynchronously if an error occurs
                 $rootScope.updateMessage = 'Error saving changes! Please try later.';
             }
-                    );
+        );
     };
 
     $rootScope.logout = function () {
@@ -180,8 +185,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             email: u9
         });
         if (store.get('profile') != null) {
-                $rootScope.user_profile = store.get('profile');
-    }
+            $rootScope.user_profile = store.get('profile');
+        }
     }
 
     $rootScope.signup = function () {
@@ -227,8 +232,6 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                     $rootScope.setProfile($rootScope.username, response.data.uid,
                         response.data.first_name + " " + response.data.last_name, response.data.user_roles_id);
                     $rootScope.loginMessage = '';
-                    $rootScope.successMessage = "Your user has been successfully created and logged in! ";
-                    $rootScope.showSuccessMessage = true;
                     $rootScope.showSignup = false;
                 }, function errorCallback(response) {
                     $rootScope.loginMessage = response.data.reason;
@@ -264,14 +267,20 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         return store.get('profile') != null ? store.get('profile')['username'] : '';
     };
 
+    $rootScope.getUserID = function () {
+        return store.get('profile') != null ? store.get('profile')['user_id'] : '';
+    }
+
     $rootScope.checkForNewMessages = function () {
-        $http.post('/api/message/getNewMessagesCount', {
-            email: $rootScope.getEmail(),
-        }).success(function (data) {
-            $rootScope.hasNewMessages = data.data.new_messages_count > 0;
-        }).error(function (data) {
-            console.log("Error: " + error.message);
-        });
+        if (store.get('profile') != null) {
+            $http.post('/api/message/getNewMessagesCount', {
+                email: $rootScope.getEmail(),
+            }).success(function (data) {
+                $rootScope.hasNewMessages = data.data.new_messages_count > 0;
+            }).error(function (data) {
+                console.log("Error: " + error.message);
+            });
+        }
     };
 
     $rootScope.postApartment = function () {
@@ -366,6 +375,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
     $scope.go = function (path) {
         $location.path(path);
+        $rootScope.checkForNewMessages();
     };
 
 }]);
