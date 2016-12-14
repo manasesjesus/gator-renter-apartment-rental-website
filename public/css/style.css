@@ -811,43 +811,31 @@ input.error, select.error, textarea.error {
     color: #9999ae;
 }
 
-#display-error
-{
-    width: 400px;
-    border: 1px solid #D8D8D8;
-    padding: 5px;
-    border-radius: 5px;
-    font-family: Arial;
-    font-size: 11px;
-    text-transform: uppercase;
-    background-color: rgb(255, 249, 242);
-    color: rgb(211, 0, 0);
-    text-align: center;
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
 }
 
-img
-{
+.alert.success {background-color: #4CAF50;}
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
     float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-#display-success
-{
-    width: 400px;
-    border: 1px solid #D8D8D8;
-    padding: 10px;
-    border-radius: 5px;
-    font-family: Arial;
-    font-size: 11px;
-    text-transform: uppercase;
-    background-color: #26e3ad;
-    color: green;
-    text-align: center;
-    margin-top: 30px;
-    margin-left: 30%;
-}
-
-#display-success img
-{
-    position: relative;
-    bottom: 5px;
+.closebtn:hover {
+    color: black;
 }

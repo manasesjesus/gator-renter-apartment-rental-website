@@ -8,7 +8,7 @@
  *  - Anil Manzoor
  */
 app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', '$http', 'GHelper', '$timeout',
-    function ($location, $scope, $rootScope, store, Apartment, Upload, $http, GHelper, $timeout) {
+            function ($location, $scope, $rootScope, store, Apartment, Upload, $http, GHelper, $timeout) {
 
 
     $scope.helper = GHelper;
@@ -19,8 +19,10 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
     $rootScope.showSuccessMessageFunc = function (message) {
         $rootScope.successMessage = message;
-        $rootScope.showSuccessMessage=true;
-        $timeout(function () { $rootScope.showSuccessMessage = false; }, 2000);
+        $rootScope.showSuccessMessage = true;
+        $timeout(function () {
+            $rootScope.showSuccessMessage = false;
+        }, 2000);
     };
 
 
