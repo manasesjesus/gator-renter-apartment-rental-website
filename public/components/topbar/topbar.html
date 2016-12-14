@@ -10,7 +10,9 @@
 		<div id="sign-up-bar" class="flex">
 			<p ng-click="$root.showLogin = true" ng-show="!$root.isAuthenticated()">Log in</p>
 			<p ng-click="$root.showSignup = true" ng-show="!$root.isAuthenticated()">Sign up</p>
-			<a href="{{$root.getProfilePage()}}" ng-show="$root.isAuthenticated()">✉️📩{{ $root.getEmail() }}</a>
+			<a href="{{$root.getProfilePage()}}" ng-show="$root.isAuthenticated()">
+                <i ng-show="$root.hasNewMessages" class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>&nbsp; {{ $root.getEmail() }}
+			</a>
 		</div>
 	</div>
 </div>
