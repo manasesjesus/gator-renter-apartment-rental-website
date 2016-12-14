@@ -1,6 +1,7 @@
 /**
  * Created by Manasés Galindo on 09/12/16.
  * Controller used by the admin profile
+ * Updated by : Intesar Haider
  */
 app.controller('adminController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'User', '$http', 'GHelper',
     function($location, $scope, $rootScope, store, Apartment, User, $http, GHelper) {
