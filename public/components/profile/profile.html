@@ -1,6 +1,7 @@
 <!-- Created by SFSU             -->
 <!-- Modified by Manasés Galindo -->
 
+
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
 <div ng-show="$root.showPost" ng-include="'components/topbar/post-apartment.html'"></div>
@@ -16,7 +17,7 @@
 
 		<div id="controls" class="flex">
 			<div id="select-views" class="flex center-opts">
-				<div ng-class="{active: view == 'messages'}" ng-click="view = 'messages'">Messages</div>
+				<div ng-class="{active: view == 'messages'}" ng-click="view = 'messages'">Inbox</div>
                 <div ng-class="{active: view == 'offers'}" ng-click="view = 'offers'">Offers</div>
 			</div>
 		</div>
@@ -60,13 +61,15 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="message in messages">
-                    <td>{{ message["from_user"] }}</td>
-                    <td>{{ message["apartment_title"] }}</td>
-                    <td>{{ message["received_on"] }}</td>
+                    <td>{{ message.from_user }}</td>
+                    <td>{{ message.apartment_title }}</td>
+                    <td>{{ message.received_on.substr(0,16).replace(' ', ' &nbsp;') }}</td>
                     <td ng-click="getConversation(message)" class="enable pointer">Open</td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
+        <div ng-show="$root.showConversation" ng-include="'components/profile/conversation.html'"></div>
 	</div>
 </div>

@@ -192,6 +192,10 @@ select, input.box, textarea.box {
     font-size: 13px;
 }
 
+textarea.box {
+    resize: none;
+}
+
 select {
     background: #f1f1f7 url('../images/arrow.svg') no-repeat center right+10px;
     background-size: 12px;
@@ -751,4 +755,38 @@ input.error, select.error, textarea.error {
 .disabled {
     color: #9999ae;
     text-decoration: line-through;
+}
+
+/* Messages form */
+#overlay #conversation {
+    margin: 20px;
+    overflow: auto;
+    padding: 50px;
+    width: 700px;
+}
+
+#overlay #conversation > label {
+    margin-top: 0;
+    font-size: 14px;
+}
+
+#overlay #conversation > div {
+    border-top: 1px solid lightgray;
+    position: relative;
+    padding: 10px;
+    font-size: 14px;
+    font-family: "Avenir Next", Montserrat, sans-serif;
+}
+
+#overlay #conversation > div .date, #overlay #conversation > div .mono {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 9px;
+    color: #bdbdd3;
+}
+
+#overlay #conversation > div .mono {
+    left: 0;
+    color: #9999ae;
 }

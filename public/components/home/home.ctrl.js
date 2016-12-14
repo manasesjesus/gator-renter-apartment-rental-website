@@ -37,6 +37,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     $rootScope.showSignup = false;
     $rootScope.showPost = false;
     $rootScope.hasNewMessages = false;
+    $rootScope.showConversation = false;
 
     $scope.propertyName = 'id';
     $scope.reverse = true;
