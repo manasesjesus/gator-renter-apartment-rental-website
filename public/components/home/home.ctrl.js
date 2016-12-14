@@ -30,6 +30,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     $rootScope.showLogin = false;
     $rootScope.showSignup = false;
     $rootScope.showPost = false;
+    $rootScope.hasNewMessages = false;
 
     $scope.propertyName = 'id';
     $scope.reverse = true;
@@ -68,6 +69,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                         response.data.first_name + " " + response.data.last_name, response.data.user_roles_id);
                     $rootScope.loginMessage = '';
                     $rootScope.showLogin = false;
+                    $rootScope.checkForNewMessages();
                 }
                 else {
                     $rootScope.loginMessage = 'email or password incorrect';
@@ -108,6 +110,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         $rootScope.username = "";
         $rootScope.password = "";
         $rootScope.address = "";
+        $rootScope.hasNewMessages = false;
         $scope.go('/');
     };
 
@@ -198,6 +201,16 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         return store.get('profile') != null ? store.get('profile')['username'] : '';
     };
 
+    $rootScope.checkForNewMessages = function () {
+        $http.post('/api/message/getNewMessagesCount', {
+            email: $rootScope.getEmail(),
+        }).success(function (data) {
+            $rootScope.hasNewMessages = data.data.new_messages_count > 0;
+        }).error(function (data) {
+            console.log("Error: " + error.message);
+        });
+    };
+
     $rootScope.postApartment = function () {
         if ($rootScope.isAuthenticated()) {
             $rootScope.showPost = true;
@@ -222,6 +235,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             $rootScope.showPost = false;
             $rootScope.newApt = {};
             $scope.apartments.push(data);
+            $scope.ownerApartments.push(data);
         }, function (data) {
             $rootScope.errorFields = data.data.error;
         });
