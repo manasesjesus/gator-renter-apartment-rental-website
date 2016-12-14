@@ -10,7 +10,9 @@ BEGIN
 	FROM
 		user_messages um
         INNER JOIN users u ON um.to_user_id = u.uid
-		AND u.email = email;
+		AND u.email = email
+        WHERE
+            um.is_new_message = 1;
 
 END$$
 
