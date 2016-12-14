@@ -12,7 +12,6 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
 
     $scope.helper = GHelper;
-
     $scope.helper.isUserAuthorized($location, $rootScope);
 
     $rootScope.successMessage = "";

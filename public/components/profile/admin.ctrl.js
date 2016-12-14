@@ -2,7 +2,8 @@
  * Created by Manasés Galindo on 09/12/16.
  * Controller used by the admin profile
  */
-app.controller('adminController', ['$scope', '$rootScope', 'store', 'Apartment', 'User', '$http', function($scope, $rootScope, store, Apartment, User, $http) {
+app.controller('adminController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'User', '$http', 'GHelper',
+    function($location, $scope, $rootScope, store, Apartment, User, $http, GHelper) {
 
     $rootScope.showLogin = false;
     $rootScope.showSignup = false;
@@ -10,6 +11,10 @@ app.controller('adminController', ['$scope', '$rootScope', 'store', 'Apartment',
 
     $scope.propertyName = 'id';
     $scope.reverse = true;
+
+    $scope.helper = GHelper;
+    $scope.helper.isUserAuthorized($location, $rootScope);
+
 
     $scope.view = 'users';
 

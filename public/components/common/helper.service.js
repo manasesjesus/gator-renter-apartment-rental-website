@@ -3,6 +3,7 @@
  */
 app.factory('GHelper', function ($window, store) {
     var root = {};
+    const ADMIN = 1;
 
     root.getTitle = function($location){
 
@@ -30,8 +31,18 @@ app.factory('GHelper', function ($window, store) {
             if(root.isAuthenticated()){
                 console.log("you are good to go ! ")
             } else {
-                console.log("Pleas sign in !!  ");
+                console.log("Please sign in !!  ");
                 $rootScope.loginMessage = 'Please sign in to visit this page!';
+                $rootScope.showLogin = true;
+                root.redirect('/', $location);
+            }
+        } else if (root.getTitle($location)==='admin') {
+
+            if(root.isAuthenticated() && store.get("user_role")== ADMIN){
+                console.log("you are good to go ! ")
+            } else {
+                console.log("Pleas sign in !!  ");
+                $rootScope.loginMessage = 'Please sign in as admin to visit this page!';
                 $rootScope.showLogin = true;
                 root.redirect('/', $location);
             }
