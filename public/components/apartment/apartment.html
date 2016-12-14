@@ -1,28 +1,29 @@
 <!-- Created by SFSU             -->
-<!-- Modified by Manasés Galindo, Intesar Haider -->
+<!-- Modified by Manasés Galindo -->
 
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
 <div ng-show="showApplyNow" ng-include="'components/apartment/apply-now.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
-<p ng-click="showApplyNow = true;" class="apply-now float">Apply</br>now</p>
 <div id="apartment-detail" class="bottom" ng-controller="apartmentController">
-	<div class="center" ng-class="{noimage: apartment.pictures.length == 0}">
-		<h1>{{ apartment.title }}</h1>
-		<div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
-			<date>{{ apartment.updated_at }}</date>
-			<div class="price">{{ apartment.monthly_rent | currency }} / month</div>
-		</div>
-		<p class="description">{{ apartment.description }}</p>
-		<div class="items flex attr-2">
-			<div class="item">{{ apartment.nr_roommates }} <span>Roommate{{ apartment.nr_roommates == 1 ? '' : 's' }}</span></div>
-			<div class="item">{{ apartment.sq_feet }} <span>Sq. Feet Apt.</span></div>
-		</div>
-		<div class="items flex attr-1">
-			<div ng-class="{positive: apartment.private_room}" class="item">{{ apartment.private_room ? 'Private room' : 'Shared room' }}</div>
-			<div ng-class="{positive: apartment.private_bath}" class="item">{{ apartment.private_bath ? 'Private bathroom' : 'Shared bathroom' }}</div>
-			<div ng-class="{positive: apartment.kitchen_in_apartment}" class="item">{{ apartment.kitchen_in_apartment ? 'Kitchen in apt.' : 'No kitchen in apt.' }}</div>
-			<div ng-class="{positive: !apartment.credit_score_check}" class="item">{{ apartment.credit_score_check ? 'Credit score check' : 'No credit score check' }}</div>
-		</div>
-	</div>
+    <div class="center" ng-class="{noimage: apartment.pictures.length == 0}">
+        <h1>{{ apartment.title }}</h1>
+        <div class="image" style="background-image: url(/upload/{{ apartment.pictures[0]['URL'] }});">
+            <date>{{ apartment.updated_at }}</date>
+            <div class="price">{{ apartment.monthly_rent | currency }} / month</div>
+        </div>
+        <p class="description">{{ apartment.description }}</p>
+        <div class="items flex attr-2">
+            <div class="item">{{ apartment.nr_roommates }} <span>Roommate{{ apartment.nr_roommates == 1 ? '' : 's' }}</span></div>
+            <div class="item">{{ apartment.sq_feet }} <span>Sq. Feet Apt.</span></div>
+        </div>
+        <div class="items flex attr-1">
+            <div ng-class="{positive: apartment.private_room}" class="item">{{ apartment.private_room ? 'Private room' : 'Shared room' }}</div>
+            <div ng-class="{positive: apartment.private_bath}" class="item">{{ apartment.private_bath ? 'Private bathroom' : 'Shared bathroom' }}</div>
+            <div ng-class="{positive: apartment.kitchen_in_apartment}" class="item">{{ apartment.kitchen_in_apartment ? 'Kitchen in apt.' : 'No kitchen in apt.' }}</div>
+            <div ng-class="{positive: !apartment.credit_score_check}" class="item">{{ apartment.credit_score_check ? 'Credit score check' : 'No credit score check' }}</div>
+        </div>
+        <a ng-click="$root.sendMessage()" class="button green large">Contact owner</a>
+    </div>
+
 </div>

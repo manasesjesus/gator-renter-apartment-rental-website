@@ -1,4 +1,7 @@
-<!-- Created by SFSU             -->
+/**
+ * Created by SFSU
+ * Apartment Controller
+ */
 app.controller('apartmentController', ['$scope', '$routeParams', 'Apartment', 'NgMap', function($scope, $routeParams, Apartment, NgMap) {
 	
 	Apartment.get({ id: $routeParams['apartment_id'] }).$promise.then(function(data) {
