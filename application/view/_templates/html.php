@@ -26,6 +26,7 @@
     <script src="<?php echo URL; ?>components/profile/profile.ctrl.js"></script>
     <script src="<?php echo URL; ?>components/apartment/apartment.ctrl.js"></script>
     <script src="<?php echo URL; ?>components/apartment/apartment.service.js"></script>
+    <script src="<?php echo URL; ?>components/common/helper.service.js"></script>
     <script src="<?php echo URL; ?>components/service/user.service.js"></script>
 </body>
 </html>

@@ -7,7 +7,13 @@
  *  - Manasés Galindo
  *  - Anil Manzoor
  */
-app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', '$http', function ($location, $scope, $rootScope, store, Apartment, Upload, $http) {
+app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', '$http', 'GHelper',
+    function ($location, $scope, $rootScope, store, Apartment, Upload, $http, GHelper) {
+
+
+    $scope.helper = GHelper;
+
+    $scope.helper.isUserAuthorized($location, $rootScope);
 
     $scope.showPreloader = true;
     $scope.loadingOwnerApartments = true;

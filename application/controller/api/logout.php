@@ -9,7 +9,7 @@ class logout extends Controller
 {
     /*
      * for REST request on login
-     * This method handles what happens when frontend issue REST request  to http://yourproject/apt/login/
+     * This method handles what happens when frontend issue REST request this function
      */
 
     public function index()
