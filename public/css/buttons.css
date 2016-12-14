@@ -50,20 +50,14 @@
 	background: #4242ba;
 }
 .apply-now.float {
-	position: fixed;
-	bottom: 30px;
-	right: 30px;
-	width: 100px;
-	height: 100px;
 	background: #26e3ad;
-	/*border-radius: 50px;*/
 	color: #fff;
 	padding-top: 30px;
 	line-height: 1.2em;
 	font-size: 18px;
 	box-sizing: border-box;
 	text-align: center;
-	transition: 0.05s;
+	transition: 0.15s;
 	cursor: pointer;
 	z-index: 2000;
 }
