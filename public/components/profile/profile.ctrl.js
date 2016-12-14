@@ -7,7 +7,6 @@
 app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User', '$http', function($scope, $rootScope, Apartment, User, $http) {
 
     // Controller variables
-    $rootScope.updateMessage = '';
     $rootScope.showConversation = false;
 
     $scope.view = 'messages';
