@@ -2,7 +2,7 @@
  * Created by Manasés Galindo on 09/12/16.
  * Controller used by the admin profile
  */
-app.controller('adminController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'User', '$http', function($location, $scope, $rootScope, store, Apartment, User, $http) {
+app.controller('adminController', ['$scope', '$rootScope', 'store', 'Apartment', 'User', '$http', function($scope, $rootScope, store, Apartment, User, $http) {
 
     $rootScope.showLogin = false;
     $rootScope.showSignup = false;
