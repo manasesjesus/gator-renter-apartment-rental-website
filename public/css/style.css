@@ -811,31 +811,13 @@ input.error, select.error, textarea.error {
     color: #9999ae;
 }
 
-
-.alert {
-    padding: 20px;
-    background-color: #f44336;
+#display-success {
+    width: 70%;
+    padding: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: #26e3ad;
     color: white;
-    opacity: 1;
-    transition: opacity 0.6s;
-    margin-bottom: 15px;
-}
-
-.alert.success {background-color: #4CAF50;}
-.alert.info {background-color: #2196F3;}
-.alert.warning {background-color: #ff9800;}
-
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.closebtn:hover {
-    color: black;
+    text-align: center;
+    margin: 30px auto;
 }
