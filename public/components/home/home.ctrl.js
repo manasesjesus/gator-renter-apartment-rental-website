@@ -5,6 +5,7 @@
  * Modified by:
  *  - Intesar Haider
  *  - Manasés Galindo
+ *  - Anil Manzoor
  */
 app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', '$http', function ($location, $scope, $rootScope, store, Apartment, Upload, $http) {
 
@@ -22,6 +23,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             $scope.ownerApartments = data;
             $scope.loadingOwnerApartments = false;
         });
+        $rootScope.user_profile = store.get('profile');
+
     }
 
     $rootScope.newApt = {};
@@ -65,7 +68,13 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                 // this callback will be called asynchronously
                 if (response.data.first_name) {
                     $rootScope.setProfile($rootScope.username, response.data.uid,
-                        response.data.first_name + " " + response.data.last_name, response.data.user_roles_id);
+                        response.data.first_name + " " + response.data.last_name,
+                        response.data.first_name,
+                        response.data.last_name,
+                        response.data.user_roles_id, 
+                        response.data.address, 
+                        response.data.city,
+                        response.data.email);
                     $rootScope.loginMessage = '';
                     $rootScope.showLogin = false;
                 }
@@ -80,6 +89,37 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         } else {
             $rootScope.loginMessage = 'email or password incorrect';
         }
+    };
+
+    $rootScope.updateUserDetails = function () {
+            $http({
+                url: 'api/Users',
+                method: "PUT",
+                dataType: "json",
+                //:email, :first_name, :last_name, :address, :city
+                data: {email: $rootScope.user_profile.email, 
+                    first_name: $rootScope.user_profile.user_first_name, 
+                    last_name: $rootScope.user_profile.user_last_name, 
+                    address: $rootScope.user_profile.address, 
+                    city: $rootScope.user_profile.city},
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                    $rootScope.setProfile($rootScope.username, response.data.data.uid,
+                        response.data.data.first_name + " " + response.data.data.last_name,
+                        response.data.data.first_name,
+                        response.data.data.last_name,
+                        response.data.data.user_roles_id, 
+                        response.data.data.address, 
+                        response.data.data.city,
+                        response.data.data.email);
+                    $rootScope.updateMessage = 'Saved Changes';
+            }
+            , 
+            function errorCallback(response) {
+                // called asynchronously if an error occurs
+                $rootScope.updateMessage = 'Error saving changes! Please try later.';
+            }
+                    );
     };
 
     $rootScope.logout = function () {
@@ -111,13 +151,21 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         $scope.go('/');
     };
 
-    $rootScope.setProfile = function (u1, u2, u3, u4) {
+    $rootScope.setProfile = function (u1, u2, u3, u4, u5, u6, u7, u8, u9) {
         store.set('profile', {
             username: u1,
             user_id: u2,
             user_fullname: u3,
-            user_role: u4
+            user_first_name: u4,
+            user_last_name: u5,
+            user_role: u6,
+            address: u7,
+            city: u8,
+            email: u9
         });
+        if (store.get('profile') != null) {
+                $rootScope.user_profile = store.get('profile');
+    }
     }
 
     $rootScope.signup = function () {

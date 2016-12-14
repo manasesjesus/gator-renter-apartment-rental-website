@@ -6,7 +6,9 @@ require_once APP . 'controller/api/AbstractApi.php';
  * This class will strictly be used for USER specific CRUD
  * Date: 11/20/2016
  * Time: 2:57 AM
- * Modified by: Manasés Galindo
+ * Modified by: 
+ * - Manasés Galindo
+ * - Anil Manzoor
  */
 class Users extends AbstractAPI  {
 
@@ -64,10 +66,10 @@ class Users extends AbstractAPI  {
 
         $requestPayload = $this->requestData;
         
-        $status = $this->model->updateUser($requestPayload);
-        
-        if($status==true) {
-            AbstractApi::_response($requestPayload);
+        $data = $this->model->updateUser($requestPayload);
+
+        if($data!=null) {
+            AbstractApi::_response($data);
         } else {
             AbstractApi::_response("Something unexpected happened", 500);
         }
@@ -78,11 +80,11 @@ class Users extends AbstractAPI  {
      */
     public function getUserDetail() {
         if(is_null($this->requestData)) { //get all the users
-            $apts = $this->model->getUserInfoById(null);
+            $user_info = $this->model->getUserInfoById(null);
         } else { // get user by user id
-            $apts = $this->model->getUserInfoById($this->requestData);
+            $user_info = $this->model->getUserInfoById($this->requestData);
         }
-        echo json_encode($apts);
+        echo json_encode($user_info);
     }
 
     /**

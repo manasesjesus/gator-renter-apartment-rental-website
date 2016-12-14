@@ -1,5 +1,5 @@
 <!-- Created by SFSU             -->
-<!-- Modified by Manasés Galindo -->
+<!-- Modified by Manasés Galindo, Anil Manzoor -->
 
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
@@ -11,6 +11,34 @@
 			<h4>{{ $root.getFullName() }}'s Profile</h4>
 			<p ng-click="$root.logout()" class="red-color pointer">Logout</p>
 		</div>
+            <form novalidate>
+            <table>
+                <tr>
+                 <td style="width: 150px">Email:</td>
+                 <td> <p> {{ user_profile.email }}</p>
+                </tr>
+                <tr>
+                 <td style="width: 150px">First Name:</td>
+                 <td> <input ng-model="user_profile.user_first_name" /> </td>
+                </tr>
+                <tr>
+                 <td style="width: 150px">Last Name:</td>
+                 <td> <input ng-model="user_profile.user_last_name" /> </td>
+                </tr>
+                <tr>
+                 <td style="width: 150px">Address:</td>
+                 <td> <input ng-model="user_profile.address" /> </td>
+                </tr>
+                <tr>
+                 <td style="width: 150px">City:</td>
+                 <td> <input ng-model="user_profile.city" /> </td>
+                </tr>
+                <tr>
+                    <td><button ng-click="$root.updateUserDetails()" class="button green large">Save data</button></td>
+                    <td><p ng-show="$root.updateMessage" class="info">{{ $root.updateMessage }}</p></td>
+                </tr>
+            </table><br>
+            </form>
 		<button ng-click="$root.postApartment()" class="button green large">Post an apartment</button>
 		<img src="/images/preloader.gif" class="preloader" ng-show="loadingOwnerApartments" />
 		<div ng-show="ownerApartments.length > 0">

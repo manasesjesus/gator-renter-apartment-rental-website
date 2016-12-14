@@ -2,7 +2,9 @@
 
 
 /*
- * Modified by: Manasés Galindo
+ * Modified by: 
+ * - Manasés Galindo
+ * - Anil Manzoor
  */
 class Model
 {
@@ -142,8 +144,8 @@ class Model
             ':address' => $data['address'],
             ':city' => $data['city']);
 
-        $status = $query->execute($parameters);
-        return $status;
+        $query->execute($parameters);
+        return $query->fetch();
     }
 
     //DELETE a user, it's a soft delete
