@@ -9,6 +9,7 @@
     <title>Gator Renter</title>
     <link rel="stylesheet" href="<?php echo URL; ?>css/style.css">
     <link rel="stylesheet" href="<?php echo URL; ?>css/buttons.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>css/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
     <main class="flex column" ng-view></main>
@@ -22,8 +23,9 @@
     <script src="<?php echo URL; ?>js/app.js"></script>
     <script src="<?php echo URL; ?>components/home/home.ctrl.js"></script>
     <script src="<?php echo URL; ?>components/profile/admin.ctrl.js"></script>
+    <script src="<?php echo URL; ?>components/profile/profile.ctrl.js"></script>
     <script src="<?php echo URL; ?>components/apartment/apartment.ctrl.js"></script>
     <script src="<?php echo URL; ?>components/apartment/apartment.service.js"></script>
-    <script src="<?php echo URL; ?>components/user/user.service.js"></script>
+    <script src="<?php echo URL; ?>components/service/user.service.js"></script>
 </body>
 </html>
