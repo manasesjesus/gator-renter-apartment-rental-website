@@ -1,7 +1,6 @@
 DROP procedure IF EXISTS `hasNewMessages`;
 
 DELIMITER $$
-USE `mini`$$
 CREATE PROCEDURE `hasNewMessages` (	in email varchar(50))
 BEGIN
 

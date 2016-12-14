@@ -273,7 +273,7 @@ Request:
 
 --------------------------------- GET NEW MESSAGES COUNT ---------------------------------
 
-/api/apartment/getNewMessagesCount/ - POST
+/api/message/getNewMessagesCount/ - POST
 
 Request: 
 {
