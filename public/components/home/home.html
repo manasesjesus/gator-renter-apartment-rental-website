@@ -22,6 +22,13 @@
 	<div id="right" class="flex column">
 		<div class="center">
 			<h4>Most recent listings</h4>
+
+            <div ng-show ="showSuccessMessage == true" class="alert success">
+                <span ng-click="showSuccessMessage=false" class="closebtn">&times;</span>
+                <strong>Success!</strong> {{$root.successMessage}}
+            </div>
+
+
 			<img src="/images/preloader.gif" class="preloader" ng-show="showPreloader" />
 			<div id="controls" class="flex">
 				<div id="results">{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>
