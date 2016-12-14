@@ -6,13 +6,12 @@
 
 app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User', '$http', function($scope, $rootScope, Apartment, User, $http) {
 
-    $rootScope.showLogin = false;
-    $rootScope.showSignup = false;
-
-    $scope.propertyName = 'id';
-    $scope.reverse = true;
+    // Controller variables
+    $rootScope.showConversation = false;
 
     $scope.view = 'messages';
+    $scope.errorMessage = 'error aqui';
+    $scope.convHeader = { };
 
     // Get all messages for logged user
     $http.post('/api/message/getMessages', {
@@ -20,14 +19,29 @@ app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User'
         page_number : 1
     }).success(function (data) {
         $scope.messages = data.data;
-    }).error(function (data) {
+    }).error(function (error) {
         console.log("Error: " + error.message);
     });
 
-    // Open a conversation
+    // Get a conversation
     $scope.getConversation = function (message) {
-        console.log(message.from_user);
-        console.log(message.apartment_title);
+        $scope.convHeader = {
+            from_user : message.from_user,
+            received_on : message.received_on,
+            apartment_title : message.apartment_title
+        };
+
+        $http.post('/api/message/getConversation', {
+            email : $rootScope.getEmail(),
+            apartment_id : message.apt_id,
+            fromuser_email : message.from_user_email,
+            page_number : 1
+        }).success(function (data) {
+            $scope.conversations = data.data;
+            $rootScope.showConversation = true;
+        }).error(function (error) {
+            console.log("Error: " + error.message);
+        });
     }
 }]);
 

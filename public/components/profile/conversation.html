@@ -1,0 +1,22 @@
+<!-- Created by Manasés Galindo on 13/12/16 -->
+
+<div id="overlay" class="flex">
+    <p ng-click="$root.showConversation = false;" id="close"></p>
+    <div class="form" id="conversation">
+
+        <label>Conversation with {{ convHeader.from_user }}</label>
+        <label>Title: {{ convHeader.apartment_title }}</label>
+        <br>
+        <div ng-repeat="convBody in conversations">
+            <span class="mono">{{ convBody.from_user_email == $root.getEmail() ? 'You' : convBody.from_user }} wrote:</span>
+            <span class="date">{{ convBody.received_on.substr(0,16).replace(' ', ' &nbsp;') }}</span>
+            {{ convBody.message }}
+        </div>
+
+        <textarea class="box" rows="5" placeholder="enter your message..."></textarea>
+
+        <br>
+        <a ng-click="reply()" class="button green large">Reply</a>
+        <br>
+    </div>
+</div>
