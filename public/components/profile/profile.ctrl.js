@@ -15,7 +15,7 @@ app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User'
     $scope.convHeader = { };
 
     // Get all messages for logged user
-    $http.post('/api/message/getMessages', {
+    $http.post('/api/Message/getMessages', {
         email : $rootScope.getEmail(),
         page_number : 1
     }).success(function (data) {
@@ -31,7 +31,7 @@ app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User'
             apartment_title : message.apartment_title,
         };
 
-        $http.post('/api/message/getConversation', {
+        $http.post('/api/Message/getConversation', {
             email : $rootScope.getEmail(),
             apartment_id : message.apt_id,
             fromuser_email : message.from_user_email,
@@ -52,7 +52,7 @@ app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User'
 
     // Reply on a conversation
     $scope.reply = function () {
-        $http.post('/api/message/addNewMessage', $rootScope.newMsg).success(function (data) {
+        $http.post('/api/Message/addNewMessage', $rootScope.newMsg).success(function (data) {
             $rootScope.showConversation = false;
         }).error(function (error) {
             console.log("Error: " + error.message);
