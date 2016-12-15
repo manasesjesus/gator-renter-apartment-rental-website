@@ -59,10 +59,10 @@
 			</div>
 			<div id="map-view" class="flex" ng-if="view == 'map'">
 				<map center="37.762946, -122.440306" zoom="12">
-					<marker id="gmapMarker" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" on-mouseover="showInfoWindow('aptInfo')" on-mouseout="hideInfoWindow('aptInfo')" position="{{apartment.latitude}},{{apartment.longitude}}">
-						<info-window id="aptInfo">
+					<marker id="gmapMarker" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" on-click="showInfoWindow('aptInfo{{apartment.id}}')" position="{{apartment.latitude}},{{apartment.longitude}}">
+						<info-window id="aptInfo{{apartment.id}}">
 							<div>
-								<h3><a href="/#/apartment/{{ apartment.id}}">{{apartment.title}}</a></h3>
+								<h3><a href="/#/apartment/{{apartment.id}}">{{apartment.title}}</a></h3>
 								<p>{{apartment.nr_roommates}} roommate{{apartment.nr_roommates == 1 ? '' : 's' }}, 
 								{{apartment.private_room ? 'private room' : 'shared room' }}, {{ apartment.private_bath ? 'private bath' : 'shared bath' }}</p>
 								<!-- <p class="apply-now">Apply now</p> -->
