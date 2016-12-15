@@ -304,7 +304,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             $http.post('/api/message/getNewMessagesCount', {
                 email: $rootScope.getEmail(),
             }).success(function (data) {
-                $rootScope.hasNewMessages = data.data.new_messages_count > 0;
+                $rootScope.hasNewMessages = data.data && data.data.new_messages_count > 0;
             }).error(function (data) {
                 console.log("Error: " + error.message);
             });
