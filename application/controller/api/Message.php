@@ -69,4 +69,20 @@ class Message extends AbstractAPI  {
      */
     public function deleteMessage() {
     }
+    
+    /*
+     * Get the number of new messages that the user has received
+     */
+    public function getNewMessagesCount()
+    {
+        try
+        {
+            $newMessageCount = $this->model->getNewMessagesCount($this->requestData);
+            AbstractAPI::_response($newMessageCount);
+        }
+        catch (Exception $ex)
+        {
+            AbstractApi::_response("Something unexpected happened", 500);
+        }        
+    }
 }

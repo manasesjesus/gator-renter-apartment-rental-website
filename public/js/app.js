@@ -1,3 +1,9 @@
+/**
+ * Created by SFSU
+ *
+ * Modified by Manasés Galindo
+ */
+
 var app = angular.module('gatorRenter', [
 	'ngRoute',
 	'ngResource',
@@ -17,6 +23,9 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', function($lo
 	}).when('/profile', {
 		controller: 'homeController',
 		templateUrl: 'components/profile/profile.html'
+	}).when('/admin', {
+		controller: 'adminController',
+		templateUrl: 'components/profile/admin.html'
 	});
 
 }]);

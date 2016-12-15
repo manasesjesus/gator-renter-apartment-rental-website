@@ -270,3 +270,21 @@ Request:
 ]}
 
 --------------------------------- --- ---------------------------------
+
+--------------------------------- GET NEW MESSAGES COUNT ---------------------------------
+
+/api/message/getNewMessagesCount/ - POST
+
+Request: 
+{
+	"email": swadesh@gmail.com //required
+}
+
+{
+"success":true, "data":
+    {
+        "new_messages_count":"6"
+    }
+}
+
+--------------------------------- --- ---------------------------------

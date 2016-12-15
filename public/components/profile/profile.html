@@ -1,18 +1,31 @@
+<!-- Created by SFSU             -->
+<!-- Modified by Manasés Galindo, Anil Manzoor -->
+
+
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
 <div ng-show="$root.showPost" ng-include="'components/topbar/post-apartment.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
 <div id="profile" class="bottom" ng-controller="homeController">
-	<div class="center">
+	<div class="center" ng-controller="profileController">
 		<div class="flex" id="profile-top">
-			<h1>Profile ({{ $root.getEmail() }})</h1>
+			<h4>{{ $root.getFullName() }}'s Profile</h4>
 			<p ng-click="$root.logout()" class="red-color pointer">Logout</p>
 		</div>
-		<button ng-click="$root.postApartment()" class="button green large">Post an apartment</button>
 		<img src="/images/preloader.gif" class="preloader" ng-show="loadingOwnerApartments" />
-		<div ng-show="ownerApartments.length > 0">
-			<h3>My apartments</h3>
-			<table id="my-apartments">
+
+		<div id="controls" class="flex">
+                    <div id="select-views" class="flex center-opts">
+                        <div ng-class="{active: view == 'user'}" ng-click="view = 'user'">User</div>
+                        <div ng-class="{active: view == 'messages'}" ng-click="view = 'messages'">Inbox</div>
+                        <div ng-class="{active: view == 'offers'}" ng-click="view = 'offers'">Offers</div>
+                    </div>
+		</div>
+
+		<div id="offers-view"  ng-if="view == 'offers'">
+            <h3 ng-show="ownerApartments.length == 0">You haven't posted any offer yet.</h3>
+			<h3 ng-show="ownerApartments.length > 0">My Offers ({{ ownerApartments.length }})</h3>
+			<table class="contents" ng-show="ownerApartments.length > 0">
 				<thead>
 					<tr>
 						<th>Title</th>
@@ -26,10 +39,67 @@
 						<td>{{ apartment.title }}</td>
 						<td>{{ apartment.address_line_1 }}, {{ apartment.city }}, {{ apartment.state }} {{ apartment.zip }}</td>
 						<td>{{ apartment.created_at }}</td>
-						<td ng-click="$root.deleteApartment(apartment.id)" class="red-color pointer">Remove</td>
+						<td ng-click="$root.deleteApartment(apartment)" class="red-color pointer">Remove</td>
 					</tr>
 				</tbody>
 			</table>
+			<br>
+			<button ng-click="$root.postApartment()" class="button green large">Post an apartment</button>
 		</div>
+
+        <div id="user-view"  ng-if="view == 'user'">
+            <form novalidate>
+            <table>
+                <tr>
+                 <td style="width: 150px">Email:</td>
+                 <td> <p> {{ user_profile.email }}</p>
+                </tr>
+                <tr>
+                 <td style="width: 150px">First Name:</td>
+                 <td> <input class="box" type="text" ng-model="user_profile.user_first_name" /> </td>
+                </tr>
+                <tr>
+                 <td style="width: 150px">Last Name:</td>
+                 <td> <input class="box" type="text" ng-model="user_profile.user_last_name" /> </td>
+                </tr>
+                <tr>
+                 <td style="width: 150px">Address:</td>
+                 <td> <input class="box" type="text" ng-model="user_profile.address" /> </td>
+                </tr>
+                <tr>
+                 <td style="width: 150px">City:</td>
+                 <td> <input class="box" type="text" ng-model="user_profile.city" /> </td>
+                </tr>
+                <tr>
+                    <td><button ng-click="$root.updateUserDetails()" class="button green large">Save data</button></td>
+                    <td><p ng-show="$root.updateMessage" class="info">{{ $root.updateMessage }}</p></td>
+                </tr>
+            </table><br>
+            </form>
+        </div>
+        <div id="messages-view"  ng-if="view == 'messages'">
+            <h3 ng-show="messages.length == 0">You have no messages.</h3>
+            <h3 ng-show="messages.length > 0">My Messages ({{ messages.length }})</h3>
+            <table class="contents" ng-show="messages.length > 0">
+                <thead>
+                <tr>
+                    <th>From</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="message in messages">
+                    <td>{{ message.from_user }}</td>
+                    <td>{{ message.apartment_title }}</td>
+                    <td>{{ message.received_on.substr(0,16).replace(' ', ' &nbsp;') }}</td>
+                    <td ng-click="getConversation(message)" class="enable pointer">Open</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div ng-show="$root.showConversation" ng-include="'components/profile/conversation.html'"></div>
 	</div>
 </div>

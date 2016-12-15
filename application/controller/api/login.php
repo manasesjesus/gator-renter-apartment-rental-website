@@ -5,6 +5,9 @@
  * User: GatorRentor
  * Date: 2016/11/16
  * Time: 19:56
+ * Modified by:
+ *  - Intesar Haider
+ *  - Manasés Galindo
  */
 class Login extends Controller
 {
@@ -20,8 +23,8 @@ class Login extends Controller
         }
 
         header('Content-Type: application/json;charset=UTR-8');
-        $email = $_GET["loginname"];
-        $password = $_GET["password"];
+        $email = $_POST["loginname"];
+        $password = $_POST["password"];
         $user_info = $this->model->getUserInfo($email);
         if ($user_info == false) {
             echo json_encode(array('valid_username' => false, 'valid_password' => false, 'authentic_user' => false));

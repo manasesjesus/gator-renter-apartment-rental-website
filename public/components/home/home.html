@@ -1,3 +1,6 @@
+<!-- Created by SFSU             -->
+<!-- Modified by Manasés Galindo, Intesar Haider -->
+
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
@@ -22,6 +25,12 @@
 	<div id="right" class="flex column">
 		<div class="center">
 			<h4>Most recent listings</h4>
+
+            <div ng-show="showSuccessMessage == true" id="display-success">
+                <strong>Success!</strong> {{$root.successMessage}}
+            </div>
+
+
 			<img src="/images/preloader.gif" class="preloader" ng-show="showPreloader" />
 			<div id="controls" class="flex">
 				<div id="results">{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length }} result{{ (apartments | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit).length == 1 ? '' : 's' }}</div>

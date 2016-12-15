@@ -1,5 +1,11 @@
 <?php
 
+
+/*
+ * Modified by: 
+ * - Manasés Galindo
+ * - Anil Manzoor
+ */
 class Model
 {
     /**
@@ -81,6 +87,9 @@ class Model
         {
             $sql = "CALL getUserDetail(null);";
         }
+        else if ($userId == "admin") {
+            $sql = "CALL getAllUsersDetails(null);";
+        }
         else
         {
             $sql = "CALL getUserDetail(\" $userId \");";
@@ -135,8 +144,8 @@ class Model
             ':address' => $data['address'],
             ':city' => $data['city']);
 
-        $status = $query->execute($parameters);
-        return $status;
+        $query->execute($parameters);
+        return $query->fetch();
     }
 
     //DELETE a user, it's a soft delete
@@ -150,12 +159,23 @@ class Model
 
     }
 
+    //Toggle a user status
+    public function toggleUser($data) {
+
+        $sql = "UPDATE `users` SET `is_active`= :status WHERE `uid`= :userId ";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':userId' => $data['uid'], ':status' => $data['status']);
+
+        return $query->execute($parameters);
+
+    }
+
     /**
      * Get a user information from database by user email address
      */
     public function getUserInfo($user_email)
     {
-        $sql = "SELECT * FROM users WHERE email = :user_email LIMIT 1";
+        $sql = "SELECT * FROM users WHERE email = :user_email AND is_active = 1 LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':user_email' => $user_email);
 
@@ -350,6 +370,26 @@ class Model
         }
         
         return $status;
+    }
+    
+    /*
+     * Get new messages count for a user
+     */
+    public function getNewMessagesCount($data) 
+    {
+        $sql = "CALL hasNewMessages(:email)";
+        
+        $query = $this->db->prepare($sql);
+         
+        $parameters = array(':email' => $data['email']);    
+        
+        $status = $query->execute($parameters);
+        
+        if ($status != true) {
+            throw new Exception ();
+        }
+        
+        return $query->fetch();
     }
 
 }

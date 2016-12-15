@@ -72,6 +72,11 @@ BEGIN
 		ORDER BY um.created desc
 		) con WHERE row_number between limit_start and limit_end;
         
+		UPDATE user_messages um
+		INNER JOIN users u ON um.to_user_id = u.uid
+		AND u.email = email
+		SET um.is_new_message = 0;   
+        
 END$$
 
 DELIMITER ;

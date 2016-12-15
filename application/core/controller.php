@@ -108,16 +108,20 @@ class Controller
         { 
             $user_info = $this->model->getUserInfo($_SESSION['user_name']); 
                         
-            if ($user_info == false) { 
-                session_destroy(); 
-                 
-                //redirect 
+            if ($user_info == false) {
+                session_unset();
+
+                session_destroy();
+
+                print "UNAUTHORIZED";
             } 
              
-            if (!hash_equals($user_info->password, $_SESSION['password']) ) { 
-                session_destroy(); 
-                 
-                //redirect 
+            if (!hash_equals($user_info->password, $_SESSION['password']) ) {
+                session_unset();
+
+                session_destroy();
+
+                print "UNAUTHORIZED";
             } 
         } 
          

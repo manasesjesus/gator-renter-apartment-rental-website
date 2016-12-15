@@ -1,3 +1,5 @@
+<!-- Created by Manasés Galindo -->
+
 <div id="overlay" class="flex">
     <p ng-click="$root.showSignup = false; $root.loginMessage = '';" id="close"></p>
     <div class="form" id="signup-form">
@@ -10,8 +12,8 @@
         <label>Password</label>
         <input ng-class="{error: $root.errorFields.indexOf('password') >= 0}" class="box" type="password" ng-model="$root.password"/>
         <label>Address</label>
-        <input class="box" type="text" ng-model="$root.address" placeholder="Street / Number"/>
-        <input class="box" type="text" ng-model="$root.city" placeholder="City"/>
+        <input ng-class="{error: $root.errorFields.indexOf('address') >= 0}"  class="box" type="text" ng-model="$root.address" placeholder="Street / Number"/>
+        <input ng-class="{error: $root.errorFields.indexOf('city') >= 0}"  class="box" type="text" ng-model="$root.city" placeholder="City"/>
         <a ng-click="$root.signup()" class="button green large">Sign up</a>
     </div>
 </div>

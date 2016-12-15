@@ -26,3 +26,16 @@ CREATE TABLE IF NOT EXISTS `user_messages` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+
+ALTER TABLE `user_messages` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `user_messages` 
+DROP FOREIGN KEY `fk_user_messages_3`;
+ALTER TABLE `user_messages` 
+ADD CONSTRAINT `fk_user_messages_3`
+  FOREIGN KEY (`apartment_id`)
+  REFERENCES `apartments` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
