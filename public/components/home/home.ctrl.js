@@ -309,7 +309,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                 message: ''
             };
         } else {
-            $rootScope.loginMessage = 'Please sign in to apply!'
+            $rootScope.loginMessage = 'Please log in to apply!'
             $rootScope.showLogin = true;
         }
     };

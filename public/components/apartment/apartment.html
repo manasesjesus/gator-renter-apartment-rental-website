@@ -24,6 +24,10 @@
             <div ng-class="{positive: apartment.kitchen_in_apartment}" class="item">{{ apartment.kitchen_in_apartment ? 'Kitchen in apt.' : 'No kitchen in apt.' }}</div>
             <div ng-class="{positive: !apartment.credit_score_check}" class="item">{{ apartment.credit_score_check ? 'Credit score check' : 'No credit score check' }}</div>
         </div>
+        <map center="{{apartment.latitude}},{{apartment.longitude}}" zoom="15">
+            <marker id="gmapMarker" position="{{apartment.latitude}},{{apartment.longitude}}"></marker>
+        </map>
+        <br>
         <a ng-click="$root.applyNow()" class="button green large">Contact owner</a>
     </div>
 </div>
