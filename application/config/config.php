@@ -69,7 +69,7 @@ else if($_SERVER['HTTP_HOST'] == 'localhost:8888') {
     define('DB_PASS', 'sfsuf16swe');
     define('DB_CHARSET', 'utf8');
 }
-else if($_SERVER['HTTP_HOST'] == 'gator-renter.herokuapp.com') {
+else {
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net');
     define('DB_CHARSET', 'utf8');
@@ -86,6 +86,7 @@ else if($_SERVER['HTTP_HOST'] == 'gator-renter.herokuapp.com') {
 
 
 }
+/*
 else {
     define('DB_TYPE', 'mysql');
     define('DB_CHARSET', 'utf8');
@@ -94,3 +95,4 @@ else {
     define('DB_USER', 'GatorRenter');
     define('DB_PASS', 'GatorRenter');
 }
+*/
