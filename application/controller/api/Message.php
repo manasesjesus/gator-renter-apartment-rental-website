@@ -6,8 +6,9 @@ require_once APP . 'controller/api/AbstractApi.php';
  * This class will strictly be used for Message specific CRUD
  * Date: 02/12/2016
  * Time: 15:47
+ * Modified By : Intesar Haider
  */
-class Message extends AbstractAPI  {
+class message extends AbstractAPI  {
     /**
      * METHOD : POST
      */

@@ -827,3 +827,7 @@ input.error, select.error, textarea.error {
     text-align: center;
     margin: 30px auto;
 }
+
+.hideit {
+    display: none;
+}
