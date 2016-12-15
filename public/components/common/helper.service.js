@@ -32,7 +32,7 @@ app.factory('GHelper', function ($window, store) {
                 console.log("you are good to go ! ")
             } else {
                 console.log("Please sign in !! [normal user] ");
-                $rootScope.loginMessage = 'Please sign in to visit this page!';
+                //$rootScope.loginMessage = 'Please sign in to visit this page!';
                 $rootScope.showLogin = true;
                 root.redirect('/', $location);
             }
@@ -42,7 +42,7 @@ app.factory('GHelper', function ($window, store) {
                 console.log("you are good to go ! ")
             } else {
                 console.log("Pleas sign in [admin] !!  ");
-                $rootScope.loginMessage = 'Please sign in as admin to visit this page!';
+                //$rootScope.loginMessage = 'Please sign in as admin to visit this page!';
                 $rootScope.showLogin = true;
                 root.redirect('/', $location);
             }
