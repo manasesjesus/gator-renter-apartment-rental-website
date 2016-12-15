@@ -69,16 +69,7 @@ else if($_SERVER['HTTP_HOST'] == 'localhost:8888') {
     define('DB_PASS', 'sfsuf16swe');
     define('DB_CHARSET', 'utf8');
 }
-else if($_SERVER['HTTP_HOST'] == 'ec2-52-57-143-240.eu-central-1.compute.amazonaws.com') {
-
-    define('DB_TYPE', 'mysql');
-    define('DB_CHARSET', 'utf8');
-    define('DB_HOST', 'gatorrenter.c0iom0krlj7m.eu-central-1.rds.amazonaws.com');
-    define('DB_NAME', 'gator_renter');
-    define('DB_USER', 'GatorRenter');
-    define('DB_PASS', 'GatorRenter');
-}
-else {
+else if($_SERVER['HTTP_HOST'] == 'gator-renter.herokuapp.com') {
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net');
     define('DB_CHARSET', 'utf8');
@@ -92,4 +83,14 @@ else {
     define('DB_NAME', 'heroku_34339c2e1bdc646');
     define('DB_USER', 'b964e6c50d049f');
     define('DB_PASS', '23250ed4');
+
+
+}
+else {
+    define('DB_TYPE', 'mysql');
+    define('DB_CHARSET', 'utf8');
+    define('DB_HOST', 'gatorrenter.c0iom0krlj7m.eu-central-1.rds.amazonaws.com');
+    define('DB_NAME', 'gator_renter');
+    define('DB_USER', 'GatorRenter');
+    define('DB_PASS', 'GatorRenter');
 }
