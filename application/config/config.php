@@ -80,19 +80,7 @@ else {
     define('DB_PASS', '5bda8f98');
 
     // SFSU
-//    define('DB_NAME', 'heroku_34339c2e1bdc646');
-//    define('DB_USER', 'b964e6c50d049f');
-//    define('DB_PASS', '23250ed4');
-
-
+    // define('DB_NAME', 'heroku_34339c2e1bdc646');
+    // define('DB_USER', 'b964e6c50d049f');
+    // define('DB_PASS', '23250ed4');
 }
-/*
-else {
-    define('DB_TYPE', 'mysql');
-    define('DB_CHARSET', 'utf8');
-    define('DB_HOST', 'gatorrenter.c0iom0krlj7m.eu-central-1.rds.amazonaws.com');
-    define('DB_NAME', 'gator_renter');
-    define('DB_USER', 'GatorRenter');
-    define('DB_PASS', 'GatorRenter');
-}
-*/
