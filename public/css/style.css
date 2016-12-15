@@ -632,14 +632,14 @@ td {
     padding: 5px;
 }
 
-td input {
+/*td input {
     font-family: Montserrat, Sans-Serif;
     font-weight: 400;
     border-style: solid;
     border-radius: 4px;
     font-size: 15px;
     padding: 8px;
-}
+}*/
 
 label.required {
     position: relative;

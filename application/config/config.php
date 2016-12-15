@@ -53,7 +53,7 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
  * This is the place where you define your database credentials, database type etc.
  */
 
-if($_SERVER['HTTP_HOST'] == 'localhost') {
+if($_SERVER['HTTP_HOST'] == 'gator.local') {
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'sfsu_db');

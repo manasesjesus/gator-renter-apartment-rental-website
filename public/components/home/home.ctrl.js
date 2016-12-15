@@ -41,10 +41,11 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             $scope.loadingOwnerApartments = false;
             $rootScope.checkForNewMessages();
         });
-        $rootScope.user_profile = store.get('profile');
-
     }
-
+    if (store.get('info_profile') != null) {
+        $rootScope.user_profile = store.get('info_profile');
+    }
+        
     $rootScope.newApt = {};
     $rootScope.errorFields = undefined;
 
@@ -89,7 +90,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 if (response.data.first_name) {
-                    $rootScope.setProfile($rootScope.username, response.data.uid,
+                    $rootScope.setInfoProfile($rootScope.username, response.data.uid,
                         response.data.first_name + " " + response.data.last_name,
                         response.data.first_name,
                         response.data.last_name,
@@ -97,6 +98,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                         response.data.address,
                         response.data.city,
                         response.data.email);
+                    $rootScope.setProfile($rootScope.username, response.data.uid,
+                        response.data.first_name + " " + response.data.last_name, response.data.user_roles_id);
                     $rootScope.showSuccessMessageFunc("Logged in !");
                     $rootScope.loginMessage = '';
                     $rootScope.showLogin = false;
@@ -130,7 +133,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             }
         }).then(function successCallback(response) {
                 // this callback will be called asynchronously
-                $rootScope.setProfile($rootScope.username, response.data.data.uid,
+                    $rootScope.setInfoProfile($rootScope.username, response.data.data.uid,
                     response.data.data.first_name + " " + response.data.data.last_name,
                     response.data.data.first_name,
                     response.data.data.last_name,
@@ -178,8 +181,17 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         $scope.go('/');
     };
 
-    $rootScope.setProfile = function (u1, u2, u3, u4, u5, u6, u7, u8, u9) {
+    $rootScope.setProfile = function (u1, u2, u3, u4) {
         store.set('profile', {
+            username: u1,
+            user_id: u2,
+            user_fullname: u3,
+            user_role: u4
+        });
+    }
+
+    $rootScope.setInfoProfile = function (u1, u2, u3, u4, u5, u6, u7, u8, u9) {
+        store.set('info_profile', {
             username: u1,
             user_id: u2,
             user_fullname: u3,
@@ -190,7 +202,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             city: u8,
             email: u9
         });
-        if (store.get('profile') != null) {
+        if (store.get('info_profile') != null) {
+                $rootScope.user_profile = store.get('info_profile');
             $rootScope.user_profile = store.get('profile');
         }
     }
@@ -235,8 +248,16 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                     }
                 }).then(function successCallback(response) {
                     //store.set('profile', {username: $rootScope.username, user_id: response.data.data.user_id});
-                    $rootScope.setProfile($rootScope.username, response.data.uid,
-                        response.data.first_name + " " + response.data.last_name, response.data.user_roles_id);
+                    $rootScope.setInfoProfile($rootScope.username, response.data.data.uid,
+                        response.data.data.first_name + " " + response.data.data.last_name,
+                        response.data.data.first_name,
+                        response.data.data.last_name,
+                        response.data.data.user_roles_id, 
+                        response.data.data.address, 
+                        response.data.data.city,
+                        response.data.data.email);
+                    $rootScope.setProfile($rootScope.username, response.data.data.user_id,
+                        response.data.data.first_name + " " + response.data.data.last_name, response.data.data.user_roles_id);
                     $rootScope.loginMessage = '';
                     $rootScope.showSuccessMessageFunc("Registered & Logged-in!");
                     $rootScope.showSignup = false;
