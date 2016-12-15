@@ -57,10 +57,10 @@
 		<input ng-class="{error: $root.errorFields.indexOf('monthly_rent') >= 0}" class="box" type="text" ng-model="$root.newApt.monthly_rent" placeholder="1400" />
 		<label>Security Deposit</label>
 		<input ng-class="{error: $root.errorFields.indexOf('security_deposit') >= 0}" class="box" type="text" ng-model="$root.newApt.security_deposit" placeholder="1400" />
-		<label>Available Since</label>
-		<input ng-class="{error: $root.errorFields.indexOf('available_since') >= 0}" class="box" type="text" ng-model="$root.newApt.available_since" placeholder="yyyy-mm-dd" />
-		<label>Lease End Date</label>
-		<input ng-class="{error: $root.errorFields.indexOf('lease_end_date') >= 0}" class="box" type="text" ng-model="$root.newApt.lease_end_date" placeholder="yyyy-mm-dd" />
+		<label class="hideit">Available Since</label>
+		<input class="hideit" ng-class="{error: $root.errorFields.indexOf('available_since') >= 0}" class="box" type="text" ng-model="$root.newApt.available_since" placeholder="yyyy-mm-dd" />
+		<label class="hideit">Lease End Date</label>
+		<input class="hideit" ng-class="{error: $root.errorFields.indexOf('lease_end_date') >= 0}" class="box" type="text" ng-model="$root.newApt.lease_end_date" placeholder="yyyy-mm-dd" />
 		<form name="uploadForm">
 			<label>Pictures</label>
 			<input type="file" multiple ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile" />
