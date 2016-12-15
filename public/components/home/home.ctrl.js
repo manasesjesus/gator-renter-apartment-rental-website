@@ -301,7 +301,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
     $rootScope.checkForNewMessages = function () {
         if (store.get('profile') != null) {
-            $http.post('/api/message/getNewMessagesCount', {
+            $http.post('/api/Message/getNewMessagesCount', {
                 email: $rootScope.getEmail(),
             }).success(function (data) {
                 $rootScope.hasNewMessages = data.data && data.data.new_messages_count > 0;
@@ -336,7 +336,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     };
 
     $rootScope.sendThisMessage = function () {
-        $http.post('/api/message/addNewMessage', $rootScope.newMsg).success(function (data) {
+        $http.post('/api/Message/addNewMessage', $rootScope.newMsg).success(function (data) {
             $rootScope.showApplyNow = false;
         }).error(function (error) {
             console.log("Error: " + error.message);

@@ -8,7 +8,7 @@ require_once APP . 'controller/api/AbstractApi.php';
  * Time: 15:47
  * Modified By : Intesar Haider
  */
-class message extends AbstractAPI  {
+class Message extends AbstractAPI  {
     /**
      * METHOD : POST
      */
