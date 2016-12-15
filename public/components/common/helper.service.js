@@ -31,17 +31,17 @@ app.factory('GHelper', function ($window, store) {
             if(root.isAuthenticated()){
                 console.log("you are good to go ! ")
             } else {
-                console.log("Please sign in !!  ");
+                console.log("Please sign in !! [normal user] ");
                 $rootScope.loginMessage = 'Please sign in to visit this page!';
                 $rootScope.showLogin = true;
                 root.redirect('/', $location);
             }
         } else if (root.getTitle($location)==='admin') {
 
-            if(root.isAuthenticated() && store.get("user_role")== ADMIN){
+            if(root.isAuthenticated() && store.get('profile')['user_role']== ADMIN){
                 console.log("you are good to go ! ")
             } else {
-                console.log("Pleas sign in !!  ");
+                console.log("Pleas sign in [admin] !!  ");
                 $rootScope.loginMessage = 'Please sign in as admin to visit this page!';
                 $rootScope.showLogin = true;
                 root.redirect('/', $location);
