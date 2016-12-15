@@ -302,11 +302,25 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
     $rootScope.applyNow = function () {
         if ($rootScope.isAuthenticated()) {
             $rootScope.showApplyNow = true;
+            $rootScope.newMsg = {
+                apartment_id: $scope.apartment.id,
+                from_user_id: $rootScope.getUserID(),
+                to_user_id: $scope.apartment.owner_id,
+                message: ''
+            };
         } else {
             $rootScope.loginMessage = 'Please sign in to apply!'
             $rootScope.showLogin = true;
         }
     };
+
+    $rootScope.sendThisMessage = function () {
+        $http.post('/api/message/addNewMessage', $rootScope.newMsg).success(function (data) {
+            $rootScope.showApplyNow = false;
+        }).error(function (error) {
+            console.log("Error: " + error.message);
+        });
+    }
 
     $rootScope.savePost = function () {
         $rootScope.newApt['owner_id'] = store.get('profile')['user_id'];

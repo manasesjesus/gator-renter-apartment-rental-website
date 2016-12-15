@@ -778,14 +778,21 @@ input.error, select.error, textarea.error {
 }
 
 /* Messages form */
-#overlay #conversation {
+#overlay #conversation,
+#overlay #mess {
     margin: 20px;
     overflow: auto;
     padding: 50px;
     width: 700px;
 }
 
-#overlay #conversation > label {
+#overlay #mess {
+    height: 350px;
+    margin: auto;
+}
+
+#overlay #conversation > label,
+#overlay #mess > label {
     margin-top: 0;
     font-size: 14px;
 }

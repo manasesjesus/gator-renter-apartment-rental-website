@@ -3,8 +3,9 @@
 
 <div ng-show="$root.showLogin" ng-include="'components/topbar/login-form.html'"></div>
 <div ng-show="$root.showSignup" ng-include="'components/topbar/signup-form.html'"></div>
-<div ng-show="showApplyNow" ng-include="'components/apartment/apply-now.html'"></div>
+<div ng-show="$root.showApplyNow" ng-include="'components/apartment/apply-now.html'"></div>
 <div ng-include="'components/topbar/topbar.html'"></div>
+<div ng-controller="homeController">
 <div id="apartment-detail" class="bottom" ng-controller="apartmentController">
     <div class="center" ng-class="{noimage: apartment.pictures.length == 0}">
         <h1>{{ apartment.title }}</h1>
@@ -23,7 +24,7 @@
             <div ng-class="{positive: apartment.kitchen_in_apartment}" class="item">{{ apartment.kitchen_in_apartment ? 'Kitchen in apt.' : 'No kitchen in apt.' }}</div>
             <div ng-class="{positive: !apartment.credit_score_check}" class="item">{{ apartment.credit_score_check ? 'Credit score check' : 'No credit score check' }}</div>
         </div>
-        <a ng-click="$root.sendMessage()" class="button green large">Contact owner</a>
+        <a ng-click="$root.applyNow()" class="button green large">Contact owner</a>
     </div>
-
+</div>
 </div>

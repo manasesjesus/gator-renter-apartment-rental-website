@@ -57,7 +57,6 @@ app.controller('profileController', ['$scope', '$rootScope', 'Apartment', 'User'
         }).error(function (error) {
             console.log("Error: " + error.message);
         });
-
     }
 }]);
 
