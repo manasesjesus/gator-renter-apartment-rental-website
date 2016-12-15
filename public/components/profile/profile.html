@@ -16,9 +16,9 @@
 
 		<div id="controls" class="flex">
                     <div id="select-views" class="flex center-opts">
-                        <div ng-class="{active: view == 'user'}" ng-click="view = 'user'">User</div>
                         <div ng-class="{active: view == 'messages'}" ng-click="view = 'messages'">Inbox</div>
                         <div ng-class="{active: view == 'offers'}" ng-click="view = 'offers'">Offers</div>
+                        <div ng-class="{active: view == 'user'}" ng-click="view = 'user'">Data</div>
                     </div>
 		</div>
 
@@ -47,36 +47,6 @@
 			<button ng-click="$root.postApartment()" class="button green large">Post an apartment</button>
 		</div>
 
-        <div id="user-view"  ng-if="view == 'user'">
-            <form novalidate>
-            <table>
-                <tr>
-                 <td style="width: 150px">Email:</td>
-                 <td> <p> {{ user_profile.email }}</p>
-                </tr>
-                <tr>
-                 <td style="width: 150px">First Name:</td>
-                 <td> <input class="box" type="text" ng-model="user_profile.user_first_name" /> </td>
-                </tr>
-                <tr>
-                 <td style="width: 150px">Last Name:</td>
-                 <td> <input class="box" type="text" ng-model="user_profile.user_last_name" /> </td>
-                </tr>
-                <tr>
-                 <td style="width: 150px">Address:</td>
-                 <td> <input class="box" type="text" ng-model="user_profile.address" /> </td>
-                </tr>
-                <tr>
-                 <td style="width: 150px">City:</td>
-                 <td> <input class="box" type="text" ng-model="user_profile.city" /> </td>
-                </tr>
-                <tr>
-                    <td><button ng-click="$root.updateUserDetails()" class="button green large">Save data</button></td>
-                    <td><p ng-show="$root.updateMessage" class="info">{{ $root.updateMessage }}</p></td>
-                </tr>
-            </table><br>
-            </form>
-        </div>
         <div id="messages-view"  ng-if="view == 'messages'">
             <h3 ng-show="messages.length == 0">You have no messages.</h3>
             <h3 ng-show="messages.length > 0">My Messages ({{ messages.length }})</h3>
@@ -99,7 +69,37 @@
                 </tbody>
             </table>
         </div>
-
         <div ng-show="$root.showConversation" ng-include="'components/profile/conversation.html'"></div>
+
+        <div id="user-view"  ng-if="view == 'user'">
+            <form novalidate>
+                <table>
+                    <tr>
+                        <td style="width: 150px">Email:</td>
+                        <td> <p> {{ user_profile.email }}</p>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">First Name:</td>
+                        <td> <input class="box" type="text" ng-model="user_profile.user_first_name" /> </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">Last Name:</td>
+                        <td> <input class="box" type="text" ng-model="user_profile.user_last_name" /> </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">Address:</td>
+                        <td> <input class="box" type="text" ng-model="user_profile.address" /> </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">City:</td>
+                        <td> <input class="box" type="text" ng-model="user_profile.city" /> </td>
+                    </tr>
+                    <tr>
+                        <td><button ng-click="$root.updateUserDetails()" class="button green large">Save data</button></td>
+                        <td><p ng-show="$root.updateMessage" class="info">{{ $root.updateMessage }}</p></td>
+                    </tr>
+                </table><br>
+            </form>
+        </div>
 	</div>
 </div>

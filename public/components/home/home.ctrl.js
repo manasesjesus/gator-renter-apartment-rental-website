@@ -22,7 +22,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
         $rootScope.showSuccessMessage = true;
         $timeout(function () {
             $rootScope.showSuccessMessage = false;
-        }, 2000);
+        }, 1500);
     };
 
 
@@ -203,8 +203,8 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             email: u9
         });
         if (store.get('info_profile') != null) {
-                $rootScope.user_profile = store.get('info_profile');
-            $rootScope.user_profile = store.get('profile');
+            $rootScope.user_profile = store.get('info_profile');
+            //$rootScope.user_profile = store.get('profile');
         }
     }
 

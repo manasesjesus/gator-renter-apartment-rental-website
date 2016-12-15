@@ -821,10 +821,9 @@ input.error, select.error, textarea.error {
 #display-success {
     width: 70%;
     padding: 10px;
-    font-size: 12px;
+    font-size: 14px;
     text-transform: uppercase;
-    background-color: #26e3ad;
-    color: white;
+    color: #23cb94;
     text-align: center;
     margin: 30px auto;
 }
