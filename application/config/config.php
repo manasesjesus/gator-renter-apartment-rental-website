@@ -58,7 +58,7 @@ if($_SERVER['HTTP_HOST'] == 'gator.local') {
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'sfsu_db');
     define('DB_USER', 'root');
-    define('DB_PASS', 'v3nturedive');
+    define('DB_PASS', '');
     define('DB_CHARSET', 'utf8');
 }
 else if($_SERVER['HTTP_HOST'] == 'localhost:8888') {
@@ -68,6 +68,15 @@ else if($_SERVER['HTTP_HOST'] == 'localhost:8888') {
     define('DB_USER', 'f16g08');
     define('DB_PASS', 'sfsuf16swe');
     define('DB_CHARSET', 'utf8');
+}
+else if($_SERVER['HTTP_HOST'] == 'ec2-52-57-143-240.eu-central-1.compute.amazonaws.com') {
+
+    define('DB_TYPE', 'mysql');
+    define('DB_CHARSET', 'utf8');
+    define('DB_HOST', 'gatorrenter.c0iom0krlj7m.eu-central-1.rds.amazonaws.com');
+    define('DB_NAME', 'gator_renter');
+    define('DB_USER', 'GatorRenter');
+    define('DB_PASS', 'GatorRenter');
 }
 else {
     define('DB_TYPE', 'mysql');
