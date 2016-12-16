@@ -25,7 +25,7 @@
             <div ng-class="{positive: !apartment.credit_score_check}" class="item">{{ apartment.credit_score_check ? 'Credit score check' : 'No credit score check' }}</div>
         </div>
         <map center="{{apartment.latitude}},{{apartment.longitude}}" zoom="15">
-            <marker id="gmapMarker" position="{{apartment.latitude}},{{apartment.longitude}}"></marker>
+            <marker id="gmapMarker" position="{{apartment.latitude}},{{apartment.longitude}}" icon="{path: 'CIRCLE', scale: 10, fillColor: 'rgb(1,229,172)', fillOpacity: 0.3, strokeColor: '#5252c9', strokeWeight: 3.0}"></marker>
         </map>
         <br>
         <a ng-click="$root.applyNow()" class="button green large">Contact owner</a>
