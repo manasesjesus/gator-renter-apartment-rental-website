@@ -58,8 +58,8 @@
 				</div>
 			</div>
 			<div id="map-view" class="flex" ng-if="view == 'map'">
-				<map center="37.762946, -122.440306" zoom="12">
-					<marker id="gmapMarker" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" on-click="showInfoWindow('aptInfo{{apartment.id}}')" position="{{apartment.latitude}},{{apartment.longitude}}" icon="{path: 'CIRCLE', scale: 10, fillColor: 'rgb(1,229,172)', fillOpacity: 0.3, strokeColor: '#5252c9', strokeWeight: 3.0}">
+				<map center="50.5546706,9.6760662" zoom="14">
+					<marker id="gmapMarker" ng-repeat="apartment in (apartments | orderBy:propertyName:reverse | filter:searchBar | customFilter:privateRoom:privateBath:kitchenIn:noDeposit:noCredit)" on-click="showInfoWindow('aptInfo{{apartment.id}}')" position="{{apartment.latitude}},{{apartment.longitude}}" icon="{path: 'BACKWARD_CLOSED_ARROW', scale: 7, fillColor: 'rgb(1,229,172)', fillOpacity: 0.5, strokeColor: '#5252c9', strokeWeight: 1.5}">
 						<info-window id="aptInfo{{apartment.id}}">
 							<div>
 								<h3><a href="/#/apartment/{{apartment.id}}">{{apartment.title}}</a></h3>
