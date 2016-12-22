@@ -99,28 +99,12 @@ and [the same for Ubuntu 12.04 LTS](http://www.dev-metal.com/setup-basic-lamp-st
 
 ### nginx
 
-```nginx
-server {
-    server_name default_server _;   # Listen to any servername
-    listen      [::]:80;
-    listen      80;
-
-    root /var/www/html/myproject/public;
-
-    location / {
-        index index.php;
-        try_files /$uri /$uri/ /index.php?url=$uri;
-    }
-
-    location ~ \.(php)$ {
-        fastcgi_pass   unix:/var/run/php5-fpm.sock;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
+```javascript
+var server = {
+    server_name : default_server
 }
 ```
-
+    
 A deeper discussion on nginx setups can be found [here](https://github.com/panique/mini/issues/55).
 
 ## Security
