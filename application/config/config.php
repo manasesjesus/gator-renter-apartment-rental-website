@@ -53,34 +53,10 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
  * This is the place where you define your database credentials, database type etc.
  */
 
-if($_SERVER['HTTP_HOST'] == 'gator.local') {
-    define('DB_TYPE', 'mysql');
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'sfsu_db');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
-    define('DB_CHARSET', 'utf8');
-}
-else if($_SERVER['HTTP_HOST'] == 'localhost:8888') {
+
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'f16g08');
     define('DB_USER', 'f16g08');
     define('DB_PASS', 'sfsuf16swe');
     define('DB_CHARSET', 'utf8');
-}
-else {
-    define('DB_TYPE', 'mysql');
-    define('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net');
-    define('DB_CHARSET', 'utf8');
-
-    // HS-Fulda
-    define('DB_NAME', 'heroku_dbf30bdf31fcc3c');
-    define('DB_USER', 'bcd047b88e33db');
-    define('DB_PASS', '5bda8f98');
-
-    // SFSU
-    // define('DB_NAME', 'heroku_34339c2e1bdc646');
-    // define('DB_USER', 'b964e6c50d049f');
-    // define('DB_PASS', '23250ed4');
-}
