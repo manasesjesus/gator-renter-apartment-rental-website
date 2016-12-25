@@ -1,31 +1,30 @@
 {
     "name": "Gator Renter",
     "type": "Web Application",
-    "description": "Rental platform for SFSU Students",
-    "keywords": ["rent", "san francisco", "san francisco state university", "sfsu rental", "san francisco state rent"],
-    "homepage": "https://sfsuswe.com/~f16g08",
+    "description": "Find your next apartment in Fulda. Use our detailed filters to find the perfect place, then get in touch with the property manager.",
+    "keywords": [
+        "rent",
+        "room",
+        "aparment",
+        "hochschule",
+        "university",
+        "fulda"
+    ],
+    "homepage": "http://gator-renter.einsteiger.me",
     "license": "",
     "authors": [
         {
-            "name": "Alex Aichinger",
-            "role": "Developer"
-        },
-	{
-	    "name": "Cheng Li",
-	    "role":"Developer"
-	},
-        {
-            "name": "Darrel Daquigan",
-            "role": "Developer"
+            "name": "SFSU",
+            "role": "Developers"
         },
         {
-            "name": "Jiri Loffelmann",
+            "name": "HS-Fulda :: Manasés Galindo",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://sfsuswe.com/~f16g08",
-        "source": "https://sfsuswe.com/~f16g08"
+        "issues": "http://gator-renter.einsteiger.me",
+        "source": "http://gator-renter.einsteiger.me"
     },
     "require": {
         "php": "^5.5.12",
