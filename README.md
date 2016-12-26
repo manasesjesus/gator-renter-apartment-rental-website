@@ -31,7 +31,7 @@ mobile browsers.
 - Implemented SEO and SEM.
  
 
-### High-level System Architecture
+## High-level System Architecture
 
 - Data-source. It uses MySQL relational database.
 - RESTful API developed and exposed to read and write data. 
