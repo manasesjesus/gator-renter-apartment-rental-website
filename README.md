@@ -3,8 +3,8 @@
 # Gator Renter
 
 An on-line apartment rental site that allows university students to search for
-accommodations. Project developed in collaboration between SFSU and HS-Fulda.
-
+accommodations. Software Engineering university project developed in 
+collaboration between SFSU and HS-Fulda.
 
 Website: [gator-renter.einsteiger.me](gator-renter.einsteiger.me)   
 
