@@ -3,9 +3,9 @@
  * Main Controller
  *
  * Modified by:
- *  - Intesar Haider
- *  - Manasés Galindo
- *  - Anil Manzoor
+ *    Manasés Galindo
+ *    Intesar Haider
+ *    Anil Manzoor
  */
 app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 'Apartment', 'Upload', '$http', 'GHelper', '$timeout',
             function ($location, $scope, $rootScope, store, Apartment, Upload, $http, GHelper, $timeout) {
@@ -13,18 +13,6 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
 
     $scope.helper = GHelper;
     $scope.helper.isUserAuthorized($location, $rootScope);
-
-    $rootScope.successMessage = "";
-    $rootScope.showSuccessMessage = false;
-
-    $rootScope.showSuccessMessageFunc = function (message) {
-        $rootScope.successMessage = message;
-        $rootScope.showSuccessMessage = true;
-        $timeout(function () {
-            $rootScope.showSuccessMessage = false;
-        }, 1500);
-    };
-
 
     $scope.showPreloader = true;
     $scope.loadingOwnerApartments = true;
@@ -100,7 +88,6 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                         response.data.email);
                     $rootScope.setProfile($rootScope.username, response.data.uid,
                         response.data.first_name + " " + response.data.last_name, response.data.user_roles_id);
-                    $rootScope.showSuccessMessageFunc("Logged in !");
                     $rootScope.loginMessage = '';
                     $rootScope.showLogin = false;
                     $rootScope.checkForNewMessages();
@@ -160,7 +147,7 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
             // this callback will be called asynchronously
             if (response) {
                 if (response.data === 'SUCCESS_LOGOUT') {
-                    $rootScope.showSuccessMessageFunc("Logged out!");
+                    // do nothing
                 }
             } else {
                 alert("Unable to logout");
@@ -259,7 +246,6 @@ app.controller('homeController', ['$location', '$scope', '$rootScope', 'store', 
                     $rootScope.setProfile($rootScope.username, response.data.data.user_id,
                         response.data.data.first_name + " " + response.data.data.last_name, response.data.data.user_roles_id);
                     $rootScope.loginMessage = '';
-                    $rootScope.showSuccessMessageFunc("Registered & Logged-in!");
                     $rootScope.showSignup = false;
                 }, function errorCallback(response) {
                     $rootScope.loginMessage = response.data.reason;
