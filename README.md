@@ -6,7 +6,7 @@ An on-line apartment rental site that allows university students to search for
 accommodations. Software Engineering university project developed in 
 collaboration between SFSU and HS-Fulda.
 
-Website: [http://gator-renter.herokuapp.com](gator-renter.herokuapp.com)   
+Website: [gator-renter.herokuapp.com](http://gator-renter.herokuapp.com)   
 
 ## Functional specifications
 
