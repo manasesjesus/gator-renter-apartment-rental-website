@@ -21,7 +21,7 @@ can post the apartment info (data, rent, images).
 - Users are able to see on Google Maps the location of an advertised apartment.
 - Administrators are able to manage accounts and site content.
 
-## High-level Non-functional specifications
+## Non-functional specifications
 
 - Developed using LAMP/MAMP stack.
 - Optimized for standard desktop/laptop browsers. It degrades 
