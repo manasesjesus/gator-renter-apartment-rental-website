@@ -33,10 +33,10 @@ mobile browsers.
 
 ## High-level System Architecture
 
-- Data-source. It uses MySQL relational database.
+- Data-source. MySQL relational database.
 - RESTful API developed and exposed to read and write data. 
 [MINI PHP](http://www.dev-metal.com/mini-extremely-simple-barebone-php-application/) Framework was used to develop the API.
 - Front-end developed using AngularJS, HTML5 and CSS3.
-- The application runs on an Apache web server.
+- The application runs on Apache web server.
 
 
